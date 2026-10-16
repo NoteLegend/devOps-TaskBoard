@@ -1,0 +1,57 @@
+apiVersion: v1
+items:
+- addressType: IPv4
+  apiVersion: discovery.k8s.io/v1
+  endpoints:
+  - addresses:
+    - 10.244.0.13
+    conditions:
+      ready: false
+      serving: false
+      terminating: true
+    nodeName: taskboard-local-control-plane
+    targetRef:
+      kind: Pod
+      name: diagnostic-web-5bbcb8c998-72t9d
+      namespace: taskboard-troubleshooting
+      uid: 83332393-205d-493b-9aad-a995ee99386d
+  - addresses:
+    - 10.244.0.14
+    conditions:
+      ready: true
+      serving: true
+      terminating: false
+    nodeName: taskboard-local-control-plane
+    targetRef:
+      kind: Pod
+      name: diagnostic-web-687fbc597b-7xqmd
+      namespace: taskboard-troubleshooting
+      uid: 7f3be8d8-460c-4b99-a1f7-ce55278e569f
+  kind: EndpointSlice
+  metadata:
+    annotations:
+      endpoints.kubernetes.io/last-change-trigger-time: "2026-10-16T14:41:26Z"
+    creationTimestamp: "2026-10-16T14:42:24Z"
+    generateName: diagnostic-web-
+    generation: 2
+    labels:
+      endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+      kubernetes.io/service-name: diagnostic-web
+    name: diagnostic-web-ktvpr
+    namespace: taskboard-troubleshooting
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Service
+      name: diagnostic-web
+      uid: 314abfb1-0b9b-4350-bb4c-f46575123af8
+    resourceVersion: "1744"
+    uid: cf723f3d-a84c-4190-9441-9b81615f610c
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+kind: List
+metadata:
+  resourceVersion: ""

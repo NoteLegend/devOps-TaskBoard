@@ -1,0 +1,136 @@
+2026-10-16T14:44:03Z
+NAME                REFERENCE                      TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 5%/60%   2         4         2          85s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-5dd5dd9bb-bpzrd     backend    4m           64Mi            
+taskboard-backend-5dd5dd9bb-z74m6     backend    9m           83Mi            
+taskboard-frontend-5f5bd5df64-kvwxb   frontend   1m           18Mi            
+taskboard-frontend-5f5bd5df64-ngk5q   frontend   1m           19Mi            
+taskboard-postgres-0                  postgres   4m           27Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   2/2     2            2           85s
+2026-10-16T14:44:13Z
+NAME                REFERENCE                      TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 6%/60%   2         4         2          95s
+POD                                 NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-5dd5dd9bb-bpzrd   backend    4m           64Mi            
+taskboard-backend-5dd5dd9bb-z74m6   backend    9m           83Mi            
+taskboard-postgres-0                postgres   4m           27Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   2/2     1            2           95s
+2026-10-16T14:44:23Z
+NAME                REFERENCE                      TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 6%/60%   2         4         2          105s
+POD                                 NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-5dd5dd9bb-z74m6   backend    9m           83Mi            
+taskboard-postgres-0                postgres   62m          61Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   2/2     2            2           105s
+2026-10-16T14:44:33Z
+NAME                REFERENCE                      TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 9%/60%   2         4         2          116s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    102m         69Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   8m           17Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   14m          18Mi            
+taskboard-postgres-0                  postgres   110m         60Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   2/2     2            2           116s
+2026-10-16T14:44:44Z
+NAME                REFERENCE                      TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: <unknown>/60%   2         4         2          2m6s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    336m         70Mi            
+taskboard-backend-84b6b5f484-hqwm7    backend    297m         67Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   1m           17Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   1m           18Mi            
+taskboard-postgres-0                  postgres   97m          61Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   2/2     2            2           2m6s
+2026-10-16T14:44:54Z
+NAME                REFERENCE                      TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 336%/60%   2         4         2          2m16s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    336m         70Mi            
+taskboard-backend-84b6b5f484-hqwm7    backend    297m         67Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   1m           17Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   1m           18Mi            
+taskboard-postgres-0                  postgres   97m          61Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   2/4     4            2           2m16s
+2026-10-16T14:45:04Z
+NAME                REFERENCE                      TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 336%/60%   2         4         2          2m26s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    336m         70Mi            
+taskboard-backend-84b6b5f484-hqwm7    backend    437m         70Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   1m           18Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   1m           18Mi            
+taskboard-postgres-0                  postgres   150m         62Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   4/4     4            4           2m26s
+2026-10-16T14:45:14Z
+NAME                REFERENCE                      TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 386%/60%   2         4         4          2m37s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    453m         70Mi            
+taskboard-backend-84b6b5f484-hqwm7    backend    495m         71Mi            
+taskboard-backend-84b6b5f484-kb2fg    backend    351m         69Mi            
+taskboard-backend-84b6b5f484-xqpkd    backend    279m         70Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   1m           18Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   1m           18Mi            
+taskboard-postgres-0                  postgres   134m         70Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   4/4     4            4           2m37s
+2026-10-16T14:45:25Z
+NAME                REFERENCE                      TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 474%/60%   2         4         4          2m47s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    453m         70Mi            
+taskboard-backend-84b6b5f484-hqwm7    backend    495m         71Mi            
+taskboard-backend-84b6b5f484-kb2fg    backend    351m         69Mi            
+taskboard-backend-84b6b5f484-xqpkd    backend    279m         70Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   1m           18Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   1m           18Mi            
+taskboard-postgres-0                  postgres   134m         70Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   4/4     4            4           2m47s
+2026-10-16T14:45:35Z
+NAME                REFERENCE                      TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 474%/60%   2         4         4          2m57s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    439m         70Mi            
+taskboard-backend-84b6b5f484-hqwm7    backend    458m         70Mi            
+taskboard-backend-84b6b5f484-kb2fg    backend    418m         67Mi            
+taskboard-backend-84b6b5f484-xqpkd    backend    438m         68Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   1m           18Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   1m           19Mi            
+taskboard-postgres-0                  postgres   209m         76Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   4/4     4            4           2m57s
+2026-10-16T14:45:45Z
+NAME                REFERENCE                      TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 438%/60%   2         4         4          3m7s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    439m         70Mi            
+taskboard-backend-84b6b5f484-hqwm7    backend    476m         70Mi            
+taskboard-backend-84b6b5f484-kb2fg    backend    465m         70Mi            
+taskboard-backend-84b6b5f484-xqpkd    backend    421m         68Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   1m           18Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   1m           19Mi            
+taskboard-postgres-0                  postgres   199m         74Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   4/4     4            4           3m7s
+2026-10-16T14:45:55Z
+NAME                REFERENCE                      TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+taskboard-backend   Deployment/taskboard-backend   cpu: 450%/60%   2         4         4          3m17s
+POD                                   NAME       CPU(cores)   MEMORY(bytes)   
+taskboard-backend-84b6b5f484-46kbt    backend    439m         70Mi            
+taskboard-backend-84b6b5f484-hqwm7    backend    476m         70Mi            
+taskboard-backend-84b6b5f484-kb2fg    backend    465m         70Mi            
+taskboard-backend-84b6b5f484-xqpkd    backend    421m         68Mi            
+taskboard-frontend-745b4945db-8m6s2   frontend   1m           18Mi            
+taskboard-frontend-745b4945db-q5f4c   frontend   1m           19Mi            
+taskboard-postgres-0                  postgres   199m         74Mi            
+NAME                READY   UP-TO-DATE   AVAILABLE   AGE
+taskboard-backend   4/4     4            4           3m18s

@@ -1,0 +1,128 @@
+ Container taskboard-tests-tests-1 Recreate 
+ Container taskboard-tests-tests-1 Recreated 
+Attaching to postgres-1, tests-1
+ Container taskboard-tests-postgres-1 Starting 
+ Container taskboard-tests-postgres-1 Started 
+ Container taskboard-tests-postgres-1 Waiting 
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default max_connections ... 100
+postgres-1  | selecting default shared_buffers ... 128MB
+postgres-1  | selecting default time zone ... UTC
+postgres-1  | creating configuration files ... ok
+postgres-1  | running bootstrap script ... ok
+postgres-1  | sh: locale: not found
+postgres-1  | 2026-10-16 14:42:01.429 UTC [36] WARNING:  no usable system locales were found
+postgres-1  | performing post-bootstrap initialization ... ok
+postgres-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | waiting for server to start....2026-10-16 14:42:01.914 UTC [42] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-10-16 14:42:01.929 UTC [42] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-16 14:42:01.932 UTC [45] LOG:  database system was shut down at 2026-10-16 14:42:01 UTC
+postgres-1  | 2026-10-16 14:42:01.938 UTC [42] LOG:  database system is ready to accept connections
+postgres-1  |  done
+postgres-1  | server started
+postgres-1  | CREATE DATABASE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres-1  | 
+postgres-1  | waiting for server to shut down....2026-10-16 14:42:02.046 UTC [42] LOG:  received fast shutdown request
+postgres-1  | 2026-10-16 14:42:02.046 UTC [42] LOG:  aborting any active transactions
+postgres-1  | 2026-10-16 14:42:02.048 UTC [42] LOG:  background worker "logical replication launcher" (PID 48) exited with exit code 1
+postgres-1  | 2026-10-16 14:42:02.049 UTC [43] LOG:  shutting down
+postgres-1  | 2026-10-16 14:42:02.049 UTC [43] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-10-16 14:42:02.057 UTC [43] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.001 s, total=0.009 s; sync files=301, longest=0.001 s, average=0.000 s; distance=4283 kB, estimate=4283 kB; lsn=0/1925D60, redo lsn=0/1925D60
+postgres-1  | 2026-10-16 14:42:02.062 UTC [42] LOG:  database system is shut down
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+postgres-1  | 2026-10-16 14:42:02.170 UTC [1] LOG:  starting PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1  | 2026-10-16 14:42:02.170 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1  | 2026-10-16 14:42:02.170 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1  | 2026-10-16 14:42:02.179 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2026-10-16 14:42:02.181 UTC [58] LOG:  database system was shut down at 2026-10-16 14:42:02 UTC
+postgres-1  | 2026-10-16 14:42:02.185 UTC [1] LOG:  database system is ready to accept connections
+ Container taskboard-tests-postgres-1 Healthy 
+ Container taskboard-tests-tests-1 Starting 
+ Container taskboard-tests-tests-1 Started 
+tests-1     | INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+tests-1     | INFO  [alembic.runtime.migration] Will assume transactional DDL.
+tests-1     | INFO  [alembic.runtime.migration] Running upgrade  -> 0001_create_tasks
+tests-1     | INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+tests-1     | INFO  [alembic.runtime.migration] Will assume transactional DDL.
+tests-1     | INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+tests-1     | INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+tests-1     | INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+tests-1     | INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+tests-1     | INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+tests-1     | INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+tests-1     | INFO  [alembic.ddl.postgresql] Detected sequence named 'tasks_id_seq' as owned by integer column 'tasks(id)', assuming SERIAL and omitting
+tests-1     | No new upgrade operations detected.
+tests-1     | ============================= test session starts ==============================
+tests-1     | platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0 -- /usr/local/bin/python3.13
+tests-1     | rootdir: /app
+tests-1     | configfile: pytest.ini
+tests-1     | plugins: anyio-4.15.1
+tests-1     | collecting ... collected 19 items
+tests-1     | 
+tests-1     | tests/test_api.py::test_health_and_root PASSED                           [  5%]
+tests-1     | tests/test_api.py::test_crud PASSED                                      [ 10%]
+tests-1     | tests/test_api.py::test_statistics_route_and_counts PASSED               [ 15%]
+tests-1     | tests/test_api.py::test_create_validation[payload0] PASSED               [ 21%]
+tests-1     | tests/test_api.py::test_create_validation[payload1] PASSED               [ 26%]
+tests-1     | tests/test_api.py::test_create_validation[payload2] PASSED               [ 31%]
+tests-1     | tests/test_api.py::test_create_validation[payload3] PASSED               [ 36%]
+tests-1     | tests/test_api.py::test_create_validation[payload4] PASSED               [ 42%]
+tests-1     | tests/test_api.py::test_create_validation[payload5] PASSED               [ 47%]
+tests-1     | tests/test_api.py::test_create_validation[payload6] PASSED               [ 52%]
+tests-1     | tests/test_api.py::test_update_validation[payload0] PASSED               [ 57%]
+tests-1     | tests/test_api.py::test_update_validation[payload1] PASSED               [ 63%]
+tests-1     | tests/test_api.py::test_update_validation[payload2] PASSED               [ 68%]
+tests-1     | tests/test_api.py::test_update_validation[payload3] PASSED               [ 73%]
+tests-1     | tests/test_api.py::test_not_found[get-None] PASSED                       [ 78%]
+tests-1     | tests/test_api.py::test_not_found[put-payload1] PASSED                   [ 84%]
+tests-1     | tests/test_api.py::test_not_found[delete-None] PASSED                    [ 89%]
+tests-1     | tests/test_api.py::test_database_failure_is_safe_and_recovers PASSED     [ 94%]
+tests-1     | tests/test_api.py::test_metrics_and_docs PASSED                          [100%]
+tests-1     | 
+tests-1     | =============================== warnings summary ===============================
+tests-1     | ../usr/local/lib/python3.13/site-packages/fastapi/testclient.py:1
+tests-1     |   /usr/local/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+tests-1     |     from starlette.testclient import TestClient as TestClient  # noqa
+tests-1     | 
+tests-1     | -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+tests-1     | ======================== 19 passed, 1 warning in 0.96s =========================
+[Ktests-1 exited with code 0
+ Compose Stopping Aborting on container exit...
+ Container taskboard-tests-tests-1 Stopping 
+ Container taskboard-tests-tests-1 Stopped 
+ Container taskboard-tests-postgres-1 Stopping 
+postgres-1  | 2026-10-16 14:42:13.014 UTC [1] LOG:  received fast shutdown request
+postgres-1  | 2026-10-16 14:42:13.014 UTC [1] LOG:  aborting any active transactions
+postgres-1  | 2026-10-16 14:42:13.017 UTC [1] LOG:  background worker "logical replication launcher" (PID 61) exited with exit code 1
+postgres-1  | 2026-10-16 14:42:13.017 UTC [56] LOG:  shutting down
+postgres-1  | 2026-10-16 14:42:13.017 UTC [56] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2026-10-16 14:42:13.020 UTC [56] LOG:  checkpoint complete: wrote 62 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.003 s; sync files=141, longest=0.001 s, average=0.001 s; distance=258 kB, estimate=258 kB; lsn=0/1966720, redo lsn=0/1966720
+postgres-1  | 2026-10-16 14:42:13.025 UTC [1] LOG:  database system is shut down
+ Container taskboard-tests-postgres-1 Stopped 
+[Kpostgres-1 exited with code 0

@@ -1,0 +1,12 @@
+a2b92ec 2026-10-16T20:11:04+05:30 Add repeatable smoke persistence outage load and submission helpers
+f8ddf2a 2026-10-16T20:11:04+05:30 Isolate broken-image and Service-selector recovery exercises
+8e92c2d 2026-10-16T20:11:04+05:30 Gate image publication and OIDC deployment on tests builds and security scans
+a56acdd 2026-10-16T20:11:04+05:30 Bootstrap cluster prerequisites and deploy immutable release images
+cd9dbb8 2026-10-16T20:11:04+05:30 Configure private application monitoring and release dashboard
+cf36e45 2026-10-16T20:11:04+05:30 Package release-scoped workloads migrations ingress and CPU autoscaling
+2ee389b 2026-10-16T20:11:04+05:30 Define account-guarded EKS networking storage IAM and OIDC infrastructure
+ab795c8 2026-10-16T20:11:04+05:30 Containerize non-root services with ordered migrations and isolated PostgreSQL checks
+b7f5a1c 2026-10-16T20:11:04+05:30 Adapt TaskBoard into responsive DevOps Release Helpdesk
+8460b58 2026-10-16T20:11:04+05:30 Cover CRUD statistics validation and database readiness failures
+5ebbec9 2026-10-16T20:11:04+05:30 Validate release ticket APIs and isolate database migrations
+5e337bb 2026-10-16T20:11:04+05:30 Preserve starter attribution and establish safe project exclusions

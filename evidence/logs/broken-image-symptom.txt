@@ -1,0 +1,2 @@
+NAME                              READY   STATUS         RESTARTS   AGE
+diagnostic-web-5bbcb8c998-72t9d   0/1     ErrImagePull   0          46s

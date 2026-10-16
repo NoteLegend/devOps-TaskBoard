@@ -1,0 +1,30 @@
+[
+  {
+    "labels": {
+      "container": "backend",
+      "endpoint": "http",
+      "instance": "10.244.0.17:8000",
+      "job": "taskboard-backend",
+      "namespace": "taskboard",
+      "pod": "taskboard-backend-5dd5dd9bb-z74m6",
+      "service": "taskboard-backend"
+    },
+    "health": "up",
+    "scrapeUrl": "http://10.244.0.17:8000/metrics",
+    "lastError": ""
+  },
+  {
+    "labels": {
+      "container": "backend",
+      "endpoint": "http",
+      "instance": "10.244.0.23:8000",
+      "job": "taskboard-backend",
+      "namespace": "taskboard",
+      "pod": "taskboard-backend-5dd5dd9bb-bpzrd",
+      "service": "taskboard-backend"
+    },
+    "health": "up",
+    "scrapeUrl": "http://10.244.0.23:8000/metrics",
+    "lastError": ""
+  }
+]

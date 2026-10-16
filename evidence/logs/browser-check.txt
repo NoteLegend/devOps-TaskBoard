@@ -1,0 +1,15 @@
+{
+  "status": "PASSED",
+  "base": "http://127.0.0.1:3000",
+  "checks": [
+    "browser create",
+    "edit status",
+    "delete",
+    "mobile layout",
+    "filter",
+    "same-origin API",
+    "Swagger"
+  ],
+  "apiRequests": 11,
+  "timestamp": "2026-10-16T14:44:38.506Z"
+}

@@ -1,0 +1,73 @@
+{
+  "up{namespace=\"taskboard\"}": [
+    {
+      "metric": {
+        "__name__": "up",
+        "container": "backend",
+        "endpoint": "http",
+        "instance": "10.244.0.23:8000",
+        "job": "taskboard-backend",
+        "namespace": "taskboard",
+        "pod": "taskboard-backend-5dd5dd9bb-bpzrd",
+        "service": "taskboard-backend"
+      },
+      "value": [
+        1792161842.365,
+        "1"
+      ]
+    },
+    {
+      "metric": {
+        "__name__": "up",
+        "container": "backend",
+        "endpoint": "http",
+        "instance": "10.244.0.17:8000",
+        "job": "taskboard-backend",
+        "namespace": "taskboard",
+        "pod": "taskboard-backend-5dd5dd9bb-z74m6",
+        "service": "taskboard-backend"
+      },
+      "value": [
+        1792161842.365,
+        "1"
+      ]
+    }
+  ],
+  "sum(http_requests_total{namespace=\"taskboard\"})": [
+    {
+      "metric": {},
+      "value": [
+        1792161842.37,
+        "45"
+      ]
+    }
+  ],
+  "sum(rate(http_requests_total{namespace=\"taskboard\"}[2m]))": [
+    {
+      "metric": {},
+      "value": [
+        1792161842.375,
+        "0.20980277777777778"
+      ]
+    }
+  ],
+  "kube_deployment_status_replicas_available{namespace=\"taskboard\",deployment=\"taskboard-backend\"}": [
+    {
+      "metric": {
+        "__name__": "kube_deployment_status_replicas_available",
+        "container": "kube-state-metrics",
+        "deployment": "taskboard-backend",
+        "endpoint": "http",
+        "instance": "10.244.0.9:8080",
+        "job": "kube-state-metrics",
+        "namespace": "taskboard",
+        "pod": "monitoring-kube-state-metrics-6d8ffd8867-sv26p",
+        "service": "monitoring-kube-state-metrics"
+      },
+      "value": [
+        1792161842.379,
+        "2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+NAME                                  IMAGE                      IMAGE_ID
+taskboard-backend-84b6b5f484-46kbt    taskboard-backend:local    sha256:ed313c63d60ec50ab7187937727b6b5b3ce2f1fc6f46fc2a40b4e1cdb354e82f
+taskboard-backend-84b6b5f484-hqwm7    taskboard-backend:local    sha256:ed313c63d60ec50ab7187937727b6b5b3ce2f1fc6f46fc2a40b4e1cdb354e82f
+taskboard-frontend-745b4945db-8m6s2   taskboard-frontend:local   sha256:577fa51c3536ec0cc3f75440fc13fbf52ba537166676df5f034fdf14ba2fa33c
+taskboard-frontend-745b4945db-q5f4c   taskboard-frontend:local   sha256:577fa51c3536ec0cc3f75440fc13fbf52ba537166676df5f034fdf14ba2fa33c
+taskboard-migrate-1-fjlmc             taskboard-backend:local    sha256:d1fa6198be121194843b277e0f71d0e7f3e1a08f480585ea5434f22069392a5c
+taskboard-migrate-2-26sq5             taskboard-backend:local    sha256:ed313c63d60ec50ab7187937727b6b5b3ce2f1fc6f46fc2a40b4e1cdb354e82f
+taskboard-postgres-0                  postgres:16-alpine         docker.io/library/postgres@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea

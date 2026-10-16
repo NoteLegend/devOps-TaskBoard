@@ -4,31 +4,38 @@ const base=process.env.BASE_URL||'http://127.0.0.1:3000';
 const browser=await chromium.launch({headless:true});
 const page=await browser.newPage({viewport:{width:1440,height:1000}});
 const calls=[];
+const title=`Synthetic browser release incident ${Date.now()}`;
 page.on('request',r=>{if(r.url().includes('/api/'))calls.push(r.url());});
 try {
   await page.goto(base);
   await page.getByRole('button',{name:'New ticket'}).click();
-  await page.getByLabel('Ticket title').fill('Synthetic browser release incident');
+  await page.getByLabel('Ticket title').fill(title);
   await page.getByLabel('Description',{exact:true}).fill('Investigate deployment readiness in the demo workspace.');
   await page.getByRole('dialog').locator('select').nth(0).selectOption('HIGH');
   await page.getByRole('button',{name:'Create ticket',exact:true}).click();
-  await page.getByRole('button',{name:'Edit Synthetic browser release incident',exact:true}).waitFor();
-  await page.getByRole('button',{name:'Edit Synthetic browser release incident',exact:true}).click();
+  await page.getByRole('button',{name:`Edit ${title}`,exact:true}).waitFor();
+  await page.getByRole('button',{name:`Edit ${title}`,exact:true}).click();
   await page.getByRole('dialog').locator('select').nth(1).selectOption('IN_PROGRESS');
   await page.getByRole('button',{name:'Save changes'}).click();
   await page.getByRole('dialog').waitFor({state:'hidden'});
-  await page.getByRole('cell',{name:'IN PROGRESS',exact:true}).waitFor();
+  await page.getByRole('row').filter({hasText:title}).getByRole('cell',{name:'IN PROGRESS',exact:true}).waitFor();
   await page.screenshot({path:'../evidence/application-desktop.png',fullPage:true});
   await page.setViewportSize({width:390,height:844});
   await page.screenshot({path:'../evidence/application-mobile.png',fullPage:true});
+  await page.getByPlaceholder('Title, description or assignee').fill(title);
   await page.getByRole('combobox').first().selectOption('DONE');
   await page.getByText('No tickets match these filters.').waitFor();
   await page.getByRole('combobox').first().selectOption('ALL');
   page.once('dialog',d=>d.accept());
-  await page.getByRole('button',{name:'Delete Synthetic browser release incident',exact:true}).click();
-  await page.getByRole('button',{name:'Delete Synthetic browser release incident',exact:true}).waitFor({state:'hidden'});
+  await page.getByRole('button',{name:`Delete ${title}`,exact:true}).click();
+  await page.getByRole('button',{name:`Delete ${title}`,exact:true}).waitFor({state:'hidden'});
   if(!calls.length||calls.some(u=>new URL(u).origin!==new URL(base).origin))throw Error('Browser API was not same-origin');
   await page.goto(`${base}/docs`);await page.getByText('TaskBoard API',{exact:false}).first().waitFor();
   await page.screenshot({path:'../evidence/api-docs.png',fullPage:true});
   console.log(JSON.stringify({status:'PASSED',base,checks:['browser create','edit status','delete','mobile layout','filter','same-origin API','Swagger'],apiRequests:calls.length,timestamp:new Date().toISOString()},null,2));
-} finally {await browser.close();}
+} finally {
+  // Clean only this run's synthetic ticket, including after assertion failures.
+  const rows=await (await fetch(`${base}/api/tasks`)).json();
+  for(const t of rows.filter(t=>t.title===title))await fetch(`${base}/api/tasks/${t.id}`,{method:'DELETE'});
+  await browser.close();
+}

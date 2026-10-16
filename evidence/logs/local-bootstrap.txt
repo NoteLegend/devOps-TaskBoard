@@ -1,0 +1,98 @@
+Switched to context "kind-taskboard-local".
+Image: "taskboard-backend:local" with ID "sha256:db1c5ea942896f0cfed9e0be8d290e3620e5ead6977436a7c789f93536d9df07" not yet present on node "taskboard-local-control-plane", loading...
+Image: "taskboard-frontend:local" with ID "sha256:aa2ef90566443b8908eaa94a3b51ef7f97121f0c666a0026391f44da1bc8fa4a" not yet present on node "taskboard-local-control-plane", loading...
+namespace/taskboard unchanged
+"traefik" already exists with the same configuration, skipping
+"prometheus-community" already exists with the same configuration, skipping
+"metrics-server" already exists with the same configuration, skipping
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "metrics-server" chart repository
+...Successfully got an update from the "traefik" chart repository
+...Successfully got an update from the "eks" chart repository
+...Successfully got an update from the "prometheus-community" chart repository
+Update Complete. ⎈Happy Helming!⎈
+Release "traefik" has been upgraded. Happy Helming!
+NAME: traefik
+LAST DEPLOYED: Fri Oct 16 20:08:29 2026
+NAMESPACE: ingress-system
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+NOTES:
+traefik with docker.io/traefik:v3.7.14 has been deployed successfully on ingress-system namespace!
+Release "metrics-server" has been upgraded. Happy Helming!
+NAME: metrics-server
+LAST DEPLOYED: Fri Oct 16 20:08:31 2026
+NAMESPACE: kube-system
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+NOTES:
+***********************************************************************
+* Metrics Server                                                      *
+***********************************************************************
+  Chart version: 3.14.0
+  App version:   0.9.0
+  Image tag:     registry.k8s.io/metrics-server/metrics-server:v0.9.0
+***********************************************************************
+Release "monitoring" does not exist. Installing it now.
+NAME: monitoring
+LAST DEPLOYED: Fri Oct 16 20:09:12 2026
+NAMESPACE: monitoring
+STATUS: deployed
+REVISION: 1
+NOTES:
+kube-prometheus-stack has been installed. Check its status by running:
+  kubectl --namespace monitoring get pods -l "release=monitoring"
+
+Get Grafana 'admin' user password by running:
+
+  kubectl --namespace monitoring get secrets monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+
+Access Grafana local instance:
+
+  export POD_NAME=$(kubectl --namespace monitoring get pod -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=monitoring" -oname)
+  kubectl --namespace monitoring port-forward $POD_NAME 3000
+
+Get your grafana admin user password by running:
+
+  kubectl get secret --namespace monitoring -l app.kubernetes.io/component=admin-secret -o jsonpath="{.items[0].data.admin-password}" | base64 --decode ; echo
+
+
+Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
+customresourcedefinition.apiextensions.k8s.io/servicemonitors.monitoring.coreos.com condition met
+configmap/taskboard-dashboard created
+configmap/taskboard-dashboard labeled
+secret/taskboard-runtime created
+Release "taskboard" does not exist. Installing it now.
+NAME: taskboard
+LAST DEPLOYED: Fri Oct 16 20:12:38 2026
+NAMESPACE: taskboard
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+Waiting for deployment "taskboard-backend" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "taskboard-backend" rollout to finish: 1 of 2 updated replicas are available...
+deployment "taskboard-backend" successfully rolled out
+deployment "taskboard-frontend" successfully rolled out
+NAME                                      READY   STATUS      RESTARTS   AGE
+pod/taskboard-backend-5dd5dd9bb-bpzrd     1/1     Running     0          31s
+pod/taskboard-backend-5dd5dd9bb-z74m6     1/1     Running     0          46s
+pod/taskboard-frontend-5f5bd5df64-kvwxb   1/1     Running     0          46s
+pod/taskboard-frontend-5f5bd5df64-ngk5q   1/1     Running     0          46s
+pod/taskboard-migrate-1-fjlmc             0/1     Completed   0          46s
+pod/taskboard-postgres-0                  1/1     Running     0          46s
+
+NAME                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/taskboard-backend    ClusterIP   10.96.243.105   <none>        8000/TCP   46s
+service/taskboard-frontend   ClusterIP   10.96.24.14     <none>        8080/TCP   46s
+service/taskboard-postgres   ClusterIP   10.96.91.66     <none>        5432/TCP   46s
+
+NAME                                  CLASS     HOSTS   ADDRESS   PORTS   AGE
+ingress.networking.k8s.io/taskboard   traefik   *                 80      46s
+
+NAME                                                    REFERENCE                      TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/taskboard-backend   Deployment/taskboard-backend   cpu: <unknown>/60%   2         4         2          46s
+
+NAME                                              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/data-taskboard-postgres-0   Bound    pvc-e51753a4-9fdb-479e-a6d6-aeb434bb042c   5Gi        RWO            standard       <unset>                 46s

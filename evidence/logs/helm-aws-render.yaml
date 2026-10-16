@@ -1,0 +1,234 @@
+---
+# Source: taskboard/templates/nginx.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: "taskboard-nginx"}
+data:
+  default.conf: |
+    server {
+      listen 8080;
+      root /usr/share/nginx/html;
+      location / { try_files $uri /index.html; }
+      location /api/ { proxy_pass http://taskboard-backend:8000; }
+      location ~ ^/(docs|openapi.json|health|ready|metrics) { proxy_pass http://taskboard-backend:8000; }
+    }
+---
+# Source: taskboard/templates/backend.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskboard-backend
+  labels: {app: "taskboard-backend"}
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+spec:
+  selector: {app: "taskboard-backend"}
+  ports: [{name: http, port: 8000, targetPort: http}]
+---
+# Source: taskboard/templates/frontend.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskboard-frontend
+  labels: {app: "taskboard-frontend"}
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /
+spec:
+  selector: {app: "taskboard-frontend"}
+  ports: [{name: http, port: 8080, targetPort: http}]
+---
+# Source: taskboard/templates/postgres.yaml
+apiVersion: v1
+kind: Service
+metadata: {name: "taskboard-postgres"}
+spec:
+  selector: {app: "taskboard-postgres"}
+  ports: [{name: postgres, port: 5432, targetPort: 5432}]
+---
+# Source: taskboard/templates/backend.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskboard-backend
+spec:
+  selector:
+    matchLabels: {app: "taskboard-backend"}
+  template:
+    metadata:
+      labels: {app: "taskboard-backend"}
+    spec:
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, fsGroup: 10001}
+      containers:
+        - name: backend
+          image: "taskboard-backend:local"
+          imagePullPolicy: Always
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: http, containerPort: 8000}]
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef: {name: taskboard-runtime, key: DATABASE_URL}
+          readinessProbe: {httpGet: {path: /ready, port: http}, periodSeconds: 5, timeoutSeconds: 5}
+          livenessProbe: {httpGet: {path: /health, port: http}, periodSeconds: 10}
+          startupProbe: {httpGet: {path: /health, port: http}, failureThreshold: 30, periodSeconds: 5}
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+---
+# Source: taskboard/templates/frontend.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskboard-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: "taskboard-frontend"}
+  template:
+    metadata:
+      labels: {app: "taskboard-frontend"}
+    spec:
+      securityContext: {runAsNonRoot: true, runAsUser: 101, fsGroup: 101}
+      containers:
+        - name: frontend
+          image: "taskboard-frontend:local"
+          imagePullPolicy: Always
+          securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: http, containerPort: 8080}]
+          readinessProbe: {httpGet: {path: /, port: http}, periodSeconds: 5}
+          livenessProbe: {httpGet: {path: /, port: http}, periodSeconds: 10}
+          resources:
+            requests: {cpu: 50m, memory: 32Mi}
+            limits: {cpu: 200m, memory: 128Mi}
+          volumeMounts:
+            - {name: nginx-config, mountPath: /etc/nginx/conf.d/default.conf, subPath: default.conf}
+      volumes:
+        - name: nginx-config
+          configMap: {name: taskboard-nginx}
+---
+# Source: taskboard/templates/hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: {name: "taskboard-backend"}
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: "taskboard-backend"}
+  minReplicas: 2
+  maxReplicas: 4
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 120
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: 60}
+---
+# Source: taskboard/templates/postgres.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: {name: "taskboard-postgres"}
+spec:
+  serviceName: taskboard-postgres
+  replicas: 1
+  selector:
+    matchLabels: {app: "taskboard-postgres"}
+  template:
+    metadata:
+      labels: {app: "taskboard-postgres"}
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports: [{containerPort: 5432}]
+          env:
+            - {name: POSTGRES_DB, value: "taskboard"}
+            - {name: PGDATA, value: /var/lib/postgresql/data/pgdata}
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef: {name: taskboard-runtime, key: POSTGRES_USER}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: taskboard-runtime, key: POSTGRES_PASSWORD}
+          readinessProbe:
+            exec: {command: [sh, -c, 'pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB"']}
+            periodSeconds: 5
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: 500m, memory: 512Mi}
+          volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+  volumeClaimTemplates:
+    - metadata: {name: data}
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: gp3
+        resources:
+          requests: {storage: 5Gi}
+---
+# Source: taskboard/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: taskboard
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  ingressClassName: alb
+  rules:
+    - 
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service: {name: "taskboard-backend", port: {number: 8000}}
+          - path: /
+            pathType: Prefix
+            backend:
+              service: {name: "taskboard-frontend", port: {number: 8080}}
+---
+# Source: taskboard/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: taskboard-backend
+  labels: {release: monitoring}
+spec:
+  selector:
+    matchLabels: {app: "taskboard-backend"}
+  endpoints:
+    - {port: http, path: /metrics, interval: 15s}
+---
+# Source: taskboard/templates/migrate.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: taskboard-migrate-1
+  annotations:
+    helm.sh/hook: post-install,pre-upgrade
+    helm.sh/hook-weight: "0"
+    helm.sh/hook-delete-policy: before-hook-creation
+spec:
+  backoffLimit: 3
+  activeDeadlineSeconds: 240
+  template:
+    spec:
+      restartPolicy: Never
+      securityContext: {runAsNonRoot: true, runAsUser: 10001}
+      containers:
+        - name: migrate
+          image: "taskboard-backend:local"
+          imagePullPolicy: Always
+          command: [python, -m, app.migrate]
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef: {name: taskboard-runtime, key: DATABASE_URL}
+          resources:
+            requests: {cpu: 100m, memory: 64Mi}
+            limits: {cpu: 500m, memory: 256Mi}

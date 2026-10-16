@@ -1,0 +1,281 @@
+time="2026-10-16T20:09:56+05:30" level=warning msg="buildx Docker CLI plugin not found: falling back to the classic builder. BuildKit-only build features (multi-arch, secrets, ssh, additional contexts, ...) will not be available"
+ Image taskboard-backend:local Building 
+ Image taskboard-backend:local Building 
+Sending build context to Docker daemon   24.3kB
+Step 1/13 : FROM python:3.13-alpine
+ ---> 2d9aefe2fef0
+Step 2/13 : WORKDIR /app
+ ---> Using cache
+ ---> 767703382147
+Step 3/13 : ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+ ---> Using cache
+ ---> aed8c4630367
+Step 4/13 : COPY requirements.txt .
+ ---> Using cache
+ ---> 54ed6f3e2ba2
+Step 5/13 : RUN pip install --no-cache-dir -r requirements.txt && python -m pip uninstall -y pip && rm -rf /usr/local/lib/python3.13/ensurepip && adduser -D -u 10001 appuser
+ ---> Running in f18d7dd6cb2a
+Collecting alembic==1.20.0 (from -r requirements.txt (line 3))
+  Downloading alembic-1.20.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting annotated-doc==0.0.5 (from -r requirements.txt (line 5))
+  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting annotated-types==0.8.0 (from -r requirements.txt (line 7))
+  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting anyio==4.15.1 (from -r requirements.txt (line 9))
+  Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting certifi==2026.7.22 (from -r requirements.txt (line 14))
+  Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+Collecting click==8.5.0 (from -r requirements.txt (line 18))
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting fastapi==0.143.3 (from -r requirements.txt (line 20))
+  Downloading fastapi-0.143.3-py3-none-any.whl.metadata (26 kB)
+Collecting greenlet==3.5.6 (from -r requirements.txt (line 22))
+  Downloading greenlet-3.5.6-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (3.8 kB)
+Collecting h11==0.16.0 (from -r requirements.txt (line 24))
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting httpcore==1.0.9 (from -r requirements.txt (line 28))
+  Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting httptools==0.9.0 (from -r requirements.txt (line 30))
+  Downloading httptools-0.9.0-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (3.5 kB)
+Collecting httpx==0.28.1 (from -r requirements.txt (line 32))
+  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting idna==3.20 (from -r requirements.txt (line 34))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting iniconfig==2.3.1 (from -r requirements.txt (line 38))
+  Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting mako==1.4.3 (from -r requirements.txt (line 40))
+  Downloading mako-1.4.3-py3-none-any.whl.metadata (2.9 kB)
+Collecting markupsafe==3.0.4 (from -r requirements.txt (line 42))
+  Downloading markupsafe-3.0.4-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (2.7 kB)
+Collecting opentelemetry-api==1.45.1 (from -r requirements.txt (line 44))
+  Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+Collecting packaging==26.3 (from -r requirements.txt (line 46))
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy==1.7.0 (from -r requirements.txt (line 48))
+  Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting prometheus-client==0.26.0 (from -r requirements.txt (line 50))
+  Downloading prometheus_client-0.26.0-py3-none-any.whl.metadata (2.1 kB)
+Collecting psycopg==3.3.6 (from -r requirements.txt (line 52))
+  Downloading psycopg-3.3.6-py3-none-any.whl.metadata (4.4 kB)
+Collecting psycopg-binary==3.3.6 (from -r requirements.txt (line 54))
+  Downloading psycopg_binary-3.3.6-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (2.7 kB)
+Collecting pydantic==2.14.1 (from -r requirements.txt (line 56))
+  Downloading pydantic-2.14.1-py3-none-any.whl.metadata (133 kB)
+Collecting pydantic-core==2.50.1 (from -r requirements.txt (line 60))
+  Downloading pydantic_core-2.50.1-cp313-cp313-musllinux_1_1_x86_64.whl.metadata (6.5 kB)
+Collecting pydantic-settings==2.16.0 (from -r requirements.txt (line 62))
+  Downloading pydantic_settings-2.16.0-py3-none-any.whl.metadata (4.0 kB)
+Collecting pygments==2.21.0 (from -r requirements.txt (line 64))
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting pytest==9.1.1 (from -r requirements.txt (line 66))
+  Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Collecting python-dotenv==1.2.4 (from -r requirements.txt (line 68))
+  Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+Collecting pyyaml==6.0.3 (from -r requirements.txt (line 72))
+  Downloading pyyaml-6.0.3-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (2.4 kB)
+Collecting sqlalchemy==2.0.54 (from -r requirements.txt (line 74))
+  Downloading sqlalchemy-2.0.54-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (9.7 kB)
+Collecting starlette==1.8.0 (from -r requirements.txt (line 78))
+  Downloading starlette-1.8.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting typing-extensions==4.16.0 (from -r requirements.txt (line 82))
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting typing-inspection==0.4.4 (from -r requirements.txt (line 93))
+  Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting uvicorn==0.54.0 (from -r requirements.txt (line 98))
+  Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting uvloop==0.23.0 (from -r requirements.txt (line 100))
+  Downloading uvloop-0.23.0-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (5.1 kB)
+Collecting watchfiles==1.3.0 (from -r requirements.txt (line 102))
+  Downloading watchfiles-1.3.0-cp310-abi3-musllinux_1_1_x86_64.whl.metadata (4.9 kB)
+Collecting websockets==17.2 (from -r requirements.txt (line 104))
+  Downloading websockets-17.2-cp313-cp313-musllinux_1_2_x86_64.whl.metadata (6.3 kB)
+Downloading alembic-1.20.0-py3-none-any.whl (268 kB)
+Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Downloading fastapi-0.143.3-py3-none-any.whl (144 kB)
+Downloading greenlet-3.5.6-cp313-cp313-musllinux_1_2_x86_64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 2.8 MB/s  0:00:00
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading httptools-0.9.0-cp313-cp313-musllinux_1_2_x86_64.whl (502 kB)
+Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Downloading mako-1.4.3-py3-none-any.whl (80 kB)
+Downloading markupsafe-3.0.4-cp313-cp313-musllinux_1_2_x86_64.whl (23 kB)
+Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+Downloading prometheus_client-0.26.0-py3-none-any.whl (64 kB)
+Downloading psycopg-3.3.6-py3-none-any.whl (215 kB)
+Downloading psycopg_binary-3.3.6-cp313-cp313-musllinux_1_2_x86_64.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 892.7 kB/s  0:00:04
+Downloading pydantic-2.14.1-py3-none-any.whl (488 kB)
+Downloading pydantic_core-2.50.1-cp313-cp313-musllinux_1_1_x86_64.whl (2.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.5/2.5 MB 450.7 kB/s  0:00:05
+Downloading pydantic_settings-2.16.0-py3-none-any.whl (80 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 261.4 kB/s  0:00:04
+Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+Downloading pyyaml-6.0.3-cp313-cp313-musllinux_1_2_x86_64.whl (794 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 794.1/794.1 kB 199.9 kB/s  0:00:03
+Downloading sqlalchemy-2.0.54-cp313-cp313-musllinux_1_2_x86_64.whl (3.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 501.4 kB/s  0:00:06
+Downloading starlette-1.8.0-py3-none-any.whl (79 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+Downloading uvloop-0.23.0-cp313-cp313-musllinux_1_2_x86_64.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 1.8 MB/s  0:00:02
+Downloading watchfiles-1.3.0-cp310-abi3-musllinux_1_1_x86_64.whl (661 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 661.7/661.7 kB 4.4 MB/s  0:00:00
+Downloading websockets-17.2-cp313-cp313-musllinux_1_2_x86_64.whl (225 kB)
+Installing collected packages: websockets, uvloop, typing-extensions, pyyaml, python-dotenv, pygments, psycopg-binary, psycopg, prometheus-client, pluggy, packaging, markupsafe, iniconfig, idna, httptools, h11, greenlet, click, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, pytest, pydantic-core, opentelemetry-api, mako, httpcore, anyio, watchfiles, starlette, pydantic, httpx, alembic, pydantic-settings, fastapi
+
+Successfully installed alembic-1.20.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 certifi-2026.7.22 click-8.5.0 fastapi-0.143.3 greenlet-3.5.6 h11-0.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 mako-1.4.3 markupsafe-3.0.4 opentelemetry-api-1.45.1 packaging-26.3 pluggy-1.7.0 prometheus-client-0.26.0 psycopg-3.3.6 psycopg-binary-3.3.6 pydantic-2.14.1 pydantic-core-2.50.1 pydantic-settings-2.16.0 pygments-2.21.0 pytest-9.1.1 python-dotenv-1.2.4 pyyaml-6.0.3 sqlalchemy-2.0.54 starlette-1.8.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.2
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[0mFound existing installation: pip 26.2.1
+Uninstalling pip-26.2.1:
+  Successfully uninstalled pip-26.2.1
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[0m ---> Removed intermediate container f18d7dd6cb2a
+ ---> 080e70324e72
+Step 6/13 : COPY alembic.ini ./
+ ---> 960d9cbac584
+Step 7/13 : COPY alembic ./alembic
+ ---> f23612d18d1e
+Step 8/13 : COPY app ./app
+ ---> ab3d6682d8a5
+Step 9/13 : USER 10001
+ ---> Running in c4028b9e140a
+ ---> Removed intermediate container c4028b9e140a
+ ---> 8dc9e08f0541
+Step 10/13 : EXPOSE 8000
+ ---> Running in b0c6d0980102
+ ---> Removed intermediate container b0c6d0980102
+ ---> 91ca5934111a
+Step 11/13 : HEALTHCHECK --interval=15s --timeout=5s CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"
+ ---> Running in cac41223b0e3
+ ---> Removed intermediate container cac41223b0e3
+ ---> 58cce9ee75c0
+Step 12/13 : CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ ---> Running in 1b735ae5ff83
+ ---> Removed intermediate container 1b735ae5ff83
+ ---> 1029ac3715e8
+Step 13/13 : LABEL com.docker.compose.image.builder=classic
+ ---> Running in 26cd629648b6
+ ---> Removed intermediate container 26cd629648b6
+ ---> f4da00ee05c3
+Successfully built f4da00ee05c3
+Successfully tagged taskboard-backend:local
+ Image taskboard-backend:local Built 
+ Image taskboard-backend:local Built 
+ Image taskboard-backend:local Building 
+ Image taskboard-backend:local Building 
+Sending build context to Docker daemon  24.25kB
+Step 1/13 : FROM python:3.13-alpine
+ ---> 2d9aefe2fef0
+Step 2/13 : WORKDIR /app
+ ---> Using cache
+ ---> 767703382147
+Step 3/13 : ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+ ---> Using cache
+ ---> aed8c4630367
+Step 4/13 : COPY requirements.txt .
+ ---> Using cache
+ ---> 54ed6f3e2ba2
+Step 5/13 : RUN pip install --no-cache-dir -r requirements.txt && python -m pip uninstall -y pip && rm -rf /usr/local/lib/python3.13/ensurepip && adduser -D -u 10001 appuser
+ ---> Using cache
+ ---> 080e70324e72
+Step 6/13 : COPY alembic.ini ./
+ ---> Using cache
+ ---> 960d9cbac584
+Step 7/13 : COPY alembic ./alembic
+ ---> Using cache
+ ---> f23612d18d1e
+Step 8/13 : COPY app ./app
+ ---> Using cache
+ ---> ab3d6682d8a5
+Step 9/13 : USER 10001
+ ---> Using cache
+ ---> 8dc9e08f0541
+Step 10/13 : EXPOSE 8000
+ ---> Using cache
+ ---> 91ca5934111a
+Step 11/13 : HEALTHCHECK --interval=15s --timeout=5s CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"
+ ---> Using cache
+ ---> 58cce9ee75c0
+Step 12/13 : CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ ---> Using cache
+ ---> 1029ac3715e8
+Step 13/13 : LABEL com.docker.compose.image.builder=classic
+ ---> Using cache
+ ---> f4da00ee05c3
+Successfully built f4da00ee05c3
+Successfully tagged taskboard-backend:local
+ Image taskboard-backend:local Built 
+ Image taskboard-backend:local Built 
+ Image taskboard-frontend:local Building 
+ Image taskboard-frontend:local Building 
+Sending build context to Docker daemon  13.99kB
+Step 1/13 : FROM node:24-alpine AS build
+ ---> 44fce696f38b
+Step 2/13 : WORKDIR /app
+ ---> Using cache
+ ---> 7bc4c9b42400
+Step 3/13 : COPY package*.json ./
+ ---> Using cache
+ ---> ecb0f76ed9e5
+Step 4/13 : RUN npm ci
+ ---> Using cache
+ ---> 36d7da30e576
+Step 5/13 : COPY . .
+ ---> 5394d9416666
+Step 6/13 : RUN npm run build
+ ---> Running in 4433c98484b9
+
+> taskboard-frontend@1.0.0 build
+> vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 15 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.35 kB │ gzip:  0.25 kB
+dist/assets/index-Btg8kjKy.css    7.08 kB │ gzip:  2.27 kB
+dist/assets/index-MIAWf4Dz.js   228.65 kB │ gzip: 71.42 kB
+
+✓ built in 275ms
+ ---> Removed intermediate container 4433c98484b9
+ ---> 3a5cbea9372d
+Step 7/13 : FROM nginxinc/nginx-unprivileged:stable-alpine
+ ---> 782bb89768cc
+Step 8/13 : COPY --from=build /app/dist /usr/share/nginx/html
+ ---> 544d16ff99a6
+Step 9/13 : COPY nginx.conf /etc/nginx/conf.d/default.conf
+ ---> c72be30e69fe
+Step 10/13 : USER 101
+ ---> Running in 7933133e856f
+ ---> Removed intermediate container 7933133e856f
+ ---> 4ec057d0cabb
+Step 11/13 : EXPOSE 8080
+ ---> Running in bdf0d1a63742
+ ---> Removed intermediate container bdf0d1a63742
+ ---> 6855bb98879c
+Step 12/13 : HEALTHCHECK --interval=15s --timeout=3s CMD wget -q -O /dev/null http://127.0.0.1:8080/
+ ---> Running in ab48a45d8f56
+ ---> Removed intermediate container ab48a45d8f56
+ ---> 557c43cbef36
+Step 13/13 : LABEL com.docker.compose.image.builder=classic
+ ---> Running in c06e1a12f77c
+ ---> Removed intermediate container c06e1a12f77c
+ ---> dd517e50c336
+Successfully built dd517e50c336
+Successfully tagged taskboard-frontend:local
+ Image taskboard-frontend:local Built 
+ Image taskboard-frontend:local Built 

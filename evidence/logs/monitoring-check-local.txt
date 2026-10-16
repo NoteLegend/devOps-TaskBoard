@@ -1,0 +1,1 @@
+PASSED: application Prometheus targets UP, counters and rates populated, authenticated Grafana dashboard rendered; LOCAL cluster

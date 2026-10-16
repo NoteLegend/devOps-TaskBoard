@@ -1,0 +1,3 @@
+NAME                              READY   STATUS        RESTARTS   AGE   LABELS
+diagnostic-web-5bbcb8c998-72t9d   0/1     Terminating   0          58s   app=diagnostic-web,pod-template-hash=5bbcb8c998
+diagnostic-web-687fbc597b-7xqmd   1/1     Running       0          12s   app=diagnostic-web,pod-template-hash=687fbc597b

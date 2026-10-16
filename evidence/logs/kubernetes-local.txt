@@ -1,0 +1,21 @@
+NAME                                      READY   STATUS      RESTARTS   AGE
+pod/taskboard-backend-5dd5dd9bb-bpzrd     1/1     Running     0          59s
+pod/taskboard-backend-5dd5dd9bb-z74m6     1/1     Running     0          74s
+pod/taskboard-frontend-5f5bd5df64-kvwxb   1/1     Running     0          74s
+pod/taskboard-frontend-5f5bd5df64-ngk5q   1/1     Running     0          74s
+pod/taskboard-migrate-1-fjlmc             0/1     Completed   0          74s
+pod/taskboard-postgres-0                  1/1     Running     0          74s
+
+NAME                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/taskboard-backend    ClusterIP   10.96.243.105   <none>        8000/TCP   74s
+service/taskboard-frontend   ClusterIP   10.96.24.14     <none>        8080/TCP   74s
+service/taskboard-postgres   ClusterIP   10.96.91.66     <none>        5432/TCP   74s
+
+NAME                                  CLASS     HOSTS   ADDRESS   PORTS   AGE
+ingress.networking.k8s.io/taskboard   traefik   *                 80      74s
+
+NAME                                                    REFERENCE                      TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/taskboard-backend   Deployment/taskboard-backend   cpu: <unknown>/60%   2         4         2          74s
+
+NAME                                              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/data-taskboard-postgres-0   Bound    pvc-e51753a4-9fdb-479e-a6d6-aeb434bb042c   5Gi        RWO            standard       <unset>                 74s

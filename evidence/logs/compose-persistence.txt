@@ -1,0 +1,14 @@
+ Container taskboard-migrate-1 Restarting 
+ Container taskboard-frontend-1 Restarting 
+ Container taskboard-backend-1 Restarting 
+ Container taskboard-postgres-1 Restarting 
+ Container taskboard-migrate-1 Started 
+ Container taskboard-frontend-1 Started 
+ Container taskboard-backend-1 Started 
+ Container taskboard-postgres-1 Started 
+ id |               title                | status | priority |   assignee   
+----+------------------------------------+--------+----------+--------------
+  3 | Synthetic persistence verification | TODO   | MEDIUM   | Demo Student
+(1 row)
+
+PASSED: ticket 3 survived normal full-stack Compose restart

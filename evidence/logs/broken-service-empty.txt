@@ -1,0 +1,30 @@
+apiVersion: v1
+items:
+- addressType: IPv4
+  apiVersion: discovery.k8s.io/v1
+  endpoints: null
+  kind: EndpointSlice
+  metadata:
+    annotations:
+      endpoints.kubernetes.io/last-change-trigger-time: "2026-10-16T14:42:24Z"
+    creationTimestamp: "2026-10-16T14:42:24Z"
+    generateName: diagnostic-web-
+    generation: 1
+    labels:
+      endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+      kubernetes.io/service-name: diagnostic-web
+    name: diagnostic-web-ktvpr
+    namespace: taskboard-troubleshooting
+    ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Service
+      name: diagnostic-web
+      uid: 314abfb1-0b9b-4350-bb4c-f46575123af8
+    resourceVersion: "1741"
+    uid: cf723f3d-a84c-4190-9441-9b81615f610c
+  ports: null
+kind: List
+metadata:
+  resourceVersion: ""
