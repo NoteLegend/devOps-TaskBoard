@@ -14,10 +14,11 @@ Test Compose uses a separate project and tmpfs database; no application DB is tr
 
 ```bash
 export PATH="$PWD/.tools:$PWD/.venv/bin:$PATH"
-export AWS_PROFILE=YOUR_AGREED_PROFILE
+export AWS_PROFILE=taskboard-terraform # process adapter for agreed browser-login profile
 aws sts get-caller-identity
 aws eks describe-cluster-versions --region ap-south-1
-cp terraform/terraform.tfvars.example terraform/terraform.tfvars
+# On a fresh checkout only (the current machine already has the agreed values):
+cp -n terraform/terraform.tfvars.example terraform/terraform.tfvars
 # Edit the ignored tfvars with the agreed account/operator ARN.
 terraform -chdir=terraform init
 terraform -chdir=terraform fmt -check
@@ -32,13 +33,14 @@ After approval only:
 
 ```bash
 terraform -chdir=terraform apply approved.tfplan
-export AWS_ACCOUNT_ID=YOUR_APPROVED_ACCOUNT
+export AWS_PROFILE='Raghavendra Linga'
+export AWS_ACCOUNT_ID=835582727900
 scripts/bootstrap-aws.sh
 ```
 
 Bootstrap explicitly checks account identity, creates deployment namespace RBAC, waits for EBS/Metrics Server, installs pinned AWS Load Balancer Controller with IRSA, creates gp3, installs monitoring/CRDs, and creates the runtime secret without printing values. The operator needs provisioning privileges; routine CI has only DescribeCluster plus namespace Kubernetes permissions. No cluster-admin CI role.
 
-Verify regional EKS add-on versions selected in the actual plan with `aws eks describe-addon-versions` for 1.35; Terraform resolves compatible builds through AWS and the approved saved plan fixes the selected values. Record them in evidence. Restrict API endpoint CIDRs if using runners with fixed egress; the default allows GitHub-hosted runner IPs but still requires authentication/RBAC.
+Regional EKS add-on default builds were queried with `aws eks describe-addon-versions` for 1.35 and are explicitly pinned in variables.tf; the AL2023 recommended release is pinned too. The actual saved plan records these values. Recheck compatibility before later updates. Restrict API endpoint CIDRs if using runners with fixed egress; the default allows GitHub-hosted runner IPs but still requires authentication/RBAC.
 
 ## Deploy immutable images
 

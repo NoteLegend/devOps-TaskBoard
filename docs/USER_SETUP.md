@@ -4,9 +4,9 @@ Destination: https://github.com/NoteLegend/devOps-TaskBoard (verified public rep
 Git author: Rushi Jadhav, rushisjadhav3333@gmail.com (existing local configuration).
 
 1. Authenticate GitHub locally: `.tools/gh auth login --hostname github.com --git-protocol https --web`, then `.tools/gh auth setup-git`. Do not paste login codes/tokens into chat. Initial push approval has been given; subsequent task fixes may be pushed to this same destination. The instructor repository is never a push target.
-2. Selected account: `765865641910`, region `ap-south-1`, profile `Rushi Jadhav`. For this newly created personal account, follow [first login](AWS_FIRST_LOGIN.md): `.tools/aws login --profile 'Rushi Jadhav' --region ap-south-1`. AWS CLI v2 is installed under ignored `.tools/`; browser login requires no access keys or SSO portal. Authenticate in your own browser and never share credential values. A dedicated non-root operator IAM ARN is needed before provisioning. Organization-managed users can use SSO instead.
-3. Set `AWS_PROFILE` explicitly. Copy `terraform/terraform.tfvars.example` to ignored `terraform/terraform.tfvars`. Set account and persistent operator IAM ARN (not an STS assumed-role session ARN). Check for an existing GitHub OIDC provider before selecting `create_github_oidc_provider`.
-4. Prepare actual `terraform plan`, itemized current regional estimate, account/resource list, and agreed running/teardown schedule. Wait for spending approval before apply. No cloud spend is approved by the current task.
+2. AWS login **verified**: account `835582727900`, IAM user `shrival`, region `ap-south-1`, source profile `Raghavendra Linga`. Renew locally if needed: `.tools/aws login --profile 'Raghavendra Linga' --region ap-south-1`. Never share credential values. See [first-login guide](AWS_FIRST_LOGIN.md).
+3. The ignored Terraform variables and process-profile adapter are configured for this identity. No existing project cluster/VPC or GitHub OIDC provider was found. The operator's provisioning permissions and available worker quota were checked read-only.
+4. The actual authenticated plan and regional estimate are prepared in [COST_CHECKPOINT.md](COST_CHECKPOINT.md). **User approval of spending, lifetime and cleanup remains required before apply.**
 5. After authorized provisioning, operator bootstraps namespaces, RBAC, LBC, storage, Metrics Server, monitoring and runtime secret using `scripts/bootstrap-aws.sh`.
 
 Repository **Actions variables**, not secrets:
@@ -25,3 +25,15 @@ Use public GHCR packages for this classroom deployment. Both packages were verif
 Credential locations: GitHub CLI credential store or `~/.config/gh`, AWS `~/.aws`/SSO cache, local kubeconfig `~/.kube/config`, Kubernetes `taskboard/taskboard-runtime`, Terraform local state under ignored `terraform/`. Never commit, archive or screenshot their contents. Terraform state remains local/private for this single-operator classroom project; no remote state service is provisioned.
 
 GitHub repository visibility/instructor access and AWS demo lifetime must be agreed with the user. Submission requires real Actions/package/EKS evidence, observed HPA scaling, monitoring, and authorized teardown evidence.
+
+Authentication was verified as IAM user `shrival` in account `835582727900`; the user explicitly confirmed this new account. Source profile `Raghavendra Linga` uses the browser temporary session. The AWS config header is quoted because its name contains a space. Terraform's SDK uses local profile `taskboard-terraform`, whose `credential_process` runs the AWS CLI export directly into the SDK; no exported credential values are stored in the repository. For local Terraform commands use `export AWS_PROFILE=taskboard-terraform`; for CLI/bootstrap use `export AWS_PROFILE='Raghavendra Linga'`. Account-level provisioning permissions were checked read-only; routine CI remains the separate OIDC deployment role.
+
+To recreate the SDK adapter on this machine (configuration contains a command, never credential values):
+
+```bash
+.tools/aws configure set credential_process "$PWD/.tools/aws configure export-credentials --profile \"Raghavendra Linga\" --format process" --profile taskboard-terraform
+.tools/aws configure set region ap-south-1 --profile taskboard-terraform
+AWS_PROFILE=taskboard-terraform .tools/aws sts get-caller-identity
+```
+
+If the project path contains spaces, quote the executable path inside `credential_process` too. The source browser profile must already be authenticated.

@@ -45,7 +45,7 @@ For Python development, create `backend/.venv` using Python 3.13, install `backe
 
 ## Verified publishing
 
-[Repository](https://github.com/NoteLegend/devOps-TaskBoard) · [successful test/build/scan/publish run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38919741425) · [backend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend) · [frontend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend). Both images were anonymously pulled. AWS deployment was deliberately skipped pending account login and spending approval.
+[Repository](https://github.com/NoteLegend/devOps-TaskBoard) · [successful test/build/scan/publish run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38919741425) · [backend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend) · [frontend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend). Both images were anonymously pulled. AWS deployment was deliberately skipped pending spending approval.
 
 Local Kubernetes passed Ingress CRUD, persistent PostgreSQL, actual Prometheus/Grafana data, both failure exercises, and CPU autoscaling from two to four and back to two replicas. Full evidence and limitations are in [verification](docs/VERIFICATION.md).
 

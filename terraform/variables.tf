@@ -36,3 +36,19 @@ variable "public_access_cidrs" {
   default     = ["0.0.0.0/0"]
   description = "API network access; AWS authentication and EKS authorization still required. GitHub hosted runners have dynamic IPs."
 }
+
+# AWS-recommended compatible builds queried in ap-south-1 on 2026-10-16.
+variable "addon_versions" {
+  type = map(string)
+  default = {
+    "vpc-cni"            = "v1.22.4-eksbuild.3"
+    "kube-proxy"         = "v1.35.3-eksbuild.52"
+    "coredns"            = "v1.13.2-eksbuild.51"
+    "aws-ebs-csi-driver" = "v1.67.0-eksbuild.1"
+    "metrics-server"     = "v0.9.0-eksbuild.13"
+  }
+}
+variable "node_ami_release_version" {
+  type    = string
+  default = "1.35.8-20261012"
+}

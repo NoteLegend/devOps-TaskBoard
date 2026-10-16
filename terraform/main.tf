@@ -45,19 +45,21 @@ module "eks" {
     }
   }
   addons = {
-    vpc-cni            = { before_compute = true }
-    kube-proxy         = {}
-    coredns            = {}
-    aws-ebs-csi-driver = { service_account_role_arn = aws_iam_role.irsa["ebs"].arn }
-    metrics-server     = {}
+    vpc-cni            = { addon_version = var.addon_versions["vpc-cni"], before_compute = true }
+    kube-proxy         = { addon_version = var.addon_versions["kube-proxy"], }
+    coredns            = { addon_version = var.addon_versions["coredns"], }
+    aws-ebs-csi-driver = { addon_version = var.addon_versions["aws-ebs-csi-driver"], service_account_role_arn = aws_iam_role.irsa["ebs"].arn }
+    metrics-server     = { addon_version = var.addon_versions["metrics-server"], }
   }
   eks_managed_node_groups = {
     main = {
-      instance_types = ["t3.medium"]
-      ami_type       = "AL2023_x86_64_STANDARD"
-      min_size       = 2
-      max_size       = 2
-      desired_size   = 2
+      instance_types                 = ["t3.medium"]
+      ami_type                       = "AL2023_x86_64_STANDARD"
+      use_latest_ami_release_version = false
+      ami_release_version            = var.node_ami_release_version
+      min_size                       = 2
+      max_size                       = 2
+      desired_size                   = 2
       block_device_mappings = {
         root = {
           device_name = "/dev/xvda"
