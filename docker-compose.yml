@@ -1,0 +1,44 @@
+name: taskboard
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-taskboard}
+      POSTGRES_USER: ${POSTGRES_USER:-taskboard}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-taskboard}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  migrate:
+    build: ./backend
+    image: taskboard-backend:local
+    command: [alembic, upgrade, head]
+    environment: &database
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-taskboard}:${POSTGRES_PASSWORD:-taskboard}@postgres:5432/${POSTGRES_DB:-taskboard}
+    depends_on:
+      postgres: {condition: service_healthy}
+    restart: 'no'
+  backend:
+    build: ./backend
+    image: taskboard-backend:local
+    environment: *database
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    ports: ['127.0.0.1:8000:8000']
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/ready', timeout=4)"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  frontend:
+    build: ./frontend
+    image: taskboard-frontend:local
+    depends_on:
+      backend: {condition: service_healthy}
+    ports: ['127.0.0.1:3000:8080']
+volumes:
+  postgres-data:
