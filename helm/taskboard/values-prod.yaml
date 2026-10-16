@@ -1,0 +1,14 @@
+imagePullPolicy: Always
+postgres:
+  storageClass: gp3
+ingress:
+  enabled: true
+  className: alb
+  host: ""
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+monitoring:
+  serviceMonitor:
+    enabled: true

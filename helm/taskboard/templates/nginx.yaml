@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: "{{ .Release.Name }}-nginx"}
+data:
+  default.conf: |
+    server {
+      listen 8080;
+      root /usr/share/nginx/html;
+      location / { try_files $uri /index.html; }
+      location /api/ { proxy_pass http://{{ .Release.Name }}-backend:8000; }
+      location ~ ^/(docs|openapi.json|health|ready|metrics) { proxy_pass http://{{ .Release.Name }}-backend:8000; }
+    }
