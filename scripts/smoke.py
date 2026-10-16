@@ -5,6 +5,7 @@ base=(sys.argv[1] if len(sys.argv)>1 else 'http://localhost:3000').rstrip('/')
 def request(path, method='GET', data=None):
     req=urllib.request.Request(base+path,method=method,data=json.dumps(data).encode() if data is not None else None,headers={'Content-Type':'application/json'})
     with urllib.request.urlopen(req,timeout=10) as r:
+        print(method, path, "->", r.status)
         return r.status,json.loads(r.read()) if r.status!=204 else None
 assert request('/health')[1]['status']=='UP'
 assert request('/ready')[1]['status']=='READY'
