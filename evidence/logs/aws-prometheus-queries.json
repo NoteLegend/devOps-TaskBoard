@@ -1,0 +1,127 @@
+{
+  "up": {
+    "query": "up{namespace=\"taskboard\",service=\"taskboard-backend\"}",
+    "response": {
+      "status": "success",
+      "data": {
+        "resultType": "vector",
+        "result": [
+          {
+            "metric": {
+              "__name__": "up",
+              "container": "backend",
+              "endpoint": "http",
+              "instance": "10.20.1.45:8000",
+              "job": "taskboard-backend",
+              "namespace": "taskboard",
+              "pod": "taskboard-backend-774b77bb77-rvfgl",
+              "service": "taskboard-backend"
+            },
+            "value": [
+              1792179058.587,
+              "1"
+            ]
+          },
+          {
+            "metric": {
+              "__name__": "up",
+              "container": "backend",
+              "endpoint": "http",
+              "instance": "10.20.2.238:8000",
+              "job": "taskboard-backend",
+              "namespace": "taskboard",
+              "pod": "taskboard-backend-774b77bb77-8zw68",
+              "service": "taskboard-backend"
+            },
+            "value": [
+              1792179058.587,
+              "1"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requests": {
+    "query": "sum(http_requests_total{namespace=\"taskboard\"})",
+    "response": {
+      "status": "success",
+      "data": {
+        "resultType": "vector",
+        "result": [
+          {
+            "metric": {},
+            "value": [
+              1792179058.703,
+              "408"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "request_rate": {
+    "query": "sum(rate(http_requests_total{namespace=\"taskboard\"}[2m]))",
+    "response": {
+      "status": "success",
+      "data": {
+        "resultType": "vector",
+        "result": [
+          {
+            "metric": {},
+            "value": [
+              1792179058.906,
+              "1.0857142857142856"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "replicas": {
+    "query": "kube_deployment_status_replicas_available{namespace=\"taskboard\",deployment=\"taskboard-backend\"}",
+    "response": {
+      "status": "success",
+      "data": {
+        "resultType": "vector",
+        "result": [
+          {
+            "metric": {
+              "__name__": "kube_deployment_status_replicas_available",
+              "container": "kube-state-metrics",
+              "deployment": "taskboard-backend",
+              "endpoint": "http",
+              "instance": "10.20.2.19:8080",
+              "job": "kube-state-metrics",
+              "namespace": "taskboard",
+              "pod": "monitoring-kube-state-metrics-6d8ffd8867-jzvfb",
+              "service": "monitoring-kube-state-metrics"
+            },
+            "value": [
+              1792179059.08,
+              "2"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "backend_cpu": {
+    "query": "sum(rate(container_cpu_usage_seconds_total{namespace=\"taskboard\",container=\"backend\"}[2m]))",
+    "response": {
+      "status": "success",
+      "data": {
+        "resultType": "vector",
+        "result": [
+          {
+            "metric": {},
+            "value": [
+              1792179059.197,
+              "0.006863402753493359"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

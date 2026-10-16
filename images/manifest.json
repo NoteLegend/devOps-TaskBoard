@@ -1,0 +1,189 @@
+[
+  {
+    "file": "images/aws-eks-provisioning-console.png",
+    "captured_at_utc": "2026-10-16T18:20:46.520158+00:00",
+    "source": "AWS Console, EKS taskboard-eks, ap-south-1; provisioning in progress",
+    "window_title": "Elastic Kubernetes Service | ap-south-1 - Brave",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "3f603fbed9755522d09c90d060e1e8b94c3fdb8ff679a0c05d1f3636106be0d5"
+  },
+  {
+    "file": "images/aws-vpc-console.png",
+    "captured_at_utc": "2026-10-16T18:23:11.710354+00:00",
+    "source": "AWS Console, project VPC vpc-0663d0df15efa02af, ap-south-1",
+    "window_title": "VPC details | VPC | ap-south-1 - Brave",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "e5b0a2d7a3778c2311465b17f057455c0b3b04311960362077869d88f44dfb0c"
+  },
+  {
+    "file": "images/aws-terraform-plan.png",
+    "captured_at_utc": "2026-10-16T18:24:04.753876+00:00",
+    "source": "Actual terminal commands from .tools/screenshot-plan.sh",
+    "window_title": "TaskBoard - actual Terraform plan and Free Tier",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "f5889c537d8a200bb4c3676f0d7d57d78679be65114a42f6486097f2c62172da"
+  },
+  {
+    "file": "images/aws-eks-active-console.png",
+    "captured_at_utc": "2026-10-16T18:27:22.195929+00:00",
+    "source": "AWS Console, ACTIVE EKS 1.35 taskboard-eks, ap-south-1",
+    "window_title": "Elastic Kubernetes Service | ap-south-1 - Brave",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "297f1cfd6f68970089fa7939107eba69fe247151c879a3fe33ef6d8262b99cc5"
+  },
+  {
+    "file": "images/aws-terraform-apply-and-ready-nodes.png",
+    "captured_at_utc": "2026-10-16T18:29:26.865787+00:00",
+    "source": "Actual terminal commands from .tools/screenshot-infrastructure.sh",
+    "window_title": "TaskBoard - Terraform apply and Ready AWS workers",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "dc024ac7f7185de77a5ec304fd7e88b0d62b41a674dc9c97e5d1ecbfc74d167b"
+  },
+  {
+    "file": "images/aws-broken-image-diagnosis.png",
+    "captured_at_utc": "2026-10-16T18:34:37.340772+00:00",
+    "source": "Actual terminal commands from .tools/screenshot-broken-image.sh",
+    "window_title": "TaskBoard - isolated AWS broken image diagnosis",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "861cc6de808240a3f9e32468cb6bd359aaac114d3be9d3f97efc3478b2b33dc4"
+  },
+  {
+    "file": "images/aws-broken-service-diagnosis.png",
+    "captured_at_utc": "2026-10-16T19:20:35.451353+00:00",
+    "source": "Actual terminal commands from .tools/screenshot-broken-service.sh",
+    "window_title": "TaskBoard - isolated AWS Service selector diagnosis",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "88bbc3168daf120e6cdcfe1088b3bc0aa08fafd8cf1642ad5806bf7c9f47c9b1"
+  },
+  {
+    "file": "images/aws-troubleshooting-recovered.png",
+    "captured_at_utc": "2026-10-16T19:23:33.143424+00:00",
+    "source": "Actual terminal commands from .tools/screenshot-troubleshooting-recovery.sh",
+    "window_title": "TaskBoard - isolated AWS exercises recovered",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "6eea603f4c193ad1b8acf1a30f06a71f5b428c132630cdd16a2a39a641735b65"
+  },
+  {
+    "file": "images/aws-kubernetes-helm-ingress.png",
+    "captured_at_utc": "2026-10-16T19:27:45.133791+00:00",
+    "source": "Actual terminal commands from .tools/screenshot-kubernetes.sh",
+    "window_title": "TaskBoard - real EKS Pods Services PVC Helm and Ingress",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "2306a590146957d5f14570a6b8b8dbc65fe96a1780e45a67dda99a763844bb36"
+  },
+  {
+    "file": "images/aws-application-desktop.png",
+    "captured_at_utc": "2026-10-16T19:29:33.429883+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com; live AWS ALB app with synthetic persisted data",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "5f06ef51609c0488cf605711f1601422ab5f110435aedf1ac7c85451d550a0a7"
+  },
+  {
+    "file": "images/aws-ticket-create-form.png",
+    "captured_at_utc": "2026-10-16T19:29:34.540846+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com; actual browser creation form",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "4b54b5e93d8a7b11d0d029d3fa5be0f4cf47b2cf1a074088a6576c9da24efe31"
+  },
+  {
+    "file": "images/aws-ticket-created.png",
+    "captured_at_utc": "2026-10-16T19:29:34.925658+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com; browser-created ticket returned by PostgreSQL API",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "6ab96de0ea6303f55f64d6d7d41c8add7958452ef7a9cf7157b65b6b4f95e631"
+  },
+  {
+    "file": "images/aws-ticket-updated-filtered.png",
+    "captured_at_utc": "2026-10-16T19:29:36.154797+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com; saved DONE/HIGH state and working filters",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "7832b01c62b8f054e5b8055f6648700f04efa7eeffbbfd2da2e9bb68ddb849e5"
+  },
+  {
+    "file": "images/aws-application-mobile.png",
+    "captured_at_utc": "2026-10-16T19:29:37.920911+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com; real mobile viewport",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "d67ca23ba5330675ff08d683170b02e5ed2dfabbdcfb5fa434f5dcd743ecc058"
+  },
+  {
+    "file": "images/aws-swagger.png",
+    "captured_at_utc": "2026-10-16T19:29:40.287996+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com/docs; actual Swagger served through the same ALB origin",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "88604bcc0817350c6df34e7b4d43ed55ec5955b28fe5cddc4933bb6f5d334cfc"
+  },
+  {
+    "file": "images/aws-swagger-statistics-executed.png",
+    "captured_at_utc": "2026-10-16T19:29:41.677177+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com/docs; Swagger GET /api/tasks/stats executed with HTTP 200",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "65d50815de46efd6c86aa0acbc36dc7d78e58299c44c2a1aec947780e0b0defc"
+  },
+  {
+    "file": "images/aws-metrics-endpoint.png",
+    "captured_at_utc": "2026-10-16T19:29:42.799306+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com/metrics; actual Prometheus exposition",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "df480c7ac49e2f1b4824c736a854a213b6f898b8157f97010770aa90f9dedee7"
+  },
+  {
+    "file": "images/aws-live-update-before.png",
+    "captured_at_utc": "2026-10-16T19:29:33.429883+00:00",
+    "source": "http://k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com; live AWS ALB app with synthetic persisted data; baseline before visible Git/CI update",
+    "capture_method": "Playwright screenshot of actual browser response",
+    "deployed_commit": "3ffe8094b01464611cf07125cf76da090f82f28b",
+    "deployed_images": {
+      "backend": "ghcr.io/notelegend/devops-taskboard-backend:3ffe8094b01464611cf07125cf76da090f82f28b",
+      "frontend": "ghcr.io/notelegend/devops-taskboard-frontend:3ffe8094b01464611cf07125cf76da090f82f28b"
+    },
+    "sha256": "5f06ef51609c0488cf605711f1601422ab5f110435aedf1ac7c85451d550a0a7"
+  },
+  {
+    "file": "images/aws-prometheus-targets-up.png",
+    "source": "AWS EKS Prometheus private port-forward, actual application targets UP",
+    "captured_at_utc": "2026-10-16T19:31:10.926658+00:00",
+    "capture_method": "Playwright screenshot of actual private EKS port-forward",
+    "sha256": "5ca651a84bf5008025d069397fb0956c2621a273c68a81262e1d8e93157d4d48"
+  }
+]

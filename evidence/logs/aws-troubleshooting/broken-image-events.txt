@@ -1,0 +1,9 @@
+LAST SEEN   TYPE      REASON              OBJECT                                 MESSAGE
+70s         Normal    Scheduled           pod/diagnostic-web-5bbcb8c998-p8f29    Successfully assigned taskboard-troubleshooting/diagnostic-web-5bbcb8c998-p8f29 to ip-10-20-1-170.ap-south-1.compute.internal
+70s         Normal    SuccessfulCreate    replicaset/diagnostic-web-5bbcb8c998   Created pod: diagnostic-web-5bbcb8c998-p8f29
+70s         Normal    ScalingReplicaSet   deployment/diagnostic-web              Scaled up replica set diagnostic-web-5bbcb8c998 from 0 to 1
+23s         Normal    Pulling             pod/diagnostic-web-5bbcb8c998-p8f29    Pulling image "nginxinc/nginx-unprivileged:this-tag-does-not-exist"
+22s         Warning   Failed              pod/diagnostic-web-5bbcb8c998-p8f29    Failed to pull image "nginxinc/nginx-unprivileged:this-tag-does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "docker.io/nginxinc/nginx-unprivileged:this-tag-does-not-exist": failed to resolve reference "docker.io/nginxinc/nginx-unprivileged:this-tag-does-not-exist": docker.io/nginxinc/nginx-unprivileged:this-tag-does-not-exist: not found
+22s         Warning   Failed              pod/diagnostic-web-5bbcb8c998-p8f29    Error: ErrImagePull
+10s         Normal    BackOff             pod/diagnostic-web-5bbcb8c998-p8f29    Back-off pulling image "nginxinc/nginx-unprivileged:this-tag-does-not-exist"
+10s         Warning   Failed              pod/diagnostic-web-5bbcb8c998-p8f29    Error: ImagePullBackOff

@@ -37,3 +37,5 @@ AWS_PROFILE=taskboard-terraform .tools/aws sts get-caller-identity
 ```
 
 If the project path contains spaces, quote the executable path inside `credential_process` too. The source browser profile must already be authenticated.
+
+OIDC update: GitHub reports `use_immutable_subject=true` with `sub_claim_prefix=repo:NoteLegend@184594732/devOps-TaskBoard@1422224595`. Terraform requires `github_oidc_subject_prefix` and appends only `:ref:refs/heads/main`; do not substitute the legacy names-only subject or lowercase the OIDC repository name. Query with `.tools/gh api repos/NoteLegend/devOps-TaskBoard/actions/oidc/customization/sub --jq .sub_claim_prefix`. IDs in the subject bind trust to this repository. [GitHub reference](https://docs.github.com/en/actions/reference/security/oidc#immutable-subject-claims).

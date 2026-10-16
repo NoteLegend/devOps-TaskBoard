@@ -1,0 +1,4 @@
+NAME                       ADDRESSTYPE   PORTS   ENDPOINTS                AGE
+taskboard-backend-5fz76    IPv4          8000    10.20.2.238,10.20.1.45   3m18s
+taskboard-frontend-wbwhw   IPv4          8080    10.20.1.31,10.20.2.204   3m18s
+taskboard-postgres-95vsj   IPv4          5432    10.20.1.76               3m18s

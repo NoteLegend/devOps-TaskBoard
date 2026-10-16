@@ -1,0 +1,13 @@
+ id |                   title                   |   status    | priority |   assignee    
+----+-------------------------------------------+-------------+----------+---------------
+  3 | [Demo] Deployment readiness probe failing | IN_PROGRESS | HIGH     | Demo Engineer
+  4 | [Demo] Request staging namespace access   | TODO        | MEDIUM   | Demo Operator
+  5 | [Demo] Verify rollback runbook            | TODO        | HIGH     | Demo Student
+  6 | [Demo] Confirm metrics scrape recovery    | DONE        | LOW      | Demo Engineer
+(4 rows)
+
+    version_num    
+-------------------
+ 0001_create_tasks
+(1 row)
+

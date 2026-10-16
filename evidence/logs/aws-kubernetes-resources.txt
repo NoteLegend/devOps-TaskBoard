@@ -1,0 +1,21 @@
+NAME                                     READY   STATUS      RESTARTS   AGE
+pod/taskboard-backend-774b77bb77-8zw68   1/1     Running     0          3m16s
+pod/taskboard-backend-774b77bb77-rvfgl   1/1     Running     0          3m1s
+pod/taskboard-frontend-9f56549b5-2fp7w   1/1     Running     0          3m16s
+pod/taskboard-frontend-9f56549b5-q8h9b   1/1     Running     0          3m16s
+pod/taskboard-migrate-1-m6556            0/1     Completed   0          3m14s
+pod/taskboard-postgres-0                 1/1     Running     0          3m16s
+
+NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+service/taskboard-backend    ClusterIP   172.20.49.169    <none>        8000/TCP   3m16s
+service/taskboard-frontend   ClusterIP   172.20.72.127    <none>        8080/TCP   3m16s
+service/taskboard-postgres   ClusterIP   172.20.181.200   <none>        5432/TCP   3m16s
+
+NAME                                              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/data-taskboard-postgres-0   Bound    pvc-acf999c4-56dd-4479-8d4f-408f42cb70de   5Gi        RWO            gp3            <unset>                 3m16s
+
+NAME                                  CLASS   HOSTS   ADDRESS                                                                   PORTS   AGE
+ingress.networking.k8s.io/taskboard   alb     *       k8s-taskboar-taskboar-cabb6ffcf1-243133037.ap-south-1.elb.amazonaws.com   80      3m15s
+
+NAME                                                    REFERENCE                      TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/taskboard-backend   Deployment/taskboard-backend   cpu: 4%/60%   2         4         2          3m16s

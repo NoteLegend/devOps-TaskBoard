@@ -22,6 +22,14 @@ variable "github_repository" {
   type    = string
   default = "NoteLegend/devOps-TaskBoard"
 }
+variable "github_oidc_subject_prefix" {
+  type        = string
+  description = "Exact sub_claim_prefix returned by GitHub actions/oidc/customization/sub; includes immutable IDs when enabled."
+  validation {
+    condition     = startswith(var.github_oidc_subject_prefix, "repo:") && !strcontains(var.github_oidc_subject_prefix, "*") && !strcontains(var.github_oidc_subject_prefix, ":ref:")
+    error_message = "Use the exact repo subject prefix from GitHub, without wildcards or the branch suffix."
+  }
+}
 variable "create_github_oidc_provider" {
   type        = bool
   default     = true

@@ -1,0 +1,15 @@
+{
+    "status": "ACTIVE",
+    "health": {
+        "issues": []
+    },
+    "instanceTypes": [
+        "m7i-flex.large"
+    ],
+    "releaseVersion": "1.35.8-20261012",
+    "scalingConfig": {
+        "minSize": 2,
+        "maxSize": 2,
+        "desiredSize": 2
+    }
+}

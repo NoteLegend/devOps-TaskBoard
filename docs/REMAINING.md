@@ -1,6 +1,6 @@
 # Remaining work against the original capstone
 
-Updated 2026-10-16. The original AWS/EKS requirements remain in scope. This is not a local-only substitution. No AWS resources have been created by this project.
+Updated 2026-10-16. The original AWS/EKS requirements remain in scope. This is not a local-only substitution. The credit-only plan was approved and Terraform apply began at 2026-10-16T18:16Z. Screenshots and GitHub push must precede teardown.
 
 ## Completed
 
@@ -12,7 +12,7 @@ AWS account 835582727900 is authenticated. The Free Tier API reports FREE/ACTIVE
 
 | Requirement | Current result | What is needed |
 |---|---|---|
-| Actual AWS infrastructure | NOT RUN | Approve the revised credit-funded plan/lifetime/cleanup, then apply and verify VPC, EKS, workers, IAM/add-ons and networking |
+| Actual AWS infrastructure | IN PROGRESS | Approved apply running; verify VPC, EKS, workers, IAM/add-ons and networking |
 | Actual EKS bootstrap | NOT RUN | Verify nodes, EBS CSI, gp3 StorageClass, Metrics Server, ALB controller, monitoring CRDs and runtime configuration |
 | CI deployment to AWS | NOT RUN; disabled | Configure the actual OIDC role output, enable deployment only after prerequisites, run Actions and verify the deployed immutable SHA |
 | AWS application and storage | NOT RUN | Verify migration Job, Ready Pods, bound EBS PVC, service endpoints, ALB routing, browser/API CRUD/statistics, database persistence/readiness and Swagger |

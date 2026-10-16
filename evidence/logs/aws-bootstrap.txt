@@ -1,0 +1,66 @@
+{
+  "captured_at_utc": "2026-10-16T18:29:01.920140+00:00",
+  "result": "PASSED",
+  "account": "835582727900",
+  "plan": "FREE",
+  "status": "ACTIVE",
+  "remaining_credits_usd": 117.2,
+  "expires_at": "2027-02-15T11:21:26.353000+00:00",
+  "note": "Read-only guard; credits are consumed by usage. No account upgrade performed."
+}
+Updated context arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks in /home/rushixd/.kube/config
+namespace/taskboard created
+role.rbac.authorization.k8s.io/taskboard-deployer created
+rolebinding.rbac.authorization.k8s.io/taskboard-deployer created
+deployment "ebs-csi-controller" successfully rolled out
+deployment "metrics-server" successfully rolled out
+storageclass.storage.k8s.io/gp3 created
+"eks" already exists with the same configuration, skipping
+"prometheus-community" already exists with the same configuration, skipping
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "metrics-server" chart repository
+...Successfully got an update from the "eks" chart repository
+...Successfully got an update from the "traefik" chart repository
+...Successfully got an update from the "prometheus-community" chart repository
+Update Complete. ⎈Happy Helming!⎈
+Release "aws-load-balancer-controller" does not exist. Installing it now.
+NAME: aws-load-balancer-controller
+LAST DEPLOYED: Fri Oct 16 23:59:23 2026
+NAMESPACE: kube-system
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+AWS Load Balancer controller installed!
+Release "monitoring" does not exist. Installing it now.
+NAME: monitoring
+LAST DEPLOYED: Sat Oct 17 00:00:11 2026
+NAMESPACE: monitoring
+STATUS: deployed
+REVISION: 1
+NOTES:
+kube-prometheus-stack has been installed. Check its status by running:
+  kubectl --namespace monitoring get pods -l "release=monitoring"
+
+Get Grafana 'admin' user password by running:
+
+  kubectl --namespace monitoring get secrets monitoring-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+
+Access Grafana local instance:
+
+  export POD_NAME=$(kubectl --namespace monitoring get pod -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=monitoring" -oname)
+  kubectl --namespace monitoring port-forward $POD_NAME 3000
+
+Get your grafana admin user password by running:
+
+  kubectl get secret --namespace monitoring -l app.kubernetes.io/component=admin-secret -o jsonpath="{.items[0].data.admin-password}" | base64 --decode ; echo
+
+
+Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
+customresourcedefinition.apiextensions.k8s.io/servicemonitors.monitoring.coreos.com condition met
+configmap/taskboard-dashboard created
+configmap/taskboard-dashboard labeled
+secret/taskboard-runtime created
+NAME                                         CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
+ip-10-20-1-170.ap-south-1.compute.internal   165m         8%       819Mi           11%         
+ip-10-20-2-235.ap-south-1.compute.internal   76m          3%       1052Mi          14%         

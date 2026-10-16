@@ -1,0 +1,2 @@
+NAME                              READY   STATUS    RESTARTS   AGE   LABELS
+diagnostic-web-687fbc597b-9tl7h   1/1     Running   0          10s   app=diagnostic-web,pod-template-hash=687fbc597b,topology.kubernetes.io/region=ap-south-1,topology.kubernetes.io/zone=ap-south-1a

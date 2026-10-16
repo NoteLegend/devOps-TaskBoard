@@ -1,0 +1,53 @@
+{
+  "captured_at_utc": "2026-10-16T19:30:34.342945+00:00",
+  "result": "PASSED",
+  "context": "arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks",
+  "old_postgres_pod_uid": "010d4483-9e3c-42c7-9d1e-9a77b0db2606",
+  "new_postgres_pod_uid": "7eaf43e9-1790-45c5-96f0-9116d00b6967",
+  "preserved_task_ids": [
+    6,
+    5,
+    4,
+    3
+  ],
+  "preserved_task_count": 4,
+  "actual_tasks": [
+    {
+      "title": "[Demo] Confirm metrics scrape recovery",
+      "description": "Validate the Prometheus target after the service repair.",
+      "priority": "LOW",
+      "status": "DONE",
+      "assignee": "Demo Engineer",
+      "id": 6,
+      "created_at": "2026-10-16T19:26:47.859060Z"
+    },
+    {
+      "title": "[Demo] Verify rollback runbook",
+      "description": "Record the release revision and rehearse recovery.",
+      "priority": "HIGH",
+      "status": "TODO",
+      "assignee": "Demo Student",
+      "id": 5,
+      "created_at": "2026-10-16T19:26:47.476356Z"
+    },
+    {
+      "title": "[Demo] Request staging namespace access",
+      "description": "Review namespace RBAC for the release team.",
+      "priority": "MEDIUM",
+      "status": "TODO",
+      "assignee": "Demo Operator",
+      "id": 4,
+      "created_at": "2026-10-16T19:26:47.291439Z"
+    },
+    {
+      "title": "[Demo] Deployment readiness probe failing",
+      "description": "Investigate the release API database connection.",
+      "priority": "HIGH",
+      "status": "IN_PROGRESS",
+      "assignee": "Demo Engineer",
+      "id": 3,
+      "created_at": "2026-10-16T19:26:47.013653Z"
+    }
+  ],
+  "note": "Normal PostgreSQL Pod restart; PVC retained. Private dump excluded from git/archive."
+}

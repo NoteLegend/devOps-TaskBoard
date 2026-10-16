@@ -1,0 +1,30 @@
+{
+  "namespace": "taskboard",
+  "pvc": "data-taskboard-postgres-0",
+  "pvc_phase": "Bound",
+  "storage_class": "gp3",
+  "capacity": {
+    "storage": "5Gi"
+  },
+  "reclaim_policy": "Retain",
+  "csi_driver": "ebs.csi.aws.com",
+  "volume_handle": "vol-0f8e62c2d1a38eb91",
+  "pv": "pvc-acf999c4-56dd-4479-8d4f-408f42cb70de",
+  "node_affinity": {
+    "required": {
+      "nodeSelectorTerms": [
+        {
+          "matchExpressions": [
+            {
+              "key": "topology.kubernetes.io/zone",
+              "operator": "In",
+              "values": [
+                "ap-south-1a"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

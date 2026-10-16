@@ -20,6 +20,8 @@ aws eks describe-cluster-versions --region ap-south-1
 # On a fresh checkout only (the current machine already has the agreed values):
 cp -n terraform/terraform.tfvars.example terraform/terraform.tfvars
 # Edit the ignored tfvars with the agreed account/operator ARN.
+# Set github_oidc_subject_prefix to this exact API value:
+gh api repos/NoteLegend/devOps-TaskBoard/actions/oidc/customization/sub --jq .sub_claim_prefix
 terraform -chdir=terraform init
 terraform -chdir=terraform fmt -check
 terraform -chdir=terraform validate

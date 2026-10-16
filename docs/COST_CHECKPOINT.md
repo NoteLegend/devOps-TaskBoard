@@ -1,6 +1,6 @@
 # AWS Free Tier deployment checkpoint
 
-**Original AWS/EKS requirements remain in scope. No resources have been created.** The user requires no out-of-pocket spending and no replacement deployment stack. Do not upgrade this account to a Paid plan or activate paid-only services.
+**Original AWS/EKS requirements remain in scope. Approved apply began at 2026-10-16T18:16Z; creation is in progress.** The user requires no out-of-pocket spending and no replacement deployment stack. Do not upgrade this account to a Paid plan or activate paid-only services.
 
 ## Verified account and proposed resources
 
@@ -42,6 +42,6 @@ Assumptions: 5 GB NAT processing, 0.25 GB log ingestion, 10,000 symmetric KMS ca
 
 After evidence and a private synthetic DB export are saved, delete the app Ingress while its controller runs and verify ALB removal; uninstall the release/monitoring; remove only this new project's retained PostgreSQL PVC/PV/EBS volume with data-deletion authorization; remove LBC; review/destroy this Terraform stack; check for residual workers, EBS, NAT/EIP, ELB, logs and KMS state. Follow [CLEANUP.md](CLEANUP.md). Keep the repository, registry images, evidence and unrelated EC2 instance.
 
-**Checkpoint pending:** approve this exact credit-funded plan, the three-hour lifetime and deletion of only its synthetic data/resources after evidence. No cash spending or plan upgrade is approved.
+**Approved 2026-10-16T18:16Z:** the user approved this credit-funded plan and instructed deployment, screenshots saved under `images/`, and a GitHub push before teardown. Remove only project resources/synthetic data after evidence is saved and pushed. No cash spending or Paid-plan upgrade is approved. The proposed three-hour window starts at apply (18:16Z); target full teardown by 21:16Z.
 
 Primary sources: [EKS prices](https://aws.amazon.com/eks/pricing/), [AWS account plans](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-plans.html), [Free Tier service support](https://docs.aws.amazon.com/accounts/latest/reference/supported-services-sign-up-new.html), [EC2 eligible instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-free-tier-usage.html), [Free Tier status API](https://docs.aws.amazon.com/cli/latest/reference/freetier/get-account-plan-state.html). Rates were queried directly from AWS Price List for Mumbai.

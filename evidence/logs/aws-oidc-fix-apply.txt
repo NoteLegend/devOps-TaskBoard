@@ -1,0 +1,13 @@
+aws_iam_role.github_deploy: Modifying... [id=taskboard-eks-github-deploy]
+aws_iam_role.github_deploy: Modifications complete after 3s [id=taskboard-eks-github-deploy]
+
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+
+Outputs:
+
+alb_role_arn = "arn:aws:iam::835582727900:role/taskboard-eks-alb"
+aws_region = "ap-south-1"
+cluster_endpoint = "https://BCBE912F5297EA57C506807FD786E0C9.gr7.ap-south-1.eks.amazonaws.com"
+cluster_name = "taskboard-eks"
+deployment_role_arn = "arn:aws:iam::835582727900:role/taskboard-eks-github-deploy"
+vpc_id = "vpc-0663d0df15efa02af"

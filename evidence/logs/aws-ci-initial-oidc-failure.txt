@@ -1,0 +1,32 @@
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	﻿2026-10-16T18:34:24.9193027Z ##[group]Run aws-actions/configure-aws-credentials@v6.3.0
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:24.9194716Z with:
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:24.9196001Z   role-to-assume: arn:aws:iam::835582727900:role/taskboard-eks-github-deploy
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:24.9197587Z   aws-region: ap-south-1
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:24.9198631Z   audience: sts.amazonaws.com
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:24.9199855Z ##[endgroup]
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:25.2038838Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:25.9368725Z Retry AssumeRole: attempt 1 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 38ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:26.1882713Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:26.1883858Z Retry AssumeRole: attempt 2 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 22ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:26.2107458Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:26.4218841Z Retry AssumeRole: attempt 3 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 91ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:26.5135945Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:26.7251611Z Retry AssumeRole: attempt 4 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 46ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:26.7706318Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:26.9821090Z Retry AssumeRole: attempt 5 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 66ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:27.0487009Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:27.2596355Z Retry AssumeRole: attempt 6 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 1287ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:28.5484930Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:28.7601712Z Retry AssumeRole: attempt 7 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 2212ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:30.9738952Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:31.1854757Z Retry AssumeRole: attempt 8 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 5882ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:37.0710009Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:37.2838241Z Retry AssumeRole: attempt 9 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 11144ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:48.4340407Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:48.6474842Z Retry AssumeRole: attempt 10 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 5452ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:54.3122310Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:34:54.3123236Z Retry AssumeRole: attempt 11 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 49631ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:35:43.9501427Z Assuming role with OIDC
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:35:44.1627012Z Retry AssumeRole: attempt 12 of 12 failed: Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity. Retrying after 75337ms.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:35:44.1628663Z Retry AssumeRole: reached max retries (12); giving up.
+deploy	Run aws-actions/configure-aws-credentials@v6.3.0	2026-10-16T18:35:44.1650327Z ##[error]Could not assume role with OIDC: Not authorized to perform sts:AssumeRoleWithWebIdentity
