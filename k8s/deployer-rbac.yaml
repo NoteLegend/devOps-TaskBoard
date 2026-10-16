@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: {name: taskboard-deployer, namespace: taskboard}
+rules:
+  - apiGroups: ['', apps, batch, networking.k8s.io, autoscaling, monitoring.coreos.com]
+    resources: [configmaps, secrets, services, pods, pods/log, events, persistentvolumeclaims, deployments, replicasets, statefulsets, jobs, ingresses, horizontalpodautoscalers, servicemonitors]
+    verbs: [get, list, watch, create, update, patch, delete]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: {name: taskboard-deployer, namespace: taskboard}
+subjects: [{kind: Group, name: taskboard-deployers, apiGroup: rbac.authorization.k8s.io}]
+roleRef: {kind: Role, name: taskboard-deployer, apiGroup: rbac.authorization.k8s.io}
