@@ -1,6 +1,6 @@
 # Cleanup and retained data
 
-Save all evidence first. Obtain authorization before deleting application data, cloud resources, or ending the agreed live demo. No cloud teardown/data deletion is currently authorized.
+For the current demo, the user explicitly authorized deleting only this project’s synthetic data/cloud resources **after all deployment screenshots are saved under images/ and pushed to GitHub**. This condition must be verified before deletion. Existing unrelated EC2/local work is excluded. Future runs need their own data-retention/teardown authorization.
 
 ## Local
 
@@ -28,3 +28,7 @@ Do not run `docker compose down -v` unless deletion of the named application dat
 Do not destroy VPC/EKS before Kubernetes-created ALBs are removed; controller-managed network interfaces can block Terraform deletion. Local Terraform state is private and needed for teardown: preserve it until destroy is verified, then archive it securely outside the submission. Registry images and GitHub repository remain for grading unless separately requested.
 
 The isolated readiness test also retains its own local volume, `taskboard-readiness_readiness-data`, after its containers are removed. It contains only generated test data. After saving the readiness evidence and authorizing its deletion, remove that exact volume with `docker volume rm taskboard-readiness_readiness-data`. The Compose integration test database uses tmpfs and has no retained volume. Never use a global Docker prune to clean this project.
+
+## Current execution gate
+
+Deployment image SHA is recorded separately from the evidence commit. Disable repository `DEPLOY_ENABLED` before the final evidence push and wait for any application deployment run to finish; subsequent documentation/evidence pushes must not race teardown. Verify remote main matches the evidence commit and every images/ file is tracked/pushed. Save the private synthetic DB export outside git. After that gate, remove Ingress/ALB first, detach/delete only the recorded retained database volume, uninstall controllers and apply the reviewed Terraform destroy plan. Post-cleanup screenshots/logs are pushed in a second evidence commit.

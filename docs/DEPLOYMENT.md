@@ -110,3 +110,21 @@ To reproduce the verified local deployment of public CI-built images: `scripts/d
 Deployment verification now waits for three consecutive successes on same-origin readiness and statistics before CRUD. Both application workloads drain for five seconds in preStop so Ingress endpoint updates can propagate before process termination. AWS deploy verification waits for the ALB hostname and performs the same external smoke test.
 
 For this classroom project PostgreSQL runs in-cluster so the demo includes PVCs, EBS CSI and database recovery. It is a single instance: the PVC persists data, but does not provide database failover, managed backups or automated patching. For production, RDS can manage backups, maintenance and optional Multi-AZ availability; it adds database cost and requires private networking, access controls and migration planning. No RDS instance is provisioned here.
+
+## Reproducing the observed AWS HPA workload
+
+The external 24-worker test stayed below the CPU target, so it did not prove scaling. The successful run used a separate bounded client Job in `taskboard-loadtest`, reusing the scanned backend image with no runtime secrets or API token. Its CPU is excluded from the backend HPA. After fresh infrastructure approval/bootstrap and capacity/metrics checks:
+
+```bash
+python3 scripts/load-in-cluster.py \
+  --context arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks \
+  --seconds 180 --workers 24
+# In another terminal, observe during load and recovery:
+kubectl get hpa taskboard-backend -n taskboard --watch
+kubectl get deployment taskboard-backend -n taskboard
+kubectl top pods -n taskboard
+```
+
+The helper caps 180 seconds/24 workers and the Job has a deadline/backoffLimit 0. Record actual CPU and Ready replicas; do not infer scaling from request totals. Existing external watcher supports `EVIDENCE_DIR=evidence/logs/ANOTHER_RUN` so previous local/AWS records are preserved.
+
+AWS monitoring forwards used in the actual run were `kubectl port-forward -n monitoring svc/monitoring-kube-prometheus-prometheus 19090:9090` and `kubectl port-forward -n monitoring svc/monitoring-grafana 13001:80`; they avoid the existing local cluster forwards. Grafana authentication values stay in the Kubernetes Secret and are never archived.

@@ -1,0 +1,45 @@
+{
+  "captured_at_utc": "2026-10-16T19:47:20.703012+00:00",
+  "images": [
+    {
+      "component": "backend",
+      "anonymous_manifest_access": "PASSED",
+      "sha_tag": "179ad20c5e4995bf458a33531905d6f0e694b580",
+      "registry_digest": "sha256:38ee19d72b33536cd4e5aaf9e0d82275da42e05ada192975baad4177227c4d27",
+      "running_pods": [
+        {
+          "pod": "taskboard-backend-76c58c48b7-7bltb",
+          "image": "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580",
+          "imageID": "ghcr.io/notelegend/devops-taskboard-backend@sha256:38ee19d72b33536cd4e5aaf9e0d82275da42e05ada192975baad4177227c4d27",
+          "ready": true
+        },
+        {
+          "pod": "taskboard-backend-76c58c48b7-mlcbx",
+          "image": "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580",
+          "imageID": "ghcr.io/notelegend/devops-taskboard-backend@sha256:38ee19d72b33536cd4e5aaf9e0d82275da42e05ada192975baad4177227c4d27",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "component": "frontend",
+      "anonymous_manifest_access": "PASSED",
+      "sha_tag": "179ad20c5e4995bf458a33531905d6f0e694b580",
+      "registry_digest": "sha256:f8fdfffb4b9f98785360971b20e7d31f8a987355375de4dacf3677e8e034c27f",
+      "running_pods": [
+        {
+          "pod": "taskboard-frontend-657869769f-5mzf5",
+          "image": "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580",
+          "imageID": "ghcr.io/notelegend/devops-taskboard-frontend@sha256:f8fdfffb4b9f98785360971b20e7d31f8a987355375de4dacf3677e8e034c27f",
+          "ready": true
+        },
+        {
+          "pod": "taskboard-frontend-657869769f-9dctc",
+          "image": "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580",
+          "imageID": "ghcr.io/notelegend/devops-taskboard-frontend@sha256:f8fdfffb4b9f98785360971b20e7d31f8a987355375de4dacf3677e8e034c27f",
+          "ready": true
+        }
+      ]
+    }
+  ]
+}

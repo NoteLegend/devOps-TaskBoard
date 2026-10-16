@@ -1,0 +1,27 @@
+test	Migrate clean PostgreSQL and run tests	2026-10-16T19:32:11.7022266Z ======================== 19 passed, 1 warning in 0.62s =========================
+test	Test Free Tier deployment guard	﻿2026-10-16T19:32:11.8388141Z ##[group]Run python3 -m unittest discover -s scripts -p 'test_*.py' -v
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8388705Z ^[[36;1mpython3 -m unittest discover -s scripts -p 'test_*.py' -v^[[0m
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8452025Z shell: /usr/bin/bash -e {0}
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8452297Z env:
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8452800Z   DATABASE_URL: ***localhost:5432/taskboard_test
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8453312Z   TEST_DATABASE_URL: ***localhost:5432/taskboard_test
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8454150Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8454603Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8455038Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8455423Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8455803Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8456189Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.8456520Z ##[endgroup]
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9798136Z test_active_free_account_with_sufficient_credits (test_free_tier_guard.FreeTierGuardTest.test_active_free_account_with_sufficient_credits) ... ok
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9807325Z test_expiring_plan_is_rejected (test_free_tier_guard.FreeTierGuardTest.test_expiring_plan_is_rejected) ... ok
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9816001Z test_inactive_plan_is_rejected (test_free_tier_guard.FreeTierGuardTest.test_inactive_plan_is_rejected) ... ok
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9824772Z test_insufficient_credits_are_rejected (test_free_tier_guard.FreeTierGuardTest.test_insufficient_credits_are_rejected) ... ok
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9835925Z test_paid_plan_is_rejected_even_with_credits (test_free_tier_guard.FreeTierGuardTest.test_paid_plan_is_rejected_even_with_credits) ... ok
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9844341Z test_wrong_account_is_rejected (test_free_tier_guard.FreeTierGuardTest.test_wrong_account_is_rejected) ... ok
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9845362Z 
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9845611Z ----------------------------------------------------------------------
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9846198Z Ran 6 tests in 0.006s
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9846425Z 
+test	Test Free Tier deployment guard	2026-10-16T19:32:11.9854568Z OK
+test	Build frontend	2026-10-16T19:32:14.6975379Z ^[[32m✓ built in 133ms^[[39m
+build-scan-push	Build both images	2026-10-16T19:32:56.5694665Z #14 0.664 ✓ built in 118ms

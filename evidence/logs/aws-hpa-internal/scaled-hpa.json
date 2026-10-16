@@ -1,0 +1,108 @@
+{
+    "apiVersion": "autoscaling/v2",
+    "kind": "HorizontalPodAutoscaler",
+    "metadata": {
+        "annotations": {
+            "meta.helm.sh/release-name": "taskboard",
+            "meta.helm.sh/release-namespace": "taskboard"
+        },
+        "creationTimestamp": "2026-10-16T19:23:51Z",
+        "labels": {
+            "app.kubernetes.io/managed-by": "Helm"
+        },
+        "name": "taskboard-backend",
+        "namespace": "taskboard",
+        "resourceVersion": "20694",
+        "uid": "71edb06c-4870-4fe9-8d07-f75b5f9616c8"
+    },
+    "spec": {
+        "behavior": {
+            "scaleDown": {
+                "policies": [
+                    {
+                        "periodSeconds": 15,
+                        "type": "Percent",
+                        "value": 100
+                    }
+                ],
+                "selectPolicy": "Max",
+                "stabilizationWindowSeconds": 120
+            },
+            "scaleUp": {
+                "policies": [
+                    {
+                        "periodSeconds": 15,
+                        "type": "Pods",
+                        "value": 4
+                    },
+                    {
+                        "periodSeconds": 15,
+                        "type": "Percent",
+                        "value": 100
+                    }
+                ],
+                "selectPolicy": "Max",
+                "stabilizationWindowSeconds": 0
+            }
+        },
+        "maxReplicas": 4,
+        "metrics": [
+            {
+                "resource": {
+                    "name": "cpu",
+                    "target": {
+                        "averageUtilization": 60,
+                        "type": "Utilization"
+                    }
+                },
+                "type": "Resource"
+            }
+        ],
+        "minReplicas": 2,
+        "scaleTargetRef": {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "name": "taskboard-backend"
+        }
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-10-16T19:24:06Z",
+                "message": "recommended size matches current size",
+                "reason": "ReadyForNewScale",
+                "status": "True",
+                "type": "AbleToScale"
+            },
+            {
+                "lastTransitionTime": "2026-10-16T19:35:22Z",
+                "message": "the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)",
+                "reason": "ValidMetricFound",
+                "status": "True",
+                "type": "ScalingActive"
+            },
+            {
+                "lastTransitionTime": "2026-10-16T19:40:53Z",
+                "message": "the desired replica count is more than the maximum replica count",
+                "reason": "TooManyReplicas",
+                "status": "True",
+                "type": "ScalingLimited"
+            }
+        ],
+        "currentMetrics": [
+            {
+                "resource": {
+                    "current": {
+                        "averageUtilization": 434,
+                        "averageValue": "434m"
+                    },
+                    "name": "cpu"
+                },
+                "type": "Resource"
+            }
+        ],
+        "currentReplicas": 4,
+        "desiredReplicas": 4,
+        "lastScaleTime": "2026-10-16T19:40:53Z"
+    }
+}

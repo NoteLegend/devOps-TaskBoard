@@ -1,0 +1,12 @@
+SCREENSHOT images/aws-application-desktop.png
+SCREENSHOT images/aws-ticket-create-form.png
+SCREENSHOT images/aws-ticket-created.png
+SCREENSHOT images/aws-ticket-updated-filtered.png
+PASSED browser create/update/filter/delete
+SCREENSHOT images/aws-application-mobile.png
+SCREENSHOT images/aws-swagger.png
+SCREENSHOT images/aws-swagger-statistics-executed.png
+SCREENSHOT images/aws-metrics-endpoint.png
+PASSED same-origin /api requests: 14
+PASSED actual ALB desktop/mobile/Swagger/metrics browser verification
+Saved genuine browser walkthrough video: images/aws-browser-walkthrough.webm

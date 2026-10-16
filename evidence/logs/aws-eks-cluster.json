@@ -1,0 +1,27 @@
+{
+    "name": "taskboard-eks",
+    "status": "ACTIVE",
+    "version": "1.35",
+    "arn": "arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks",
+    "health": null,
+    "network": {
+        "subnetIds": [
+            "subnet-07b71766366d48642",
+            "subnet-06016c9afbc6af901"
+        ],
+        "securityGroupIds": [
+            "sg-09176db45a5c1064e"
+        ],
+        "clusterSecurityGroupId": "sg-04d29b86bf42ffa68",
+        "vpcId": "vpc-0663d0df15efa02af",
+        "endpointPublicAccess": true,
+        "endpointPrivateAccess": true,
+        "publicAccessCidrs": [
+            "0.0.0.0/0"
+        ],
+        "controlPlaneEgressMode": "AWS_MANAGED"
+    },
+    "upgradePolicy": {
+        "supportType": "STANDARD"
+    }
+}

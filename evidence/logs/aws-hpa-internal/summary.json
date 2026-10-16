@@ -1,0 +1,21 @@
+{
+  "result": "PASSED",
+  "context": "arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks",
+  "load_namespace": "taskboard-loadtest",
+  "load_source": "isolated Job using the already-scanned application image; client CPU excluded from backend HPA",
+  "url": "http://taskboard-backend.taskboard.svc.cluster.local:8000/api/tasks",
+  "cpu_request": "100m per backend Pod",
+  "target_cpu_percent": 60,
+  "initial_ready_replicas": 2,
+  "peak_ready_replicas": 4,
+  "final_ready_replicas": 2,
+  "peak_cpu_utilization_percent_of_request": 442,
+  "recovered_automatically": true,
+  "load": {
+    "duration_seconds": 180.1,
+    "workers": 24,
+    "ok": 68466,
+    "failed": 0
+  },
+  "observation_seconds": 359.1
+}

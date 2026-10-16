@@ -1,0 +1,14 @@
+{
+  "captured_at_utc": "2026-10-16T19:46:57.614944+00:00",
+  "result": "PASSED",
+  "pull_request": "https://github.com/NoteLegend/devOps-TaskBoard/pull/1",
+  "run": "https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38956791668",
+  "event": "pull_request",
+  "overall_status": "completed",
+  "overall_conclusion": "success",
+  "build_scan_conclusion": "success",
+  "registry_login": "skipped",
+  "publish": "skipped",
+  "deploy": "skipped",
+  "note": "Documentation-only isolated PR; workflow validated without registry login/publication or AWS deployment."
+}

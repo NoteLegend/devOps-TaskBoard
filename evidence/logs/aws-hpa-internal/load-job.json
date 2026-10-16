@@ -1,0 +1,79 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "name": "bounded-cpu-hpa-load",
+    "namespace": "taskboard-loadtest"
+  },
+  "spec": {
+    "activeDeadlineSeconds": 240,
+    "backoffLimit": 0,
+    "ttlSecondsAfterFinished": 3600,
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "taskboard-load-generator"
+        }
+      },
+      "spec": {
+        "restartPolicy": "Never",
+        "automountServiceAccountToken": false,
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 10001,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "load",
+            "image": "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580",
+            "command": [
+              "python",
+              "/load/load-test.py",
+              "http://taskboard-backend.taskboard.svc.cluster.local:8000/api/tasks",
+              "--seconds",
+              "180",
+              "--workers",
+              "24"
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "500m",
+                "memory": "64Mi"
+              },
+              "limits": {
+                "cpu": "1000m",
+                "memory": "128Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            },
+            "volumeMounts": [
+              {
+                "name": "script",
+                "mountPath": "/load",
+                "readOnly": true
+              }
+            ]
+          }
+        ],
+        "volumes": [
+          {
+            "name": "script",
+            "configMap": {
+              "name": "bounded-load-script"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

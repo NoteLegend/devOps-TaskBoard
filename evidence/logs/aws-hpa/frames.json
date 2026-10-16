@@ -1,0 +1,173 @@
+[
+  {
+    "at_utc": "2026-10-16T19:36:34.152748+00:00",
+    "elapsed_seconds": 3.9,
+    "cpu_utilization_percent_of_request": 4,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:36:44.402237+00:00",
+    "elapsed_seconds": 14.2,
+    "cpu_utilization_percent_of_request": 4,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:36:55.688505+00:00",
+    "elapsed_seconds": 25.5,
+    "cpu_utilization_percent_of_request": 8,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:37:06.512442+00:00",
+    "elapsed_seconds": 36.3,
+    "cpu_utilization_percent_of_request": 8,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:37:16.896345+00:00",
+    "elapsed_seconds": 46.7,
+    "cpu_utilization_percent_of_request": 19,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:37:26.588514+00:00",
+    "elapsed_seconds": 56.4,
+    "cpu_utilization_percent_of_request": 23,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:37:36.109441+00:00",
+    "elapsed_seconds": 65.9,
+    "cpu_utilization_percent_of_request": 23,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:37:48.816518+00:00",
+    "elapsed_seconds": 78.6,
+    "cpu_utilization_percent_of_request": 38,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:38:00.302599+00:00",
+    "elapsed_seconds": 90.1,
+    "cpu_utilization_percent_of_request": 35,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:38:10.934355+00:00",
+    "elapsed_seconds": 100.7,
+    "cpu_utilization_percent_of_request": 34,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:38:24.028250+00:00",
+    "elapsed_seconds": 113.8,
+    "cpu_utilization_percent_of_request": 34,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:38:33.375928+00:00",
+    "elapsed_seconds": 123.2,
+    "cpu_utilization_percent_of_request": 31,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:38:44.552343+00:00",
+    "elapsed_seconds": 134.3,
+    "cpu_utilization_percent_of_request": 32,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:38:56.696854+00:00",
+    "elapsed_seconds": 146.5,
+    "cpu_utilization_percent_of_request": 37,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:39:09.328482+00:00",
+    "elapsed_seconds": 159.1,
+    "cpu_utilization_percent_of_request": 38,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:39:18.950802+00:00",
+    "elapsed_seconds": 168.7,
+    "cpu_utilization_percent_of_request": 38,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:39:28.978412+00:00",
+    "elapsed_seconds": 178.8,
+    "cpu_utilization_percent_of_request": 29,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:39:38.270590+00:00",
+    "elapsed_seconds": 188.1,
+    "cpu_utilization_percent_of_request": 27,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  },
+  {
+    "at_utc": "2026-10-16T19:39:47.115688+00:00",
+    "elapsed_seconds": 196.9,
+    "cpu_utilization_percent_of_request": 27,
+    "hpa_current": 2,
+    "hpa_desired": 2,
+    "ready_replicas": 2,
+    "replicas": 2
+  }
+]

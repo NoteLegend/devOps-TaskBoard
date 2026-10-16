@@ -1,0 +1,21 @@
+[
+    {
+        "VolumeId": "vol-0f8e62c2d1a38eb91",
+        "Encrypted": true,
+        "SizeGiB": 5,
+        "Type": "gp3",
+        "State": "in-use",
+        "AvailabilityZone": "ap-south-1a",
+        "Attachments": [
+            {
+                "DeleteOnTermination": false,
+                "EbsCardIndex": 0,
+                "VolumeId": "vol-0f8e62c2d1a38eb91",
+                "InstanceId": "i-0ea9ac3d6b5e69c37",
+                "Device": "/dev/xvdaa",
+                "State": "attached",
+                "AttachTime": "2026-10-16T19:23:55+00:00"
+            }
+        ]
+    }
+]

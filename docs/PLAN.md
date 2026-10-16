@@ -9,7 +9,8 @@
 - [x] Finish stable HPA recovery (2 → 4 → 2; zero failed requests) and deploy verified registry images locally.
 - [x] Verify AWS browser login/operator in account 835582727900; prepare actual 66-resource plan and current Mumbai cost estimate.
 - [x] Obtain revised Free Tier plan/credit-use and demo-lifetime approval; screenshots and GitHub push must precede teardown.
-- [ ] Provision and verify real EKS deployment/CI/HPA/metrics (apply started 18:16Z, three-hour target).
-- [ ] Rehearse final AWS demo; save evidence; obtain teardown/data-deletion approval and verify cleanup.
+- [x] Provision and verify real EKS deployment/CI/HPA/metrics (Ready replicas 2→4→2, zero load failures).
+- [x] Demonstrate visible commit→pipeline→AWS rollout; save genuine screenshots/video and isolated failure/recovery evidence.
+- [ ] Verify final screenshot/evidence GitHub push, then execute already-authorized teardown and residual checks.
 
 Current project status: not yet submission-ready. User-approved GitHub publishing does not authorize cloud spending. See VERIFICATION.md for executed results and exact blockers.

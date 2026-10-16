@@ -1,0 +1,22 @@
+{
+  "captured_at_utc": "2026-10-16T19:36:58.174616+00:00",
+  "run": "https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38955563228",
+  "images": [
+    {
+      "artifact": "backend.json",
+      "image": "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580",
+      "reported_high_critical_findings": 0,
+      "scanner": "Trivy 0.76.0",
+      "scope": "HIGH/CRITICAL only, no unfixed exceptions",
+      "report": "evidence/logs/aws-ci-scans/backend.json"
+    },
+    {
+      "artifact": "frontend.json",
+      "image": "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580",
+      "reported_high_critical_findings": 0,
+      "scanner": "Trivy 0.76.0",
+      "scope": "HIGH/CRITICAL only, no unfixed exceptions",
+      "report": "evidence/logs/aws-ci-scans/frontend.json"
+    }
+  ]
+}

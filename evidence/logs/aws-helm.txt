@@ -1,2 +1,2 @@
 NAME     	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART          	APP VERSION
-taskboard	taskboard	1       	2026-10-16 19:23:44.736402216 +0000 UTC	deployed	taskboard-1.0.0	1.0.0      
+taskboard	taskboard	2       	2026-10-16 19:34:17.620385274 +0000 UTC	deployed	taskboard-1.0.0	1.0.0      

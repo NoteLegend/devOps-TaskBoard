@@ -1,0 +1,10 @@
+{
+  "captured_at_utc": "2026-10-16T19:43:03.771350+00:00",
+  "result": "PASSED",
+  "account": "835582727900",
+  "plan": "FREE",
+  "status": "ACTIVE",
+  "remaining_credits_usd": 117.2,
+  "expires_at": "2027-02-15T11:21:26.353000+00:00",
+  "note": "Read-only guard; credits are consumed by usage. No account upgrade performed."
+}

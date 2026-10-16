@@ -1,0 +1,17 @@
+{
+  "result": "NO SCALING OBSERVED",
+  "source": "external HTTP client through ALB",
+  "context": "arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks",
+  "load": {
+    "duration_seconds": 181.2,
+    "workers": 24,
+    "ok": 3602,
+    "failed": 0
+  },
+  "initial_ready_replicas": 2,
+  "peak_ready_replicas": 2,
+  "peak_cpu_utilization_percent_of_request": 38,
+  "target_cpu_percent": 60,
+  "explanation": "Measured CPU remained below target; this workload did not demonstrate scaling. Bounded load completed before observer was stopped. Repeat uses an isolated in-cluster Job.",
+  "captured_at_utc": "2026-10-16T19:39:54.037968+00:00"
+}

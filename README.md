@@ -45,14 +45,22 @@ For Python development, create `backend/.venv` using Python 3.13, install `backe
 
 ## Verified publishing
 
-[Repository](https://github.com/NoteLegend/devOps-TaskBoard) · [successful test/build/scan/publish run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38919741425) · [backend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend) · [frontend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend). Both images were anonymously pulled. AWS deployment was deliberately skipped while the revised Free Tier credit-funded plan/lifetime awaits approval.
+[Repository](https://github.com/NoteLegend/devOps-TaskBoard) · [successful test/build/scan/publish run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38919741425) · [backend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend) · [frontend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend). Both images were anonymously pulled. AWS deployment passed through GitHub OIDC and EKS using the approved Free account plan/credits. [Actual successful deployment](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38955563228). No Paid-plan upgrade was performed.
 
-Local Kubernetes passed Ingress CRUD, persistent PostgreSQL, actual Prometheus/Grafana data, both failure exercises, and CPU autoscaling from two to four and back to two replicas. Full evidence and limitations are in [verification](docs/VERIFICATION.md).
+Both local Kubernetes and real AWS EKS passed Ingress CRUD, persistent PostgreSQL, actual Prometheus/Grafana data, both isolated failure exercises, and CPU autoscaling from two to four and back to two replicas. Full evidence and limitations are in [verification](docs/VERIFICATION.md).
 
 ## Deployment and submission
 
 Follow [setup](docs/USER_SETUP.md), [deployment](docs/DEPLOYMENT.md), then the [demo sequence](docs/DEMO.md). The original AWS/EKS scope remains required. Only the verified ACTIVE FREE account and eligible workers may be used; no Paid-plan upgrade or cash spending is authorized. Do not apply Terraform before the actual plan/credit-use/lifetime checkpoint is approved. [Requirements](docs/REQUIREMENTS.md), [audit](docs/STARTER_AUDIT.md), [troubleshooting](docs/TROUBLESHOOTING.md), [cleanup](docs/CLEANUP.md), and [evidence](evidence/README.md) track what is implemented and what actually ran.
 
-**Submission status: not yet ready.** See [remaining requirements](docs/REMAINING.md) and [verification](docs/VERIFICATION.md). Real CI/publication is verified; AWS deployment, AWS live checks and teardown remain unperformed.
+**AWS technical verification passed; final evidence push and authorized teardown are in progress.** [Screenshots and actual walkthrough](images/README.md), [verification](docs/VERIFICATION.md), [remaining handover](docs/REMAINING.md). The student presentation/instructor submission remains a user action.
 
 Source: Nensi Ravaliya’s MIT-licensed [TaskBoard starter](https://github.com/Nency-Ravaliya/devops-heros/tree/a4e39b6b3a54dab1efd386c75ab86bf1d8a23454/session21-python). [Attribution](docs/ATTRIBUTION.md), [LICENSE](LICENSE), and the original [grading rubric](GRADING.md) are retained. Meaningful changes include ticket triage UI, edit/delete/search, safe errors, expanded tests, migration isolation, corrected routing, OIDC/RBAC, storage integration and reproducible verification.
+
+## AWS demonstration evidence
+
+Live application commit: `179ad20c5e4995bf458a33531905d6f0e694b580`. The browser calls same-origin `/api` routes through the actual ALB. The user requires shutdown after deployment evidence is pushed; the AWS URL is historical after cleanup. Use Docker Compose above for a repeatable local review without recreating AWS resources.
+
+![Real Release Helpdesk on AWS](images/aws-application-desktop.png)
+
+[Real pipeline](images/aws-ci-successful-deployment.png) · [EKS Console](images/aws-eks-active-console.png) · [CPU scaling](images/aws-hpa-scaled-under-load.png) · [Grafana](images/aws-grafana-live-dashboard.png).

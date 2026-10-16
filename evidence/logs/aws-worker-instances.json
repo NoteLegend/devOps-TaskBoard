@@ -1,0 +1,48 @@
+[
+    {
+        "InstanceId": "i-0ea9ac3d6b5e69c37",
+        "Type": "m7i-flex.large",
+        "State": "running",
+        "PrivateIp": "10.20.1.170",
+        "Devices": [
+            {
+                "DeviceName": "/dev/xvda",
+                "Ebs": {
+                    "AttachTime": "2026-10-16T18:26:42+00:00",
+                    "DeleteOnTermination": true,
+                    "Status": "attached",
+                    "VolumeId": "vol-0c4768e24461d1e67",
+                    "EbsCardIndex": 0
+                }
+            },
+            {
+                "DeviceName": "/dev/xvdaa",
+                "Ebs": {
+                    "AttachTime": "2026-10-16T19:23:55.997000+00:00",
+                    "DeleteOnTermination": false,
+                    "Status": "attached",
+                    "VolumeId": "vol-0f8e62c2d1a38eb91",
+                    "EbsCardIndex": 0
+                }
+            }
+        ]
+    },
+    {
+        "InstanceId": "i-035e8373b9b3b457f",
+        "Type": "m7i-flex.large",
+        "State": "running",
+        "PrivateIp": "10.20.2.235",
+        "Devices": [
+            {
+                "DeviceName": "/dev/xvda",
+                "Ebs": {
+                    "AttachTime": "2026-10-16T18:26:42+00:00",
+                    "DeleteOnTermination": true,
+                    "Status": "attached",
+                    "VolumeId": "vol-07de9dfd405034034",
+                    "EbsCardIndex": 0
+                }
+            }
+        ]
+    }
+]

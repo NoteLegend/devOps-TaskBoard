@@ -11,14 +11,14 @@
               "__name__": "up",
               "container": "backend",
               "endpoint": "http",
-              "instance": "10.20.1.45:8000",
+              "instance": "10.20.2.179:8000",
               "job": "taskboard-backend",
               "namespace": "taskboard",
-              "pod": "taskboard-backend-774b77bb77-rvfgl",
+              "pod": "taskboard-backend-76c58c48b7-7bltb",
               "service": "taskboard-backend"
             },
             "value": [
-              1792179058.587,
+              1792180004.871,
               "1"
             ]
           },
@@ -27,14 +27,14 @@
               "__name__": "up",
               "container": "backend",
               "endpoint": "http",
-              "instance": "10.20.2.238:8000",
+              "instance": "10.20.1.158:8000",
               "job": "taskboard-backend",
               "namespace": "taskboard",
-              "pod": "taskboard-backend-774b77bb77-8zw68",
+              "pod": "taskboard-backend-76c58c48b7-mlcbx",
               "service": "taskboard-backend"
             },
             "value": [
-              1792179058.587,
+              1792180004.871,
               "1"
             ]
           }
@@ -52,8 +52,8 @@
           {
             "metric": {},
             "value": [
-              1792179058.703,
-              "408"
+              1792180004.978,
+              "44173"
             ]
           }
         ]
@@ -70,8 +70,8 @@
           {
             "metric": {},
             "value": [
-              1792179058.906,
-              "1.0857142857142856"
+              1792180005.092,
+              "1.4026363095238095"
             ]
           }
         ]
@@ -98,7 +98,7 @@
               "service": "monitoring-kube-state-metrics"
             },
             "value": [
-              1792179059.08,
+              1792180005.2,
               "2"
             ]
           }
@@ -116,8 +116,8 @@
           {
             "metric": {},
             "value": [
-              1792179059.197,
-              "0.006863402753493359"
+              1792180005.308,
+              "0.007972365694065234"
             ]
           }
         ]
