@@ -1,0 +1,20 @@
+grafana:
+  enabled: true
+  service: {type: ClusterIP}
+  ingress: {enabled: false}
+  sidecar:
+    dashboards: {enabled: true, searchNamespace: ALL}
+prometheus:
+  service: {type: ClusterIP}
+  ingress: {enabled: false}
+  prometheusSpec:
+    retention: 6h
+    resources:
+      requests: {cpu: 100m, memory: 256Mi}
+      limits: {cpu: 500m, memory: 768Mi}
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector:
+      matchLabels: {release: monitoring}
+    serviceMonitorNamespaceSelector: {}
+alertmanager:
+  enabled: false
