@@ -1,6 +1,6 @@
 # Session 21 demonstration sequence
 
-Follow the instructor’s complete sequence; use real screens/results only. Confirm current blockers in [verification](VERIFICATION.md). AWS and published-link steps are pending until actually executed.
+Follow the instructor’s complete sequence; use real screens/results only. Confirm current blockers in [verification](VERIFICATION.md). CI and public registry publication are verified; AWS deployment and teardown remain pending spending approval.
 
 1. **Application:** open Release Helpdesk at the actual Ingress URL (local alternative http://localhost:3000 is labelled local). Open a synthetic ticket “Release rollback approval”, set priority HIGH and assignee Demo Student. Filter by status/priority, edit to IN_PROGRESS, demonstrate responsive layout and dashboard counts.
 2. **API:** open `/docs`; POST, GET, PUT and DELETE `/api/tasks`. GET `/api/tasks/stats` must return statistics, not ID validation error. `python3 scripts/smoke.py http://ACTUAL_HOST` is repeatable evidence.
