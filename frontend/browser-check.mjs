@@ -4,6 +4,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:3000';
 const browser=await chromium.launch({headless:true});
 const page=await browser.newPage({viewport:{width:1440,height:1000}});
 const calls=[];
+const suffix=process.env.EVIDENCE_SUFFIX||'';
 const title=`Synthetic browser release incident ${Date.now()}`;
 page.on('request',r=>{if(r.url().includes('/api/'))calls.push(r.url());});
 try {
@@ -19,9 +20,9 @@ try {
   await page.getByRole('button',{name:'Save changes'}).click();
   await page.getByRole('dialog').waitFor({state:'hidden'});
   await page.getByRole('row').filter({hasText:title}).getByRole('cell',{name:'IN PROGRESS',exact:true}).waitFor();
-  await page.screenshot({path:'../evidence/application-desktop.png',fullPage:true});
+  await page.screenshot({path:`../evidence/application-desktop${suffix}.png`,fullPage:true});
   await page.setViewportSize({width:390,height:844});
-  await page.screenshot({path:'../evidence/application-mobile.png',fullPage:true});
+  await page.screenshot({path:`../evidence/application-mobile${suffix}.png`,fullPage:true});
   await page.getByPlaceholder('Title, description or assignee').fill(title);
   await page.getByRole('combobox').first().selectOption('DONE');
   await page.getByText('No tickets match these filters.').waitFor();
@@ -31,7 +32,7 @@ try {
   await page.getByRole('button',{name:`Delete ${title}`,exact:true}).waitFor({state:'hidden'});
   if(!calls.length||calls.some(u=>new URL(u).origin!==new URL(base).origin))throw Error('Browser API was not same-origin');
   await page.goto(`${base}/docs`);await page.getByText('TaskBoard API',{exact:false}).first().waitFor();
-  await page.screenshot({path:'../evidence/api-docs.png',fullPage:true});
+  await page.screenshot({path:`../evidence/api-docs${suffix}.png`,fullPage:true});
   console.log(JSON.stringify({status:'PASSED',base,checks:['browser create','edit status','delete','mobile layout','filter','same-origin API','Swagger'],apiRequests:calls.length,timestamp:new Date().toISOString()},null,2));
 } finally {
   // Clean only this run's synthetic ticket, including after assertion failures.

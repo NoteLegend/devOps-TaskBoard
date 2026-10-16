@@ -12,3 +12,13 @@ kubectl rollout status statefulset/taskboard-postgres -n taskboard --timeout=180
 kubectl rollout status deployment/taskboard-backend -n taskboard --timeout=180s
 kubectl rollout status deployment/taskboard-frontend -n taskboard --timeout=180s
 kubectl get pods,svc,ingress,hpa,pvc -n taskboard
+
+# Rollouts alone do not prove external routing. Wait for the actual ALB hostname.
+for attempt in $(seq 1 60); do
+  HOST=$(kubectl get ingress taskboard -n taskboard -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+  [[ -n "$HOST" ]] && break
+  sleep 3
+done
+[[ -n "$HOST" ]] || { echo 'Ingress hostname was not assigned'; exit 1; }
+python3 scripts/wait-ready.py "http://$HOST" --seconds 180
+python3 scripts/smoke.py "http://$HOST"

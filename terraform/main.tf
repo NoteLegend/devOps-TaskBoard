@@ -58,7 +58,17 @@ module "eks" {
       min_size       = 2
       max_size       = 2
       desired_size   = 2
-      disk_size      = 20
+      block_device_mappings = {
+        root = {
+          device_name = "/dev/xvda"
+          ebs = {
+            volume_size           = 20
+            volume_type           = "gp3"
+            encrypted             = true
+            delete_on_termination = true
+          }
+        }
+      }
     }
   }
   cloudwatch_log_group_retention_in_days = 7
