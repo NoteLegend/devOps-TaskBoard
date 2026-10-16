@@ -35,3 +35,5 @@ Current primary references (inspected 2026-10-16):
 Dependency versions are pinned in requirements, npm lockfile, Terraform lockfile and bootstrap chart versions. Container base tags receive security updates; record image IDs/digests during each verified build. A pinned tag alone is not an immutable base digest.
 
 Additional verification findings: pin GitHub runners to Ubuntu 24.04 and update upload-artifact/login/Helm/kubectl/AWS credential actions to current Node 24 releases after the first real run reported deprecated runtimes. EKS worker root disks use explicit encrypted gp3 block-device mappings: the module’s custom launch template ignores node-group `disk_size`.
+
+Archive verification caught the starter’s `terraform/.gitignore` excluding `.terraform.lock.hcl`. That exclusion was removed, the provider lockfile committed, and the ZIP helper now requires it alongside all handover documents.
