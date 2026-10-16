@@ -1,6 +1,6 @@
 # Cloud spending checkpoint — BLOCKED, NOT APPROVED
 
-No billable resources have been created. AWS profile/account, actual Terraform plan, current ap-south-1 prices and demo lifetime remain required before asking for spending approval.
+No billable resources have been created. Selected account is `765865641910`, requested profile is `Rushi Jadhav`; authentication/operator identity, actual Terraform plan, complete current ap-south-1 prices and demo lifetime remain required before asking for spending approval.
 
 Intended resource budget (verify actual plan): one EKS standard-support control plane; two t3.medium On-Demand workers (fixed two-node capacity); two 20-GiB root disks; one NAT gateway/EIP; public/private networking across two AZs; one ALB with public IPv4 and LCU usage; one 5-GiB encrypted gp3 PostgreSQL volume; logs/KMS; data transfer/NAT processing. Monitoring uses worker capacity with ephemeral Prometheus retention; no RDS is planned.
 
@@ -9,3 +9,5 @@ Required cost calculation: hourly EKS + 2×regional EC2 + NAT + ALB + public IPv
 Primary pricing sources to query at checkpoint: https://aws.amazon.com/eks/pricing/ , https://aws.amazon.com/ec2/pricing/on-demand/ , https://aws.amazon.com/vpc/pricing/ , https://aws.amazon.com/elasticloadbalancing/pricing/ , https://aws.amazon.com/ebs/pricing/ . Use AWS Price List API/Calculator for Mumbai instance/storage specifics.
 
 Use [cleanup](CLEANUP.md) to remove Kubernetes-created ALB and authorized retained storage before Terraform destroy. Save evidence first. Agree exact running-until time with the user before leaving cloud infrastructure active.
+
+Current verified component price: EKS standard-support control plane is $0.10/cluster-hour per https://aws.amazon.com/eks/pricing/ (inspected 2026-10-16). This is only one component, not a full estimate or spending approval.

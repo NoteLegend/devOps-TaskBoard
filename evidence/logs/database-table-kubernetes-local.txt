@@ -1,0 +1,8 @@
+ id |                   title                   |   status    | priority 
+----+-------------------------------------------+-------------+----------
+  2 | [Demo] Deployment readiness probe failing | IN_PROGRESS | HIGH
+  3 | [Demo] Request staging namespace access   | TODO        | MEDIUM
+  4 | [Demo] Verify rollback runbook            | TODO        | HIGH
+  5 | [Demo] Confirm metrics scrape recovery    | DONE        | LOW
+(4 rows)
+

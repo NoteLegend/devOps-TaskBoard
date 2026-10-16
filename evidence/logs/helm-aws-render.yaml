@@ -63,6 +63,10 @@ spec:
           image: "taskboard-backend:local"
           imagePullPolicy: Always
           securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          lifecycle:
+            preStop:
+              exec:
+                command: [python, -c, "import time; time.sleep(5)"]
           ports: [{name: http, containerPort: 8000}]
           env:
             - name: DATABASE_URL
@@ -98,6 +102,10 @@ spec:
           image: "taskboard-frontend:local"
           imagePullPolicy: Always
           securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          lifecycle:
+            preStop:
+              exec:
+                command: [sh, -c, "sleep 5"]
           ports: [{name: http, containerPort: 8080}]
           readinessProbe: {httpGet: {path: /, port: http}, periodSeconds: 5}
           livenessProbe: {httpGet: {path: /, port: http}, periodSeconds: 10}

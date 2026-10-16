@@ -9,4 +9,6 @@ All screenshots are browser captures of this running application/monitoring stac
 
 `logs/trivy-backend-initial.json` records a failed scan, not the final outcome. Final reports are `trivy-backend.json` and `trivy-frontend.json`. HPA logs must be read for actual replica counts and recovery, not just successful HTTP requests.
 
-Pending external evidence: successful GitHub Actions run, GHCR package/SHA/anonymous pull, actual approved AWS Terraform plan and VPC/EKS, live AWS Pods/Ingress/HPA/metrics, and authorized destroy/residual-cost verification. Terminal screenshot requirements not directly captured can be satisfied by opening the corresponding command output in a terminal and capturing it; use the exact demo commands in `docs/DEMO.md`. No fake terminal/AWS/CI screenshots are included.
+Verified external evidence: [successful CI](ci-first-run.png), [backend package](ghcr-backend.png), [frontend package](ghcr-frontend.png), [Git history](git-history.png), and `logs/ghcr-anonymous-pull.txt`.
+
+Pending AWS evidence: actual approved AWS Terraform plan and VPC/EKS, live AWS Pods/Ingress/HPA/metrics, and authorized destroy/residual-cost verification. Terminal screenshot requirements not directly captured can be satisfied by opening the corresponding command output in a terminal and capturing it; use the exact demo commands in `docs/DEMO.md`. No fake terminal/AWS/CI screenshots are included.

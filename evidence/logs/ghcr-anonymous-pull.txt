@@ -1,0 +1,32 @@
+1ad49c3daaa9d3621e91ac65d6e26bd361bc1516: Pulling from notelegend/devops-taskboard-backend
+6764892620fb: Pulling fs layer
+20b0c61375b8: Pulling fs layer
+2878966fd975: Pulling fs layer
+3a35f31d6dfd: Pulling fs layer
+54e67581c15e: Pulling fs layer
+fc7c714ce17f: Pulling fs layer
+6764892620fb: Download complete
+54e67581c15e: Download complete
+2878966fd975: Download complete
+2878966fd975: Pull complete
+3a35f31d6dfd: Download complete
+fc7c714ce17f: Download complete
+fc7c714ce17f: Pull complete
+20b0c61375b8: Download complete
+20b0c61375b8: Pull complete
+3a35f31d6dfd: Pull complete
+54e67581c15e: Pull complete
+6764892620fb: Pull complete
+Digest: sha256:5acb82d50a017d6da4267a113518c2e99a39bdfe77c1126d756b2a8926fbc15f
+Status: Downloaded newer image for ghcr.io/notelegend/devops-taskboard-backend:1ad49c3daaa9d3621e91ac65d6e26bd361bc1516
+ghcr.io/notelegend/devops-taskboard-backend:1ad49c3daaa9d3621e91ac65d6e26bd361bc1516
+1ad49c3daaa9d3621e91ac65d6e26bd361bc1516: Pulling from notelegend/devops-taskboard-frontend
+cf05c70f8f7c: Pulling fs layer
+bf69d497dfd8: Pulling fs layer
+cf05c70f8f7c: Download complete
+bf69d497dfd8: Download complete
+bf69d497dfd8: Pull complete
+cf05c70f8f7c: Pull complete
+Digest: sha256:74a91122ff3709a44e7bb87d0bfb2eaeb462c1cdc1103a113d658011cc99311d
+Status: Downloaded newer image for ghcr.io/notelegend/devops-taskboard-frontend:1ad49c3daaa9d3621e91ac65d6e26bd361bc1516
+ghcr.io/notelegend/devops-taskboard-frontend:1ad49c3daaa9d3621e91ac65d6e26bd361bc1516

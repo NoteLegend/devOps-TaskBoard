@@ -33,3 +33,5 @@ Current primary references (inspected 2026-10-16):
 - https://kubernetes.io/blog/2026/01/29/ingress-nginx-statement/ — community ingress-nginx retirement; AWS LBC and Traefik selected instead.
 
 Dependency versions are pinned in requirements, npm lockfile, Terraform lockfile and bootstrap chart versions. Container base tags receive security updates; record image IDs/digests during each verified build. A pinned tag alone is not an immutable base digest.
+
+Additional verification findings: pin GitHub runners to Ubuntu 24.04 and update upload-artifact/login/Helm/kubectl/AWS credential actions to current Node 24 releases after the first real run reported deprecated runtimes. EKS worker root disks use explicit encrypted gp3 block-device mappings: the module’s custom launch template ignores node-group `disk_size`.

@@ -99,3 +99,7 @@ scripts/troubleshooting.sh
 ```
 
 Local Traefik NodePort reaches kind’s loopback mapping. Only local Metrics Server bypasses self-signed kubelet certificate validation. Local storage uses kind’s default StorageClass; AWS uses EBS gp3. Local checks do not satisfy AWS infrastructure/deployment acceptance criteria.
+
+To reproduce the verified local deployment of public CI-built images: `scripts/deploy-local-registry.sh 94dbf5d73384c607d401affc958d13e2d8e75d3f` after selecting `kind-taskboard-local`. It uses public GHCR pulls and the local Ingress/storage values. Worker root disks are explicitly mapped to encrypted 20-GiB gp3 volumes in Terraform; `disk_size` alone is ignored when the EKS module creates a custom launch template.
+
+Deployment verification now waits for three consecutive successes on same-origin readiness and statistics before CRUD. Both application workloads drain for five seconds in preStop so Ingress endpoint updates can propagate before process termination. AWS deploy verification waits for the ALB hostname and performs the same external smoke test.

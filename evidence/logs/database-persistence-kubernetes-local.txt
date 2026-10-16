@@ -1,0 +1,12 @@
+Transcript of the executed local Kubernetes persistence check (captured from the agent command output on 2026-10-16):
+1. Read and retain the four synthetic ticket IDs through http://127.0.0.1:8088/api/tasks.
+2. kubectl rollout restart statefulset/taskboard-postgres -n taskboard
+3. kubectl rollout status statefulset/taskboard-postgres -n taskboard --timeout=180s
+4. Retry GET /api/tasks and assert every retained ID remains present.
+Observed command output:
+statefulset.apps/taskboard-postgres restarted
+Waiting for partitioned roll out to finish: 0 out of 1 new pods have been updated...
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 1 new pods have been updated...
+PASSED: local Kubernetes PostgreSQL PVC retained 4 tickets across StatefulSet restart
+The database restart overlapped the preliminary HPA load run; the final HPA run was repeated without this overlap.

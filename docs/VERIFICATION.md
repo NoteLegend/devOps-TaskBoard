@@ -1,6 +1,6 @@
 # Executed verification
 
-Status: **NOT YET SUBMISSION-READY**. Local implementation is verified as listed below. AWS infrastructure, EKS live deployment, public registry pulls, real Actions runs and authorized teardown remain mandatory. No cloud resources were created; no cloud spending or initial Git push is approved yet.
+Status: **NOT YET SUBMISSION-READY**. Local implementation is verified as listed below. AWS infrastructure, EKS live deployment, authorized teardown remain mandatory. No cloud resources were created and no cloud spending is approved. GitHub publishing was explicitly authorized and completed.
 
 Environment: this Linux machine, 2026-10-16; workspace `/home/rushixd/Wurk/Scaler/DevOps/Final-Project`. Upstream `a4e39b6b3a54dab1efd386c75ab86bf1d8a23454`. Local commits are recorded in [commit history](../evidence/logs/git-history.txt); image IDs are recorded separately. Local image tag `local` is not evidence of a published immutable SHA tag.
 
@@ -23,12 +23,13 @@ Environment: this Linux machine, 2026-10-16; workspace `/home/rushixd/Wurk/Scale
 | Local Ingress CRUD/statistics | PASSED | http://localhost:8088; [smoke](../evidence/logs/ingress-smoke-local.txt) |
 | Local Prometheus actual application scrape | PASSED | [Targets](../evidence/logs/prometheus-targets.json), [queries](../evidence/logs/prometheus-queries.json), [screenshot](../evidence/prometheus-targets-local.png) |
 | Local authenticated Grafana populated panels | PASSED | [Check](../evidence/logs/monitoring-check-local.txt), [screenshot](../evidence/grafana-dashboard-local.png) |
-| Local CPU HPA | RUNNING | Bounded 24-worker/180-second load; initial 2 replicas, observed CPU over target and desired 4. Final Ready count/recovery pending complete observation; [observations](../evidence/logs/hpa-observations.txt) |
+| Local CPU HPA | PASSED | Stable run: 24 workers, 180.9 seconds, 61,343 successful requests, zero failed; Ready replicas 2 → 4 → 2 automatically; peak observed CPU 466% of the 100m request. [Summary](../evidence/logs/hpa-summary-local.json), [observations](../evidence/logs/hpa-observations.txt), [load](../evidence/logs/hpa-load.txt), [HPA events](../evidence/logs/hpa-describe.txt) |
 | Local broken-image exercise | PASSED | [Symptom](../evidence/logs/broken-image-symptom.txt), [events](../evidence/logs/broken-image-events.txt), [diagnostics](../evidence/logs/broken-image-describe.txt), recovery log |
 | Local broken-Service exercise | PASSED | [Empty endpoints](../evidence/logs/broken-service-empty.txt), [labels](../evidence/logs/broken-service-labels.txt), [recovered endpoints](../evidence/logs/broken-service-recovered.txt), [HTTP success](../evidence/logs/broken-service-http-recovery.txt) |
-| GitHub identity/destination | PASSED | Authenticated local CLI as NoteLegend; origin https://github.com/NoteLegend/devOps-TaskBoard; initial push awaiting approval |
-| Real CI/GHCR publish/anonymous pulling | BLOCKED | Initial push authorization; package visibility verification after publish |
-| Actual AWS account/plan/current cost estimate | BLOCKED | Authenticated profile/account/operator ARN not supplied; no placeholder plan used |
+| GitHub identity/destination | PASSED | Authenticated local CLI as NoteLegend; origin https://github.com/NoteLegend/devOps-TaskBoard; initial push authorized and completed |
+| Real CI tests/build/scan/publish | PASSED | [First run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38918578562), [updated runtime run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38919741425); [record](../evidence/logs/ci-runtime-refresh.json); deployment deliberately SKIPPED (`DEPLOY_ENABLED=false`) |
+| GHCR immutable SHA / anonymous access | PASSED | Commit `1ad49c3daaa9d3621e91ac65d6e26bd361bc1516`: [actual anonymous pulls](../evidence/logs/ghcr-anonymous-pull.txt), [backend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend), [frontend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend). CI scan artifacts have zero HIGH/CRITICAL findings: [backend](../evidence/logs/ci-trivy-backend.json), [frontend](../evidence/logs/ci-trivy-frontend.json) |
+| Actual AWS account/plan/current cost estimate | BLOCKED | Selected account corrected by user to `765865641910`, profile `Rushi Jadhav`; browser login is pending and persistent operator IAM ARN is not yet verified. No placeholder plan used |
 | AWS Terraform apply/EKS/ALB/PVC/metrics/HPA | NOT RUN | Spending approval only after actual plan/cost/schedule; local kind is not AWS evidence |
 | AWS teardown/residual costs | NOT RUN | No AWS creation; eventual teardown needs saved evidence and authorization |
 
@@ -36,4 +37,14 @@ Final scan scope: OS and language packages at HIGH/CRITICAL severity using Trivy
 
 Observed/repaired local issues: Docker group refresh required; IPv6 localhost healthcheck corrected to IPv4; Traefik chart 42 uses `service.spec.type` rather than the previous values layout; disposable readiness DB needed persistent storage across stop/start rather than tmpfs; browser checks were scoped to their own synthetic ticket when demo data introduced multiple matching rows. Initial rollout metrics may be temporarily unknown until Metrics Server has a sample.
 
-Verified local URLs: [Compose app](http://localhost:3000), [Swagger](http://localhost:8000/docs), [local Ingress](http://localhost:8088), [Prometheus private forward](http://localhost:9090/targets), [Grafana private forward](http://localhost:3001). Forward URLs work only while their local processes run. No AWS application, successful Actions run or registry package URL has yet been verified.
+Verified local URLs: [Compose app](http://localhost:3000), [Swagger](http://localhost:8000/docs), [local Ingress](http://localhost:8088), [Prometheus private forward](http://localhost:9090/targets), [Grafana private forward](http://localhost:3001). Forward URLs work only while their local processes run. Verified external links: [public repository](https://github.com/NoteLegend/devOps-TaskBoard), both Actions runs and both public GHCR package pages linked above. No AWS application URL is verified.
+
+Local Kubernetes also pulled and deployed the actual public GHCR SHA `94dbf5d73384c607d401affc958d13e2d8e75d3f` from the second successful CI run: [deployment/rollout/smoke/image IDs](../evidence/logs/registry-deployment-local.txt). This is local cluster evidence, not EKS deployment.
+
+The preliminary HPA run also scaled and recovered, but overlapped rollout/database persistence work: 49,794 successful requests and 736 failures. Its [load](../evidence/logs/hpa-initial-load.txt) and [observations](../evidence/logs/hpa-initial-observations.txt) are retained separately. The final stable run above had zero failures. [PostgreSQL StatefulSet persistence transcript](../evidence/logs/database-persistence-kubernetes-local.txt) and [actual table after restart](../evidence/logs/database-table-kubernetes-local.txt) show four retained synthetic tickets.
+
+Screenshot evidence: [real CI](../evidence/ci-first-run.png), [backend package](../evidence/ghcr-backend.png), [frontend package](../evidence/ghcr-frontend.png), [meaningful Git history](../evidence/git-history.png). Terminal-only screenshots and AWS Console/plan/teardown screenshots remain pending; exact screens and commands are in DEMO.md. No mocks are substituted.
+
+The first registry-image rollout check returned a transient Ingress 502 after Pods reported Ready; its [original log](../evidence/logs/registry-deployment-initial-local.txt) is retained. A five-second preStop drain and bounded consecutive checks of `/ready` and `/api/tasks/stats` were added. The final registry deployment log records successful migration, rollouts and full Ingress CRUD.
+
+Browser verification also passed against the CI-built images through local Ingress: [actual browser log](../evidence/logs/browser-ingress-local.txt), [Ingress desktop](../evidence/application-desktop-ingress-local.png), [Ingress mobile](../evidence/application-mobile-ingress-local.png), [Ingress Swagger](../evidence/api-docs-ingress-local.png). Selected AWS account is `765865641910` (corrected from the earlier supplied ID before any cloud resource creation); it is not yet authenticated/verified.

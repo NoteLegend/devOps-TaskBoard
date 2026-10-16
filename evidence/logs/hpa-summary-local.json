@@ -1,0 +1,14 @@
+{
+  "environment": "local kind-taskboard-local",
+  "load": {
+    "duration_seconds": 180.9,
+    "workers": 24,
+    "ok": 61343,
+    "failed": 0
+  },
+  "initial_ready_replicas": 2,
+  "maximum_ready_replicas": 4,
+  "final_ready_replicas": 2,
+  "maximum_observed_cpu_percent_of_100m_request": 466,
+  "automatic_recovery": true
+}

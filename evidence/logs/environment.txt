@@ -1,0 +1,24 @@
+2026-10-16T14:56:18Z
+Linux 7.2.9-1-cachyos
+v26.10.0
+12.2.0
+Python 3.13.16
+Terraform v1.16.6
+on linux_amd64
+v3.21.3+g1ad6e68
+Client Version: v1.35.0
+Kustomize Version: v5.7.1
+kind v0.33.0 go1.26.7 linux/amd64
+Version: 0.76.0
+Vulnerability DB:
+  Version: 2
+  UpdatedAt: 2026-10-16 01:13:54.947090392 +0000 UTC
+  NextUpdate: 2026-10-17 01:13:54.947090202 +0000 UTC
+  DownloadedAt: 2026-10-16 14:32:48.514295735 +0000 UTC
+gh version 2.102.0 (2026-09-30)
+https://github.com/cli/cli/releases/tag/v2.102.0
+aws-cli/2.38.1 Python/3.14.6 Linux/7.2.9-1-cachyos exe/x86_64.cachyos
+29.8.2 / 29.8.2
+Docker Compose version 5.6.0
+Python 3.13.16
+nginx version: nginx/1.30.6

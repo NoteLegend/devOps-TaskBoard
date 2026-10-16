@@ -43,6 +43,12 @@ npm run dev
 
 For Python development, create `backend/.venv` using Python 3.13, install `backend/requirements.txt`, configure `DATABASE_URL` to a reachable PostgreSQL database, then run `alembic upgrade head` and `uvicorn app.main:app --port 8000` from `backend/`. Run `pytest -v` there for isolated SQLite unit tests. Set `TEST_DATABASE_URL` to a **dedicated migrated test PostgreSQL database** for integration tests; tests truncate its tasks table.
 
+## Verified publishing
+
+[Repository](https://github.com/NoteLegend/devOps-TaskBoard) · [successful test/build/scan/publish run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38919741425) · [backend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend) · [frontend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend). Both images were anonymously pulled. AWS deployment was deliberately skipped pending account login and spending approval.
+
+Local Kubernetes passed Ingress CRUD, persistent PostgreSQL, actual Prometheus/Grafana data, both failure exercises, and CPU autoscaling from two to four and back to two replicas. Full evidence and limitations are in [verification](docs/VERIFICATION.md).
+
 ## Deployment and submission
 
 Follow [setup](docs/USER_SETUP.md), [deployment](docs/DEPLOYMENT.md), then the [demo sequence](docs/DEMO.md). Do not apply Terraform before the actual plan/cost checkpoint is approved. [Requirements](docs/REQUIREMENTS.md), [audit](docs/STARTER_AUDIT.md), [troubleshooting](docs/TROUBLESHOOTING.md), [cleanup](docs/CLEANUP.md), and [evidence](evidence/README.md) track what is implemented and what actually ran.

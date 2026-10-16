@@ -5,14 +5,14 @@
         "__name__": "up",
         "container": "backend",
         "endpoint": "http",
-        "instance": "10.244.0.23:8000",
+        "instance": "10.244.0.25:8000",
         "job": "taskboard-backend",
         "namespace": "taskboard",
-        "pod": "taskboard-backend-5dd5dd9bb-bpzrd",
+        "pod": "taskboard-backend-84b6b5f484-46kbt",
         "service": "taskboard-backend"
       },
       "value": [
-        1792161842.365,
+        1792162655.853,
         "1"
       ]
     },
@@ -21,14 +21,14 @@
         "__name__": "up",
         "container": "backend",
         "endpoint": "http",
-        "instance": "10.244.0.17:8000",
+        "instance": "10.244.0.28:8000",
         "job": "taskboard-backend",
         "namespace": "taskboard",
-        "pod": "taskboard-backend-5dd5dd9bb-z74m6",
+        "pod": "taskboard-backend-84b6b5f484-hqwm7",
         "service": "taskboard-backend"
       },
       "value": [
-        1792161842.365,
+        1792162655.853,
         "1"
       ]
     }
@@ -37,8 +37,8 @@
     {
       "metric": {},
       "value": [
-        1792161842.37,
-        "45"
+        1792162655.866,
+        "61105"
       ]
     }
   ],
@@ -46,8 +46,8 @@
     {
       "metric": {},
       "value": [
-        1792161842.375,
-        "0.20980277777777778"
+        1792162655.878,
+        "0.6500723765626552"
       ]
     }
   ],
@@ -65,7 +65,7 @@
         "service": "monitoring-kube-state-metrics"
       },
       "value": [
-        1792161842.379,
+        1792162655.885,
         "2"
       ]
     }
