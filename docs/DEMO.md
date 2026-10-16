@@ -1,6 +1,6 @@
 # Session 21 demonstration sequence
 
-Follow the instructor’s complete sequence; use real screens/results only. Confirm current blockers in [verification](VERIFICATION.md). Real CI/GHCR and AWS deployment checks are verified in images/. The approved credit-funded run is being shut down only after screenshots/evidence are pushed. Recreating infrastructure requires a new plan/credit-use/lifetime approval.
+Follow the instructor’s complete sequence; use real screens/results only. Confirm current blockers in [verification](VERIFICATION.md). Real CI/GHCR and AWS deployment checks are verified in images/. The approved credit-funded run was shut down after all deployment screenshots/evidence were pushed; cleanup passed. Recreating infrastructure requires a new plan/credit-use/lifetime approval.
 
 1. **Application:** open Release Helpdesk at the actual Ingress URL (local alternative http://localhost:3000 is labelled local). Open a synthetic ticket “Release rollback approval”, set priority HIGH and assignee Demo Student. Filter by status/priority, edit to IN_PROGRESS, demonstrate responsive layout and dashboard counts.
 2. **API:** open `/docs`; POST, GET, PUT and DELETE `/api/tasks`. GET `/api/tasks/stats` must return statistics, not ID validation error. `python3 scripts/smoke.py http://ACTUAL_HOST` is repeatable evidence.
@@ -19,4 +19,19 @@ Follow the instructor’s complete sequence; use real screens/results only. Conf
 15. **Failure simulation:** `scripts/troubleshooting.sh`; show isolated `taskboard-troubleshooting` namespace, ImagePullBackOff diagnosis/recovery and mismatched Service selector → empty endpoints → corrected selector → HTTP success. Main deployment stays healthy.
 16. **Teardown evidence:** save approved evidence and authorize data deletion, follow [cleanup](CLEANUP.md), record completed destroy and residual-resource checks. The rubric requires teardown evidence.
 
-Capture real screenshots: application desktop/mobile, Swagger CRUD, table, pytest output, Compose stack/images, commit history, Actions gates, Trivy findings, GHCR SHA tags, Terraform plan and AWS VPC/EKS, Pods/Services/PVC/Helm/Ingress, HPA replica increase/recovery, Prometheus Targets and Grafana panels, both failure symptoms/fixes and destroy. Store sanitized captures under `evidence/` and link exact files in verification. Never capture secret manifests, AWS keys, login codes or Grafana passwords.
+Capture real screenshots: application desktop/mobile, Swagger CRUD, table, pytest output, Compose stack/images, commit history, Actions gates, Trivy findings, GHCR SHA tags, Terraform plan and AWS VPC/EKS, Pods/Services/PVC/Helm/Ingress, HPA replica increase/recovery, Prometheus Targets and Grafana panels, both failure symptoms/fixes and destroy. Store sanitized screenshots/video under `images/` and command logs under `evidence/logs/` and link exact files in verification. Never capture secret manifests, AWS keys, login codes or Grafana passwords.
+
+## Rehearsal after the approved AWS shutdown
+
+Use the saved real AWS screens, successful pipeline and before/after rollout evidence for cloud stages. Do not rerun provisioning, cloud load or cloud troubleshooting without fresh approval. Reproduce application/API/database locally:
+
+```bash
+docker compose up --build -d --wait
+python3 scripts/smoke.py http://localhost:3000
+# Browser: http://localhost:3000 ; Swagger: http://localhost:8000/docs
+docker compose exec -T postgres psql -U taskboard -d taskboard -c 'TABLE tasks;'
+# Stop locally, retain database data:
+docker compose down
+```
+
+[Completed AWS destroy](../images/aws-terraform-destroy-complete.png) and [residual checks](../evidence/logs/aws-cleanup-verification.json) fulfill the technical cleanup evidence. Student presentation/submission still needs to be delivered.

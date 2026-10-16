@@ -11,6 +11,6 @@
 - [x] Obtain revised Free Tier plan/credit-use and demo-lifetime approval; screenshots and GitHub push must precede teardown.
 - [x] Provision and verify real EKS deployment/CI/HPA/metrics (Ready replicas 2→4→2, zero load failures).
 - [x] Demonstrate visible commit→pipeline→AWS rollout; save genuine screenshots/video and isolated failure/recovery evidence.
-- [ ] Verify final screenshot/evidence GitHub push, then execute already-authorized teardown and residual checks.
+- [x] Verify final screenshot/evidence GitHub push, then execute already-authorized teardown and residual checks.
 
-Current project status: not yet submission-ready. User-approved GitHub publishing does not authorize cloud spending. See VERIFICATION.md for executed results and exact blockers.
+Engineering and evidence are ready for review; the final assignment is not yet complete until the student presentation/recording and instructor submission are delivered. AWS cleanup passed; future recreation requires new explicit approval. See VERIFICATION.md.

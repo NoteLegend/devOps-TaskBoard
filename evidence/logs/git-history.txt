@@ -1,3 +1,14 @@
+8439aa3 2026-10-17T01:25:24+05:30 Save verified AWS scaling and submission screenshots before authorized teardown
+179ad20 2026-10-17T01:01:17+05:30 Demonstrate live EKS deployment and clarify release ticket triage
+3ffe809 2026-10-16T23:45:21+05:30 Prepare credit-funded EKS plan and enforce active Free Tier deployment guard
+4b0e1f7 2026-10-16T23:22:02+05:30 Align traceability and demo status with verified AWS plan
+10f9385 2026-10-16T23:20:58+05:30 Pin verified EKS builds and record authenticated spending checkpoint
+3bb6745 2026-10-16T20:39:39+05:30 Explain classroom database tradeoffs and retained test-volume cleanup
+1a27d3a 2026-10-16T20:35:40+05:30 Track Terraform provider lockfile and enforce complete submission archives
+c42f105 2026-10-16T20:34:33+05:30 Record public CI registry and local autoscaling verification evidence
+d8062cf 2026-10-16T20:34:33+05:30 Drain application rollouts and verify real Ingress routing before CRUD
+94dbf5d 2026-10-16T20:25:36+05:30 Refresh Actions runtimes and document browser-based AWS account login
+1ad49c3 2026-10-16T20:15:58+05:30 Document executed local verification and pending cloud submission gates
 a2b92ec 2026-10-16T20:11:04+05:30 Add repeatable smoke persistence outage load and submission helpers
 f8ddf2a 2026-10-16T20:11:04+05:30 Isolate broken-image and Service-selector recovery exercises
 8e92c2d 2026-10-16T20:11:04+05:30 Gate image publication and OIDC deployment on tests builds and security scans

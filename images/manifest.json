@@ -399,5 +399,29 @@
     "window_title": "TaskBoard - final EKS Pods Services PVC Helm and Ingress",
     "capture_method": "grim, actual focused Wayland window only",
     "sha256": "30bc883a2f77b750423ac6d20c1e41d499904225fe73359f121bb66ced0d824c"
+  },
+  {
+    "file": "images/aws-terraform-destroy-complete.png",
+    "captured_at_utc": "2026-10-16T20:12:49.810068+00:00",
+    "source": "Actual terminal commands from .tools/cleanup-destroy-screen.sh",
+    "window_title": "Capstone - actual Terraform destroy completion",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "8ba36a3202f7c52a9ace41a21e0484fd55fc7fdff8b46e995cdb4ad755e35587"
+  },
+  {
+    "file": "images/aws-cleanup-residual-checks.png",
+    "captured_at_utc": "2026-10-16T20:13:10.066813+00:00",
+    "source": "Actual terminal commands from .tools/cleanup-residual-screen.sh",
+    "window_title": "Capstone - AWS residual resources verified",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "07c7744a72e026bf126fbc08bef7e118f3121933c677f3d8792a898f85015d5c"
+  },
+  {
+    "file": "images/aws-eks-console-after-cleanup.png",
+    "captured_at_utc": "2026-10-16T20:13:30.829596+00:00",
+    "source": "Actual AWS EKS Console, ap-south-1 cluster list after Terraform destroy",
+    "window_title": "Clusters | Elastic Kubernetes Service | ap-south-1 - Brave",
+    "capture_method": "grim, actual focused Wayland window only",
+    "sha256": "b2df475e5230adffe3b75defa9dde79c025f40e01afd1554ceb949fc2337fe4f"
   }
 ]

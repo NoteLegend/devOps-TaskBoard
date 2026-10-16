@@ -1,0 +1,19 @@
+{
+  "captured_at_utc": "2026-10-16T20:09:11.846261+00:00",
+  "result": "PASSED",
+  "checks": [
+    {
+      "url": "http://localhost:3000",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8000/ready",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:8088/api/tasks/stats",
+      "status": 200
+    }
+  ],
+  "note": "Read-only HTTP checks after AWS application removal. Local Compose/kind data was preserved."
+}

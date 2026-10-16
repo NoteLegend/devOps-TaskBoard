@@ -1,0 +1,174 @@
+{
+  "result": "PASSED",
+  "captured_at_utc": "2026-10-16T20:12:57.381709+00:00",
+  "account": "835582727900",
+  "region": "ap-south-1",
+  "scope": {
+    "vpc": "vpc-0663d0df15efa02af",
+    "cluster": "taskboard-eks"
+  },
+  "checks": [
+    {
+      "check": "EKS cluster absent",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "VPC absent",
+      "result": "PASSED",
+      "observed": []
+    },
+    {
+      "check": "Project workers terminated",
+      "result": "PASSED",
+      "observed": [
+        {
+          "id": "i-0ea9ac3d6b5e69c37",
+          "state": "terminated"
+        },
+        {
+          "id": "i-035e8373b9b3b457f",
+          "state": "terminated"
+        }
+      ]
+    },
+    {
+      "check": "NAT gateways deleted",
+      "result": "PASSED",
+      "observed": [
+        {
+          "id": "nat-08305c9a306e2b3eb",
+          "state": "deleted"
+        }
+      ]
+    },
+    {
+      "check": "Elastic IP released",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "Project network interfaces absent",
+      "result": "PASSED",
+      "observed": []
+    },
+    {
+      "check": "Project Auto Scaling groups absent",
+      "result": "PASSED",
+      "observed": []
+    },
+    {
+      "check": "Project CloudWatch log group absent",
+      "result": "PASSED",
+      "observed": []
+    },
+    {
+      "check": "KMS key disabled and scheduled for deletion",
+      "result": "PASSED",
+      "observed": {
+        "KeyId": "2f631c2b-09ea-4e39-bd5e-4385ecbbb116",
+        "KeyState": "PendingDeletion",
+        "Enabled": false,
+        "DeletionDate": "2026-11-16T01:42:25.050000+05:30"
+      }
+    },
+    {
+      "check": "No retained snapshots of project volumes",
+      "result": "PASSED",
+      "observed": []
+    },
+    {
+      "check": "Project load-balancers absent",
+      "result": "PASSED",
+      "observed": []
+    },
+    {
+      "check": "Project target-groups absent",
+      "result": "PASSED",
+      "observed": []
+    },
+    {
+      "check": "EBS volume vol-07de9dfd405034034 deleted",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "EBS volume vol-0c4768e24461d1e67 deleted",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "EBS volume vol-0f8e62c2d1a38eb91 deleted",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "IAM role taskboard-eks-github-deploy absent",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "IAM role taskboard-eks-alb absent",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "IAM role taskboard-eks-ebs absent",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "IAM role taskboard-eks-cluster-2a4094109c27de0c0345e5694c absent",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "IAM role main-eks-node-group-08234136caf3143db5dba10e04 absent",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "OIDC provider arn:aws:iam::835582727900:oidc-provider/token.actions.githubusercontent.com absent",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "OIDC provider arn:aws:iam::835582727900:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/BCBE912F5297EA57C506807FD786E0C9 absent",
+      "result": "PASSED",
+      "observed": null
+    },
+    {
+      "check": "Account remains ACTIVE FREE",
+      "result": "PASSED",
+      "observed": {
+        "accountPlanType": "FREE",
+        "accountPlanStatus": "ACTIVE",
+        "accountPlanRemainingCredits": {
+          "amount": 117.2,
+          "unit": "USD"
+        },
+        "accountPlanExpirationDate": "2027-02-15T11:21:26.353000+00:00"
+      }
+    },
+    {
+      "check": "Terraform state contains no managed resources",
+      "result": "PASSED",
+      "observed": []
+    },
+    {
+      "check": "CI deployment disabled",
+      "result": "PASSED",
+      "observed": "false"
+    },
+    {
+      "check": "Unrelated preexisting EC2 left running",
+      "result": "PASSED",
+      "observed": {
+        "id": "i-05e7775e28a9a1a1c",
+        "type": "t4g.small",
+        "state": "running"
+      }
+    }
+  ],
+  "billing_note": "Credit and billing reports can lag. No Paid-plan upgrade performed. KMS scheduled-deletion keys are not charged; final billing is not yet settled. Unrelated existing resources are outside this cleanup."
+}

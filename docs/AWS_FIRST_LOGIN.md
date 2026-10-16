@@ -1,6 +1,6 @@
 # First AWS login for a new personal account
 
-The selected account is `835582727900`, region `ap-south-1`, and requested profile name is `Raghavendra Linga`. Authentication has now been verified as IAM user `shrival` in this account; the following commands are the renewal/setup guide. No cloud spend is approved yet.
+The selected account is `835582727900`, region `ap-south-1`, and requested profile name is `Raghavendra Linga`. Authentication has now been verified as IAM user `shrival` in this account; the following commands are the renewal/setup guide. The approved credit-funded demo and teardown are complete; any future infrastructure creation needs fresh approval.
 
 A new personal account usually has an email/password root login and no IAM Identity Center SSO portal. Use the project-local AWS CLI v2 (signature verified against AWS’s published signing key):
 

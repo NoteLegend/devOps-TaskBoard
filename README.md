@@ -53,7 +53,7 @@ Both local Kubernetes and real AWS EKS passed Ingress CRUD, persistent PostgreSQ
 
 Follow [setup](docs/USER_SETUP.md), [deployment](docs/DEPLOYMENT.md), then the [demo sequence](docs/DEMO.md). The original AWS/EKS scope remains required. Only the verified ACTIVE FREE account and eligible workers may be used; no Paid-plan upgrade or cash spending is authorized. Do not apply Terraform before the actual plan/credit-use/lifetime checkpoint is approved. [Requirements](docs/REQUIREMENTS.md), [audit](docs/STARTER_AUDIT.md), [troubleshooting](docs/TROUBLESHOOTING.md), [cleanup](docs/CLEANUP.md), and [evidence](evidence/README.md) track what is implemented and what actually ran.
 
-**AWS technical verification passed; final evidence push and authorized teardown are in progress.** [Screenshots and actual walkthrough](images/README.md), [verification](docs/VERIFICATION.md), [remaining handover](docs/REMAINING.md). The student presentation/instructor submission remains a user action.
+**Implementation and AWS technical verification passed; screenshots were pushed before the authorized teardown, and cleanup passed.** [Screenshots and actual walkthrough](images/README.md), [verification](docs/VERIFICATION.md), [remaining handover](docs/REMAINING.md). The student presentation/instructor submission remains a user action.
 
 Source: Nensi Ravaliya’s MIT-licensed [TaskBoard starter](https://github.com/Nency-Ravaliya/devops-heros/tree/a4e39b6b3a54dab1efd386c75ab86bf1d8a23454/session21-python). [Attribution](docs/ATTRIBUTION.md), [LICENSE](LICENSE), and the original [grading rubric](GRADING.md) are retained. Meaningful changes include ticket triage UI, edit/delete/search, safe errors, expanded tests, migration isolation, corrected routing, OIDC/RBAC, storage integration and reproducible verification.
 
@@ -64,3 +64,16 @@ Live application commit: `179ad20c5e4995bf458a33531905d6f0e694b580`. The browser
 ![Real Release Helpdesk on AWS](images/aws-application-desktop.png)
 
 [Real pipeline](images/aws-ci-successful-deployment.png) · [EKS Console](images/aws-eks-active-console.png) · [CPU scaling](images/aws-hpa-scaled-under-load.png) · [Grafana](images/aws-grafana-live-dashboard.png).
+
+## Submission and safe review
+
+All engineering checks and AWS cleanup evidence are complete. The final assignment remains **not yet complete until the student presentation/recording and instructor submission are delivered**. Review [verification](docs/VERIFICATION.md), [demo](docs/DEMO.md), [remaining student actions](docs/REMAINING.md) and the [genuine screenshot/video index](images/README.md). The AWS endpoint is intentionally shut down; Docker Compose remains the local review path.
+
+Create the reviewed archive from tracked files only:
+
+```bash
+python3 scripts/package-submission.py
+# Creates release-helpdesk-submission.zip in this directory, excluded from Git.
+```
+
+The helper checks required files, ZIP integrity, screenshot/video hashes and credential/state/dependency exclusions. [Cleanup results](docs/CLEANUP.md#completed-aws-cleanup) record 66 Terraform objects destroyed, project disks/ALB removed, deployment disabled and the non-chargeable KMS deletion wait. Billing reports can lag; no settled cost total is claimed.

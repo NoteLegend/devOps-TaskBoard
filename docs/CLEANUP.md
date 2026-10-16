@@ -32,3 +32,25 @@ The isolated readiness test also retains its own local volume, `taskboard-readin
 ## Current execution gate
 
 Deployment image SHA is recorded separately from the evidence commit. Disable repository `DEPLOY_ENABLED` before the final evidence push and wait for any application deployment run to finish; subsequent documentation/evidence pushes must not race teardown. Verify remote main matches the evidence commit and every images/ file is tracked/pushed. Save the private synthetic DB export outside git. After that gate, remove Ingress/ALB first, detach/delete only the recorded retained database volume, uninstall controllers and apply the reviewed Terraform destroy plan. Post-cleanup screenshots/logs are pushed in a second evidence commit.
+
+## Completed AWS cleanup
+
+**PASSED at 2026-10-16T20:12:57.381709+00:00.** All deployment screenshots/video were pushed and independently checked at commit `8439aa3f1a4d797e48f0d2e279b44f97bf9c7e0c` before deletion ([remote blob-hash proof](../evidence/logs/aws-evidence-before-teardown.json)). The final evidence push also [passed CI with deployment skipped](../evidence/logs/ci-evidence-push-safe.json).
+
+The application/ALB and its target groups were removed while the controller was active. A private synthetic-data export was saved outside git/archive before deleting the 5-GiB retained database disk. The app, monitoring and controller releases were uninstalled, then the reviewed destroy plan completed: **66 Terraform resources destroyed** ([actual transcript](../evidence/logs/aws-terraform-destroy.txt)).
+
+[Actual residual checks](../evidence/logs/aws-cleanup-verification.json) confirm no project EKS cluster, VPC, active workers, Auto Scaling group, ALB/target groups, network interfaces, retained project disks/snapshots, allocated EIP, active NAT, IAM roles/OIDC providers or CloudWatch log group. Terraform state has no remaining resources and `DEPLOY_ENABLED=false`. The historical ALB application URL is shut down. Local Compose/kind data and unrelated EC2 `i-05e7775e28a9a1a1c` remain untouched.
+
+AWS requires a waiting period for KMS deletion. The project key is **disabled / PendingDeletion**, scheduled for **2026-11-16T01:42:25.050000+05:30**. AWS [does not charge for customer-managed keys scheduled for deletion](https://aws.amazon.com/kms/pricing/); see the [mandatory waiting-period documentation](https://docs.aws.amazon.com/kms/latest/cryptographic-details/key-deletion.html). The key is not claimed already physically erased.
+
+The account remains **FREE / ACTIVE**. Credit/billing reports can lag; the final settled debit is not yet known, and the reported balance is not proof of zero usage. No Paid-plan upgrade occurred. Existing unrelated account activity is excluded from this project's cleanup. Review the Billing Console after reports settle without provisioning anything.
+
+Read-only repeat verification (requires authenticated CLI; creates nothing):
+
+```bash
+export PATH="$PWD/.tools:$PATH"
+export AWS_PROFILE='Raghavendra Linga'
+python3 scripts/verify-aws-cleanup.py --account 835582727900
+```
+
+Real cleanup screenshots: [destroy completion](../images/aws-terraform-destroy-complete.png), [residual checks](../images/aws-cleanup-residual-checks.png). Future infrastructure recreation requires fresh plan/credit-use/lifetime approval.

@@ -1,0 +1,16 @@
+{
+  "result": "PASSED",
+  "completed_at_utc": "2026-10-16T19:58:52.006237+00:00",
+  "account": "835582727900",
+  "context": "arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks",
+  "evidence_commit_before_deletion": "8439aa3f1a4d797e48f0d2e279b44f97bf9c7e0c",
+  "private_db_export_saved": true,
+  "project_albs_and_target_groups_remaining": 0,
+  "retained_database_volume_deleted": "vol-0f8e62c2d1a38eb91",
+  "helm_releases_removed": [
+    "taskboard",
+    "monitoring",
+    "aws-load-balancer-controller"
+  ],
+  "note": "Terraform infrastructure still requires reviewed destroy; unrelated EC2 is untouched."
+}

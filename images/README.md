@@ -12,11 +12,13 @@ Application image SHA: `179ad20c5e4995bf458a33531905d6f0e694b580`. The walkthrou
 | Browser CRUD / API statistics | [Create](aws-ticket-created.png), [saved/filter state](aws-ticket-updated-filtered.png), [Swagger executed 200](aws-swagger-statistics-executed.png) |
 | Tests / security | [PostgreSQL/Alembic/pytest](aws-postgresql-pytest-passed.png), [actual CI scan results](aws-tests-and-trivy-results.png) |
 | CI/CD / registry / Git | [Successful AWS deployment pipeline](aws-ci-successful-deployment.png), [PR gates skip publishing/deploy](pr-validation-no-deployment.png), [GHCR backend](aws-ghcr-backend.png), [frontend](aws-ghcr-frontend.png), [meaningful commits](git-meaningful-history.png) |
+| Visible commit → CI → AWS update | [Before](aws-live-update-before.png), [after](aws-live-update-after.png), [successful pipeline](aws-ci-successful-deployment.png) |
 | Terraform / AWS infrastructure | [Actual plan](aws-terraform-plan.png), [apply and Ready nodes](aws-terraform-apply-and-ready-nodes.png), [VPC Console](aws-vpc-console.png), [healthy EKS Console](aws-eks-active-console.png) |
 | Kubernetes / Helm / storage | [Pods, Services, PVC, Helm and ALB](aws-kubernetes-helm-ingress.png), [database table/revision/persistence](aws-postgresql-table-and-persistence.png) |
 | CPU-based HPA | [Before](aws-hpa-before-load.png), [four Ready under load](aws-hpa-scaled-under-load.png), [automatic recovery](aws-hpa-recovered.png) |
 | Real monitoring | [Backend metrics](aws-metrics-endpoint.png), [Prometheus targets UP](aws-prometheus-targets-up.png), [authenticated Grafana panels](aws-grafana-live-dashboard.png) |
 | Isolated failures / fixes | [Bad image diagnosis](aws-broken-image-diagnosis.png), [wrong Service selector](aws-broken-service-diagnosis.png), [HTTP recovery](aws-troubleshooting-recovered.png) |
+| Authorized cleanup after evidence push | [66 destroyed](aws-terraform-destroy-complete.png), [26 residual checks](aws-cleanup-residual-checks.png), [empty EKS Console](aws-eks-console-after-cleanup.png) |
 | Local Docker | [Actual Compose images, health and runtime users](local-compose-images-and-users.png) |
 
 ## Complete capture list
@@ -67,3 +69,9 @@ Application image SHA: `179ad20c5e4995bf458a33531905d6f0e694b580`. The walkthrou
 - [local/prometheus-targets-local.png](local/prometheus-targets-local.png)
 - [local-compose-images-and-users.png](local-compose-images-and-users.png)
 - [pr-validation-no-deployment.png](pr-validation-no-deployment.png)
+
+- [aws-terraform-destroy-complete.png](aws-terraform-destroy-complete.png)
+- [aws-cleanup-residual-checks.png](aws-cleanup-residual-checks.png)
+- [aws-eks-console-after-cleanup.png](aws-eks-console-after-cleanup.png)
+
+Cleanup completed after the remotely verified deployment media push at commit `8439aa3`. [Gate proof](../evidence/logs/aws-evidence-before-teardown.json), [actual destroy](../evidence/logs/aws-terraform-destroy.txt), [26 residual checks](../evidence/logs/aws-cleanup-verification.json). The extra cleanup captures were taken after shutdown and pushed separately. The historical AWS endpoint is intentionally removed.

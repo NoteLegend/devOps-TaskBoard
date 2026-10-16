@@ -1,14 +1,12 @@
 # Genuine evidence
 
-All screenshots are browser captures of this running application/monitoring stack. `*-local` and kind logs refer to a local Kubernetes cluster and do not establish AWS deployment.
+The complete [screenshot/video index](../images/README.md) includes genuine AWS Console, terminal, application, CI/GHCR, monitoring, scaling, troubleshooting and cleanup captures. [Manifest](../images/manifest.json) records actual sources, timestamps and SHA-256 digests. Historical local captures are labelled separately and do not substitute for AWS.
 
-- [Application desktop](application-desktop.png), [mobile](application-mobile.png), [Swagger](api-docs.png)
-- [Prometheus target](prometheus-targets-local.png), [authenticated Grafana dashboard](grafana-dashboard-local.png)
-- [Executed status and linked logs](../docs/VERIFICATION.md)
-- [Full requirement mapping](../docs/REQUIREMENTS.md)
+- [Executed verification and limitations](../docs/VERIFICATION.md), [requirement mapping](../docs/REQUIREMENTS.md).
+- [Deployment media remotely verified before any teardown](logs/aws-evidence-before-teardown.json).
+- [Real successful AWS deployment](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38955563228).
+- [Observed AWS HPA 2→4→2](logs/aws-hpa-internal/summary.json), [backend metrics and targets](logs/aws-prometheus-queries.json).
+- [Actual destroy transcript](logs/aws-terraform-destroy.txt), [residual/account checks](logs/aws-cleanup-verification.json), [cleanup screenshots](../images/aws-terraform-destroy-complete.png).
+- [Known-pattern Git history secret scan](logs/git-history-secret-scan.json).
 
-`logs/trivy-backend-initial.json` records a failed scan, not the final outcome. Final reports are `trivy-backend.json` and `trivy-frontend.json`. HPA logs must be read for actual replica counts and recovery, not just successful HTTP requests.
-
-Verified external evidence: [successful CI](ci-first-run.png), [backend package](ghcr-backend.png), [frontend package](ghcr-frontend.png), [Git history](git-history.png), and `logs/ghcr-anonymous-pull.txt`.
-
-Pending AWS evidence: actual approved AWS Terraform plan and VPC/EKS, live AWS Pods/Ingress/HPA/metrics, and authorized destroy/residual-cost verification. Terminal screenshot requirements not directly captured can be satisfied by opening the corresponding command output in a terminal and capturing it; use the exact demo commands in `docs/DEMO.md`. No fake terminal/AWS/CI screenshots are included.
+Original failures are retained honestly: initial backend CVEs, initial OIDC trust mismatch and external load that did not cause scaling. Final app scans have zero HIGH/CRITICAL findings at the recorded date; future CVEs/lower severities are not claimed clean. AWS resources were removed after screenshots were pushed; the historical ALB URL no longer runs. The browser video is real UI activity, not a narrated student presentation.

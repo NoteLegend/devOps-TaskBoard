@@ -1,0 +1,25 @@
+AUTHORIZED EVIDENCE GATE PASSED 2026-10-16T19:57:29.069082+00:00 8439aa3f1a4d797e48f0d2e279b44f97bf9c7e0c
+Saved private synthetic DB export outside git/archive
+RUN kubectl --context arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks delete ingress taskboard -n taskboard --wait=true --timeout=180s
+ingress.networking.k8s.io "taskboard" deleted from taskboard namespace
+
+Project ALBs/target groups remaining: 0 0
+RUN helm uninstall taskboard -n taskboard --wait --timeout 180s
+release "taskboard" uninstalled
+
+RUN kubectl --context arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks delete pvc data-taskboard-postgres-0 -n taskboard --wait=true --timeout=120s
+persistentvolumeclaim "data-taskboard-postgres-0" deleted from taskboard namespace
+
+Waiting for project DB volume detach: in-use
+Waiting for project DB volume detach: in-use
+RUN aws --region ap-south-1 --no-cli-pager --output json ec2 delete-volume --volume-id vol-0f8e62c2d1a38eb91
+RUN kubectl --context arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks delete pv pvc-acf999c4-56dd-4479-8d4f-408f42cb70de --wait=true --timeout=90s
+persistentvolume "pvc-acf999c4-56dd-4479-8d4f-408f42cb70de" deleted
+
+RUN helm uninstall monitoring -n monitoring --wait --timeout 180s
+release "monitoring" uninstalled
+
+RUN helm uninstall aws-load-balancer-controller -n kube-system --wait --timeout 180s
+release "aws-load-balancer-controller" uninstalled
+
+{"result": "PASSED", "completed_at_utc": "2026-10-16T19:58:52.006237+00:00", "account": "835582727900", "context": "arn:aws:eks:ap-south-1:835582727900:cluster/taskboard-eks", "evidence_commit_before_deletion": "8439aa3f1a4d797e48f0d2e279b44f97bf9c7e0c", "private_db_export_saved": true, "project_albs_and_target_groups_remaining": 0, "retained_database_volume_deleted": "vol-0f8e62c2d1a38eb91", "helm_releases_removed": ["taskboard", "monitoring", "aws-load-balancer-controller"], "note": "Terraform infrastructure still requires reviewed destroy; unrelated EC2 is untouched."}

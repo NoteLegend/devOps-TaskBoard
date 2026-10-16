@@ -1,0 +1,30 @@
+{
+  "id": 38958484042,
+  "head_sha": "8439aa3f1a4d797e48f0d2e279b44f97bf9c7e0c",
+  "event": "push",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-10-16T19:55:36Z",
+  "updated_at": "2026-10-16T19:57:20Z",
+  "html_url": "https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38958484042",
+  "jobs": [
+    {
+      "name": "test",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38958484042/job/117167243844"
+    },
+    {
+      "name": "build-scan-push",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38958484042/job/117167508053"
+    },
+    {
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "skipped",
+      "html_url": "https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38958484042/job/117167945340"
+    }
+  ]
+}

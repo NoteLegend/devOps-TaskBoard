@@ -5,7 +5,7 @@ Upstream commit and attribution: [ATTRIBUTION.md](ATTRIBUTION.md). Full README a
 | Area | Upstream issue | Implementation |
 |---|---|---|
 | Workflow placement | Nested teaching directory would not be discovered | Starter integrated at destination root; `.github/workflows/ci-cd.yml`, root-relative contexts/artifacts |
-| Registry | `YOUR_ORG`, mixed-case owners, latest tags | Lowercase full repository prefix, separate backend/frontend packages, full SHA tags; public-pull verification pending publication |
+| Registry | `YOUR_ORG`, mixed-case owners, latest tags | Lowercase full repository prefix, separate backend/frontend packages, full SHA tags; anonymous pulls and AWS Pod digests actually verified |
 | EKS auth | Saved kubeconfig without AWS credentials/access | GitHub branch-restricted OIDC IAM role, `eks:DescribeCluster`, EKS access entry, namespace RoleBinding; no saved kubeconfig secret |
 | Terraform | Invalid one-line HCL, old providers/EKS | Formatted HCL, module pins/provider lockfile, EKS 1.35, selected account guard, regional AZ lookup |
 | Network | No subnet discovery labels | Public/private ELB role tags; private managed workers, one NAT for classroom cost tradeoff |

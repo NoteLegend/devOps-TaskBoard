@@ -1,0 +1,11 @@
+{
+  "result": "PASSED",
+  "verified_at_utc": "2026-10-16T19:55:52.832185+00:00",
+  "repository": "https://github.com/NoteLegend/devOps-TaskBoard",
+  "evidence_commit": "8439aa3f1a4d797e48f0d2e279b44f97bf9c7e0c",
+  "remote_main": "8439aa3f1a4d797e48f0d2e279b44f97bf9c7e0c",
+  "image_folder_files_verified": 48,
+  "screenshot_video_files_verified": 46,
+  "verification": "Every images/ file blob hash matches the GitHub recursive tree at this pushed main commit; local images/ is clean.",
+  "url": "https://github.com/NoteLegend/devOps-TaskBoard/tree/8439aa3f1a4d797e48f0d2e279b44f97bf9c7e0c/images"
+}

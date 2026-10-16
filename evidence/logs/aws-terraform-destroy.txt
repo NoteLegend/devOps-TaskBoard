@@ -1,0 +1,205 @@
+module.eks.aws_iam_role_policy_attachment.cluster_encryption[0]: Destroying... [id=taskboard-eks-cluster-2a4094109c27de0c0345e5694c/arn:aws:iam::835582727900:policy/taskboard-eks-cluster-ClusterEncryption5f2b93d88f3da81b7417e3d8fa]
+module.vpc.aws_route_table_association.private[0]: Destroying... [id=rtbassoc-045c2afe03af10f9c]
+module.vpc.aws_route_table_association.private[1]: Destroying... [id=rtbassoc-0fea4cbead8ec695a]
+aws_iam_role_policy_attachment.ebs: Destroying... [id=taskboard-eks-ebs/arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy]
+module.vpc.aws_default_security_group.this[0]: Destroying... [id=sg-0dff105d1fb41f12a]
+module.vpc.aws_default_route_table.default[0]: Destroying... [id=rtb-07a9bb482a390357e]
+module.vpc.aws_route.private_nat_gateway[0]: Destroying... [id=r-rtb-0670fb1ecfdde040b1080289494]
+module.eks.aws_eks_addon.before_compute["vpc-cni"]: Destroying... [id=taskboard-eks:vpc-cni]
+module.vpc.aws_route.public_internet_gateway[0]: Destroying... [id=r-rtb-04601f0caac23a4fc1080289494]
+module.eks.aws_eks_addon.this["kube-proxy"]: Destroying... [id=taskboard-eks:kube-proxy]
+module.vpc.aws_default_security_group.this[0]: Destruction complete after 0s
+module.vpc.aws_default_route_table.default[0]: Destruction complete after 0s
+module.vpc.aws_route_table_association.public[1]: Destroying... [id=rtbassoc-0aad798fc708d8e9f]
+module.vpc.aws_route_table_association.public[0]: Destroying... [id=rtbassoc-0aca19a3d5c8d77f2]
+module.vpc.aws_route_table_association.public[0]: Destruction complete after 1s
+module.vpc.aws_route_table_association.public[1]: Destruction complete after 1s
+module.vpc.aws_route_table_association.private[0]: Destruction complete after 1s
+aws_iam_role_policy_attachment.alb: Destroying... [id=taskboard-eks-alb/arn:aws:iam::835582727900:policy/taskboard-eks-alb]
+aws_iam_role_policy.github_deploy: Destroying... [id=taskboard-eks-github-deploy:terraform-2868aefdcac4151680d368c5de]
+module.eks.aws_eks_addon.this["metrics-server"]: Destroying... [id=taskboard-eks:metrics-server]
+module.vpc.aws_route_table_association.private[1]: Destruction complete after 1s
+module.vpc.aws_route.private_nat_gateway[0]: Destruction complete after 1s
+module.eks.module.kms.aws_kms_alias.this["cluster"]: Destroying... [id=alias/eks/taskboard-eks]
+module.eks.aws_eks_addon.this["coredns"]: Destroying... [id=taskboard-eks:coredns]
+module.vpc.aws_route.public_internet_gateway[0]: Destruction complete after 1s
+module.eks.aws_eks_access_policy_association.this["operator_admin"]: Destroying... [id=taskboard-eks#arn:aws:iam::835582727900:user/shrival#arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy]
+module.eks.aws_eks_addon.this["kube-proxy"]: Destruction complete after 2s
+module.eks.aws_eks_access_policy_association.this["operator_admin"]: Destruction complete after 1s
+aws_iam_role_policy_attachment.ebs: Destruction complete after 2s
+module.eks.aws_eks_addon.this["aws-ebs-csi-driver"]: Destroying... [id=taskboard-eks:aws-ebs-csi-driver]
+module.vpc.aws_default_network_acl.this[0]: Destroying... [id=acl-0c3c63442d02eb0b5]
+module.vpc.aws_default_network_acl.this[0]: Destruction complete after 0s
+module.eks.aws_iam_role_policy_attachment.cluster_encryption[0]: Destruction complete after 2s
+module.vpc.aws_nat_gateway.this[0]: Destroying... [id=nat-08305c9a306e2b3eb]
+module.vpc.aws_route_table.public[0]: Destroying... [id=rtb-04601f0caac23a4fc]
+module.vpc.aws_route_table.private[0]: Destroying... [id=rtb-0670fb1ecfdde040b]
+aws_iam_role_policy.github_deploy: Destruction complete after 1s
+aws_iam_role_policy_attachment.alb: Destruction complete after 1s
+module.eks.aws_eks_access_entry.this["deployment"]: Destroying... [id=taskboard-eks:arn:aws:iam::835582727900:role/taskboard-eks-github-deploy]
+module.eks.aws_eks_access_entry.this["operator"]: Destroying... [id=taskboard-eks:arn:aws:iam::835582727900:user/shrival]
+module.vpc.aws_route_table.public[0]: Destruction complete after 0s
+module.eks.aws_iam_policy.cluster_encryption[0]: Destroying... [id=arn:aws:iam::835582727900:policy/taskboard-eks-cluster-ClusterEncryption5f2b93d88f3da81b7417e3d8fa]
+module.vpc.aws_route_table.private[0]: Destruction complete after 0s
+aws_iam_policy.alb: Destroying... [id=arn:aws:iam::835582727900:policy/taskboard-eks-alb]
+module.eks.aws_eks_access_entry.this["deployment"]: Destruction complete after 0s
+module.eks.aws_eks_access_entry.this["operator"]: Destruction complete after 0s
+aws_iam_role.github_deploy: Destroying... [id=taskboard-eks-github-deploy]
+module.eks.aws_eks_addon.before_compute["vpc-cni"]: Destruction complete after 3s
+module.eks.module.kms.aws_kms_alias.this["cluster"]: Destruction complete after 2s
+aws_iam_policy.alb: Destruction complete after 1s
+module.eks.aws_iam_policy.cluster_encryption[0]: Destruction complete after 1s
+module.eks.aws_eks_addon.this["coredns"]: Destruction complete after 2s
+aws_iam_role.github_deploy: Destruction complete after 1s
+aws_iam_openid_connect_provider.github[0]: Destroying... [id=arn:aws:iam::835582727900:oidc-provider/token.actions.githubusercontent.com]
+aws_iam_openid_connect_provider.github[0]: Destruction complete after 1s
+module.eks.aws_eks_addon.this["metrics-server"]: Destruction complete after 4s
+module.eks.aws_eks_addon.this["aws-ebs-csi-driver"]: Destruction complete after 7s
+module.eks.module.eks_managed_node_group["main"].module.user_data.null_resource.validate_cluster_service_cidr: Destroying... [id=2865107373410461717]
+aws_iam_role.irsa["ebs"]: Destroying... [id=taskboard-eks-ebs]
+aws_iam_role.irsa["alb"]: Destroying... [id=taskboard-eks-alb]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780]
+module.eks.module.eks_managed_node_group["main"].module.user_data.null_resource.validate_cluster_service_cidr: Destruction complete after 0s
+aws_iam_role.irsa["ebs"]: Destruction complete after 1s
+aws_iam_role.irsa["alb"]: Destruction complete after 1s
+module.eks.aws_iam_openid_connect_provider.oidc_provider[0]: Destroying... [id=arn:aws:iam::835582727900:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/BCBE912F5297EA57C506807FD786E0C9]
+module.eks.aws_iam_openid_connect_provider.oidc_provider[0]: Destruction complete after 0s
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-08305c9a306e2b3eb, 00m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 00m10s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-08305c9a306e2b3eb, 00m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 00m20s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-08305c9a306e2b3eb, 00m30s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 00m30s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-08305c9a306e2b3eb, 00m40s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 00m40s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Still destroying... [id=nat-08305c9a306e2b3eb, 00m50s elapsed]
+module.vpc.aws_nat_gateway.this[0]: Destruction complete after 50s
+module.vpc.aws_eip.nat[0]: Destroying... [id=eipalloc-0c91608a54982a8c8]
+module.vpc.aws_subnet.public[1]: Destroying... [id=subnet-08b6c5528299129ac]
+module.vpc.aws_subnet.public[0]: Destroying... [id=subnet-0f5a625d0704f94b9]
+module.vpc.aws_subnet.public[1]: Destruction complete after 1s
+module.vpc.aws_subnet.public[0]: Destruction complete after 1s
+module.vpc.aws_eip.nat[0]: Destruction complete after 2s
+module.vpc.aws_internet_gateway.this[0]: Destroying... [id=igw-074cafceca68ac02a]
+module.vpc.aws_internet_gateway.this[0]: Destruction complete after 0s
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 00m50s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 01m00s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 01m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 01m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 01m30s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 01m40s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 01m50s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 02m00s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 02m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 02m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 02m30s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 02m40s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 02m50s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 03m00s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 03m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 03m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 03m30s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 03m40s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 03m50s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 04m00s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 04m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 04m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 04m30s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 04m40s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 04m50s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 05m00s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 05m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 05m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 05m30s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 05m40s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 05m50s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 06m00s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 06m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 06m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 06m30s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 06m40s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 06m50s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 07m00s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 07m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 07m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 07m30s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 07m40s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 07m50s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 08m00s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 08m10s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Still destroying... [id=taskboard-eks:main-6e5fae2e4f4615b7594182a780, 08m20s elapsed]
+module.eks.module.eks_managed_node_group["main"].aws_eks_node_group.this[0]: Destruction complete after 8m25s
+module.eks.module.eks_managed_node_group["main"].aws_launch_template.this[0]: Destroying... [id=lt-0d059c49b72149852]
+module.eks.module.eks_managed_node_group["main"].aws_launch_template.this[0]: Destruction complete after 1s
+module.eks.module.eks_managed_node_group["main"].aws_iam_role_policy_attachment.this["AmazonEKS_CNI_Policy"]: Destroying... [id=main-eks-node-group-08234136caf3143db5dba10e04/arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy]
+module.eks.module.eks_managed_node_group["main"].aws_iam_role_policy_attachment.this["AmazonEC2ContainerRegistryReadOnly"]: Destroying... [id=main-eks-node-group-08234136caf3143db5dba10e04/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly]
+module.eks.module.eks_managed_node_group["main"].aws_iam_role_policy_attachment.this["AmazonEKSWorkerNodePolicy"]: Destroying... [id=main-eks-node-group-08234136caf3143db5dba10e04/arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy]
+module.eks.time_sleep.this[0]: Destroying... [id=2026-10-16T18:25:50Z]
+module.eks.time_sleep.this[0]: Destruction complete after 0s
+module.eks.aws_eks_cluster.this[0]: Destroying... [id=taskboard-eks]
+module.eks.module.eks_managed_node_group["main"].aws_iam_role_policy_attachment.this["AmazonEKS_CNI_Policy"]: Destruction complete after 2s
+module.eks.module.eks_managed_node_group["main"].aws_iam_role_policy_attachment.this["AmazonEC2ContainerRegistryReadOnly"]: Destruction complete after 2s
+module.eks.module.eks_managed_node_group["main"].aws_iam_role_policy_attachment.this["AmazonEKSWorkerNodePolicy"]: Destruction complete after 2s
+module.eks.module.eks_managed_node_group["main"].aws_iam_role.this[0]: Destroying... [id=main-eks-node-group-08234136caf3143db5dba10e04]
+module.eks.module.eks_managed_node_group["main"].aws_iam_role.this[0]: Destruction complete after 1s
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 00m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 00m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 00m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 00m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 00m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 01m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 01m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 01m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 01m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 01m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 01m50s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 02m00s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 02m10s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 02m20s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 02m30s elapsed]
+module.eks.aws_eks_cluster.this[0]: Still destroying... [id=taskboard-eks, 02m40s elapsed]
+module.eks.aws_eks_cluster.this[0]: Destruction complete after 2m45s
+module.eks.aws_security_group_rule.node["ingress_cluster_10251_webhook"]: Destroying... [id=sgrule-3001773326]
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSClusterPolicy"]: Destroying... [id=taskboard-eks-cluster-2a4094109c27de0c0345e5694c/arn:aws:iam::aws:policy/AmazonEKSClusterPolicy]
+module.eks.aws_security_group_rule.node["ingress_nodes_ephemeral"]: Destroying... [id=sgrule-3767987533]
+module.eks.aws_cloudwatch_log_group.this[0]: Destroying... [id=/aws/eks/taskboard-eks/cluster]
+module.eks.aws_security_group_rule.node["ingress_cluster_6443_webhook"]: Destroying... [id=sgrule-3678030481]
+module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Destroying... [id=sgrule-2258779509]
+module.eks.aws_security_group_rule.node["egress_all"]: Destroying... [id=sgrule-4288949264]
+module.eks.aws_security_group_rule.node["ingress_cluster_8443_webhook"]: Destroying... [id=sgrule-3362158256]
+module.eks.module.kms.aws_kms_key.this[0]: Destroying... [id=2f631c2b-09ea-4e39-bd5e-4385ecbbb116]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Destroying... [id=sgrule-4147948926]
+module.eks.aws_security_group_rule.node["ingress_cluster_6443_webhook"]: Destruction complete after 1s
+module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Destroying... [id=sgrule-2146953824]
+module.eks.module.kms.aws_kms_key.this[0]: Destruction complete after 1s
+module.vpc.aws_subnet.private[1]: Destroying... [id=subnet-06016c9afbc6af901]
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSClusterPolicy"]: Destruction complete after 1s
+module.eks.aws_security_group_rule.node["ingress_cluster_9443_webhook"]: Destroying... [id=sgrule-2898740603]
+module.eks.aws_security_group_rule.node["ingress_cluster_10251_webhook"]: Destruction complete after 1s
+module.vpc.aws_subnet.private[0]: Destroying... [id=subnet-07b71766366d48642]
+module.eks.aws_cloudwatch_log_group.this[0]: Destruction complete after 2s
+module.eks.aws_security_group_rule.node["ingress_cluster_4443_webhook"]: Destroying... [id=sgrule-309865735]
+module.vpc.aws_subnet.private[1]: Destruction complete after 1s
+module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Destroying... [id=sgrule-1399000721]
+module.vpc.aws_subnet.private[0]: Destruction complete after 0s
+module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Destroying... [id=sgrule-2316176300]
+module.eks.aws_security_group_rule.node["ingress_nodes_ephemeral"]: Destruction complete after 2s
+module.eks.aws_iam_role.this[0]: Destroying... [id=taskboard-eks-cluster-2a4094109c27de0c0345e5694c]
+module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Destruction complete after 3s
+module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Destruction complete after 1s
+module.eks.aws_security_group_rule.node["egress_all"]: Destruction complete after 3s
+module.eks.aws_security_group_rule.node["ingress_cluster_8443_webhook"]: Destruction complete after 4s
+module.eks.aws_iam_role.this[0]: Destruction complete after 2s
+module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Destruction complete after 5s
+module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Destruction complete after 4s
+module.eks.aws_security_group_rule.node["ingress_cluster_9443_webhook"]: Destruction complete after 5s
+module.eks.aws_security_group_rule.node["ingress_cluster_4443_webhook"]: Destruction complete after 5s
+module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Destruction complete after 5s
+module.eks.aws_security_group.cluster[0]: Destroying... [id=sg-09176db45a5c1064e]
+module.eks.aws_security_group.node[0]: Destroying... [id=sg-06724fb447515448b]
+module.eks.aws_security_group.cluster[0]: Destruction complete after 1s
+module.eks.aws_security_group.node[0]: Destruction complete after 1s
+module.vpc.aws_vpc.this[0]: Destroying... [id=vpc-0663d0df15efa02af]
+module.vpc.aws_vpc.this[0]: Destruction complete after 0s
+
+Apply complete! Resources: 0 added, 0 changed, 66 destroyed.
