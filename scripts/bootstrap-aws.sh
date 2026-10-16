@@ -4,6 +4,7 @@ set -euo pipefail
 : "${AWS_ACCOUNT_ID:?Set the agreed account ID}"
 ACTUAL=$(aws sts get-caller-identity --query Account --output text)
 [[ "$ACTUAL" == "$AWS_ACCOUNT_ID" ]] || { echo 'Wrong AWS account'; exit 1; }
+python3 scripts/check-free-tier.py --account "$AWS_ACCOUNT_ID"
 REGION=$(terraform -chdir=terraform output -raw aws_region)
 CLUSTER=$(terraform -chdir=terraform output -raw cluster_name)
 VPC=$(terraform -chdir=terraform output -raw vpc_id)

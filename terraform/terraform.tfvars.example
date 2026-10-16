@@ -4,4 +4,5 @@ operator_role_arn = "arn:aws:iam::123456789012:role/YourAuthenticatedOperatorRol
 cluster_name = "taskboard-eks"
 github_repository = "NoteLegend/devOps-TaskBoard"
 kubernetes_version = "1.35"
+worker_instance_type = "m7i-flex.large" # Free-plan eligible; credit consumption still applies
 create_github_oidc_provider = true # false if already present in account

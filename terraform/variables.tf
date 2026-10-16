@@ -52,3 +52,9 @@ variable "node_ami_release_version" {
   type    = string
   default = "1.35.8-20261012"
 }
+
+variable "worker_instance_type" {
+  type        = string
+  default     = "m7i-flex.large"
+  description = "Free-plan eligible x86_64 workers, verified in Mumbai; usage consumes promotional credits."
+}

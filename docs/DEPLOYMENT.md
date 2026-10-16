@@ -23,22 +23,23 @@ cp -n terraform/terraform.tfvars.example terraform/terraform.tfvars
 terraform -chdir=terraform init
 terraform -chdir=terraform fmt -check
 terraform -chdir=terraform validate
-terraform -chdir=terraform plan -out=approved.tfplan
-terraform -chdir=terraform show -no-color approved.tfplan
+terraform -chdir=terraform plan -out=free-tier.tfplan
+terraform -chdir=terraform show -no-color free-tier.tfplan
 ```
 
-A real plan needs authenticated AWS and chosen identity. **Do not apply without user approval of that actual plan, current costs and schedule.** Review VPC/two public and two private subnets, routes/IGW, one NAT/EIP, EKS control plane, two t3.medium workers and root disks, logs/KMS/IAM, EBS CSI/metrics add-ons. Helm later adds a billable ALB and PostgreSQL gp3 disk. Include ALB LCUs, public IPv4, NAT processing, EBS and data transfer in the estimate. See [cost checkpoint](COST_CHECKPOINT.md).
+A real plan needs authenticated AWS and chosen identity. **Do not apply without user approval of that actual plan, current costs and schedule.** Review VPC/two public and two private subnets, routes/IGW, one NAT/EIP, EKS control plane, two Free-plan eligible m7i-flex.large workers and root disks, logs/KMS/IAM, EBS CSI/metrics add-ons. Helm later adds a billable ALB and PostgreSQL gp3 disk. Include ALB LCUs, public IPv4, NAT processing, EBS and data transfer in the estimate. See [cost checkpoint](COST_CHECKPOINT.md).
 
 After approval only:
 
 ```bash
-terraform -chdir=terraform apply approved.tfplan
+python3 scripts/check-free-tier.py --account 835582727900
+terraform -chdir=terraform apply free-tier.tfplan
 export AWS_PROFILE='Raghavendra Linga'
 export AWS_ACCOUNT_ID=835582727900
 scripts/bootstrap-aws.sh
 ```
 
-Bootstrap explicitly checks account identity, creates deployment namespace RBAC, waits for EBS/Metrics Server, installs pinned AWS Load Balancer Controller with IRSA, creates gp3, installs monitoring/CRDs, and creates the runtime secret without printing values. The operator needs provisioning privileges; routine CI has only DescribeCluster plus namespace Kubernetes permissions. No cluster-admin CI role.
+Bootstrap explicitly checks account identity and Free plan/credits, creates deployment namespace RBAC, waits for EBS/Metrics Server, installs pinned AWS Load Balancer Controller with IRSA, creates gp3, installs monitoring/CRDs, and creates the runtime secret without printing values. The operator needs provisioning privileges; routine CI has DescribeCluster and read-only Free Tier status plus namespace Kubernetes permissions. No cluster-admin CI role.
 
 Regional EKS add-on default builds were queried with `aws eks describe-addon-versions` for 1.35 and are explicitly pinned in variables.tf; the AL2023 recommended release is pinned too. The actual saved plan records these values. Recheck compatibility before later updates. Restrict API endpoint CIDRs if using runners with fixed egress; the default allows GitHub-hosted runner IPs but still requires authentication/RBAC.
 

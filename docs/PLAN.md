@@ -8,7 +8,7 @@
 - [x] Run local Kubernetes deployment, Ingress, monitoring and isolated failure exercises.
 - [x] Finish stable HPA recovery (2 → 4 → 2; zero failed requests) and deploy verified registry images locally.
 - [x] Verify AWS browser login/operator in account 835582727900; prepare actual 66-resource plan and current Mumbai cost estimate.
-- [ ] Obtain spending approval and demo lifetime; provision and verify real EKS deployment/CI/HPA/metrics.
+- [ ] Obtain revised Free Tier plan/credit-use and demo-lifetime approval; provision and verify real EKS deployment/CI/HPA/metrics.
 - [ ] Rehearse final AWS demo; save evidence; obtain teardown/data-deletion approval and verify cleanup.
 
 Current project status: not yet submission-ready. User-approved GitHub publishing does not authorize cloud spending. See VERIFICATION.md for executed results and exact blockers.

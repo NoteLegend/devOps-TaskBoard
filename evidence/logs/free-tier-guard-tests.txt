@@ -1,0 +1,11 @@
+test_active_free_account_with_sufficient_credits (test_free_tier_guard.FreeTierGuardTest.test_active_free_account_with_sufficient_credits) ... ok
+test_expiring_plan_is_rejected (test_free_tier_guard.FreeTierGuardTest.test_expiring_plan_is_rejected) ... ok
+test_inactive_plan_is_rejected (test_free_tier_guard.FreeTierGuardTest.test_inactive_plan_is_rejected) ... ok
+test_insufficient_credits_are_rejected (test_free_tier_guard.FreeTierGuardTest.test_insufficient_credits_are_rejected) ... ok
+test_paid_plan_is_rejected_even_with_credits (test_free_tier_guard.FreeTierGuardTest.test_paid_plan_is_rejected_even_with_credits) ... ok
+test_wrong_account_is_rejected (test_free_tier_guard.FreeTierGuardTest.test_wrong_account_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.008s
+
+OK

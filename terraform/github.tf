@@ -29,6 +29,10 @@ resource "aws_iam_role_policy" "github_deploy" {
       Effect   = "Allow"
       Action   = ["eks:DescribeCluster"]
       Resource = "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:cluster/${var.cluster_name}"
+      }, {
+      Effect   = "Allow"
+      Action   = ["freetier:GetAccountPlanState"]
+      Resource = "*"
     }]
   })
 }

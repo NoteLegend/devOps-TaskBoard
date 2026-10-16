@@ -6,7 +6,7 @@ Git author: Rushi Jadhav, rushisjadhav3333@gmail.com (existing local configurati
 1. Authenticate GitHub locally: `.tools/gh auth login --hostname github.com --git-protocol https --web`, then `.tools/gh auth setup-git`. Do not paste login codes/tokens into chat. Initial push approval has been given; subsequent task fixes may be pushed to this same destination. The instructor repository is never a push target.
 2. AWS login **verified**: account `835582727900`, IAM user `shrival`, region `ap-south-1`, source profile `Raghavendra Linga`. Renew locally if needed: `.tools/aws login --profile 'Raghavendra Linga' --region ap-south-1`. Never share credential values. See [first-login guide](AWS_FIRST_LOGIN.md).
 3. The ignored Terraform variables and process-profile adapter are configured for this identity. No existing project cluster/VPC or GitHub OIDC provider was found. The operator's provisioning permissions and available worker quota were checked read-only.
-4. The actual authenticated plan and regional estimate are prepared in [COST_CHECKPOINT.md](COST_CHECKPOINT.md). **User approval of spending, lifetime and cleanup remains required before apply.**
+4. The actual authenticated plan and regional estimate are prepared in [COST_CHECKPOINT.md](COST_CHECKPOINT.md). AWS reports an ACTIVE FREE plan and $117.20 credits. **Only credits may fund eligible services; no Paid upgrade or cash spending is authorized. Approval of the revised plan, credit use, lifetime and cleanup remains required before apply.**
 5. After authorized provisioning, operator bootstraps namespaces, RBAC, LBC, storage, Metrics Server, monitoring and runtime secret using `scripts/bootstrap-aws.sh`.
 
 Repository **Actions variables**, not secrets:

@@ -45,14 +45,14 @@ For Python development, create `backend/.venv` using Python 3.13, install `backe
 
 ## Verified publishing
 
-[Repository](https://github.com/NoteLegend/devOps-TaskBoard) · [successful test/build/scan/publish run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38919741425) · [backend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend) · [frontend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend). Both images were anonymously pulled. AWS deployment was deliberately skipped pending spending approval.
+[Repository](https://github.com/NoteLegend/devOps-TaskBoard) · [successful test/build/scan/publish run](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38919741425) · [backend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend) · [frontend package](https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend). Both images were anonymously pulled. AWS deployment was deliberately skipped while the revised Free Tier credit-funded plan/lifetime awaits approval.
 
 Local Kubernetes passed Ingress CRUD, persistent PostgreSQL, actual Prometheus/Grafana data, both failure exercises, and CPU autoscaling from two to four and back to two replicas. Full evidence and limitations are in [verification](docs/VERIFICATION.md).
 
 ## Deployment and submission
 
-Follow [setup](docs/USER_SETUP.md), [deployment](docs/DEPLOYMENT.md), then the [demo sequence](docs/DEMO.md). Do not apply Terraform before the actual plan/cost checkpoint is approved. [Requirements](docs/REQUIREMENTS.md), [audit](docs/STARTER_AUDIT.md), [troubleshooting](docs/TROUBLESHOOTING.md), [cleanup](docs/CLEANUP.md), and [evidence](evidence/README.md) track what is implemented and what actually ran.
+Follow [setup](docs/USER_SETUP.md), [deployment](docs/DEPLOYMENT.md), then the [demo sequence](docs/DEMO.md). The original AWS/EKS scope remains required. Only the verified ACTIVE FREE account and eligible workers may be used; no Paid-plan upgrade or cash spending is authorized. Do not apply Terraform before the actual plan/credit-use/lifetime checkpoint is approved. [Requirements](docs/REQUIREMENTS.md), [audit](docs/STARTER_AUDIT.md), [troubleshooting](docs/TROUBLESHOOTING.md), [cleanup](docs/CLEANUP.md), and [evidence](evidence/README.md) track what is implemented and what actually ran.
 
-**Submission status: not yet ready.** See [verification](docs/VERIFICATION.md) for current blockers; local results do not establish an AWS deployment or successful Actions run.
+**Submission status: not yet ready.** See [remaining requirements](docs/REMAINING.md) and [verification](docs/VERIFICATION.md). Real CI/publication is verified; AWS deployment, AWS live checks and teardown remain unperformed.
 
 Source: Nensi Ravaliya’s MIT-licensed [TaskBoard starter](https://github.com/Nency-Ravaliya/devops-heros/tree/a4e39b6b3a54dab1efd386c75ab86bf1d8a23454/session21-python). [Attribution](docs/ATTRIBUTION.md), [LICENSE](LICENSE), and the original [grading rubric](GRADING.md) are retained. Meaningful changes include ticket triage UI, edit/delete/search, safe errors, expanded tests, migration isolation, corrected routing, OIDC/RBAC, storage integration and reproducible verification.

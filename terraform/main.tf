@@ -53,7 +53,7 @@ module "eks" {
   }
   eks_managed_node_groups = {
     main = {
-      instance_types                 = ["t3.medium"]
+      instance_types                 = [var.worker_instance_type]
       ami_type                       = "AL2023_x86_64_STANDARD"
       use_latest_ami_release_version = false
       ami_release_version            = var.node_ami_release_version

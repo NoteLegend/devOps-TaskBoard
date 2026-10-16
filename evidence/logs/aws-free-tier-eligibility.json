@@ -1,0 +1,30 @@
+{
+  "captured_at_utc": "2026-10-16T18:14:25.557609+00:00",
+  "result": "PASSED",
+  "region": "ap-south-1",
+  "instance": {
+    "type": "m7i-flex.large",
+    "free_tier_eligible": true,
+    "vcpus": 2,
+    "memory_mib": 8192,
+    "architectures": [
+      "x86_64"
+    ]
+  },
+  "availability_zones": [
+    "ap-south-1b",
+    "ap-south-1a"
+  ],
+  "ami": {
+    "ImageId": "ami-0f1c839de953a3051",
+    "Name": "amazon-eks-node-al2023-x86_64-standard-1.35-v20261012",
+    "Architecture": "x86_64",
+    "FreeTierEligible": true,
+    "State": "available"
+  },
+  "commands": [
+    "aws ec2 describe-instance-types --instance-types m7i-flex.large",
+    "aws ec2 describe-instance-type-offerings --location-type availability-zone --filters Name=instance-type,Values=m7i-flex.large Name=location,Values=ap-south-1a,ap-south-1b",
+    "aws ec2 describe-images --image-ids ami-0f1c839de953a3051"
+  ]
+}
