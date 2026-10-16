@@ -1,0 +1,118 @@
+name: TaskBoard quality and deployment
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: taskboard-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: taskboard_test
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U test -d taskboard_test"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    env:
+      DATABASE_URL: postgresql+psycopg://test:test@localhost:5432/taskboard_test
+      TEST_DATABASE_URL: postgresql+psycopg://test:test@localhost:5432/taskboard_test
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: {python-version: '3.13'}
+      - name: Install pinned backend dependencies
+        run: pip install -r backend/requirements.txt
+      - name: Migrate clean PostgreSQL and run tests
+        working-directory: backend
+        run: |
+          alembic upgrade head
+          alembic check
+          pytest -v
+      - uses: actions/setup-node@v5
+        with: {node-version: '24', cache: npm, cache-dependency-path: frontend/package-lock.json}
+      - name: Build frontend
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+      - name: Validate Compose
+        run: docker compose config --quiet
+  build-scan-push:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Resolve lowercase immutable image names
+        run: |
+          echo "IMAGE_BASE=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
+      - name: Build both images
+        run: |
+          docker build --label org.opencontainers.image.source="https://github.com/$GITHUB_REPOSITORY" -t "$IMAGE_BASE-backend:$GITHUB_SHA" backend
+          docker build --label org.opencontainers.image.source="https://github.com/$GITHUB_REPOSITORY" -t "$IMAGE_BASE-frontend:$GITHUB_SHA" frontend
+      - name: Scan both images (gate on all HIGH and CRITICAL findings)
+        run: |
+          mkdir -p scan-results
+          failed=0
+          for component in backend frontend; do
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD/scan-results:/reports" aquasec/trivy:0.76.0 image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --format json --output "/reports/$component.json" "$IMAGE_BASE-$component:$GITHUB_SHA" || failed=1
+          done
+          exit "$failed"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trivy-${{ github.sha }}
+          path: scan-results/
+      - uses: docker/login-action@v3
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish the scanned images
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          docker push "$IMAGE_BASE-backend:$GITHUB_SHA"
+          docker push "$IMAGE_BASE-frontend:$GITHUB_SHA"
+  deploy:
+    needs: build-scan-push
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - uses: azure/setup-kubectl@v4
+        with: {version: v1.35.0}
+      - uses: azure/setup-helm@v4
+        with: {version: v3.21.3}
+      - name: Verify AWS CLI and configure EKS authentication
+        env:
+          EKS_CLUSTER_NAME: ${{ vars.EKS_CLUSTER_NAME }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+        run: |
+          aws --version
+          aws eks update-kubeconfig --region "$AWS_REGION" --name "$EKS_CLUSTER_NAME"
+          kubectl auth can-i create deployments -n taskboard | grep -x yes
+      - name: Deploy this commit and verify rollouts
+        run: |
+          export IMAGE_BASE="ghcr.io/${GITHUB_REPOSITORY,,}"
+          scripts/deploy.sh "$GITHUB_SHA"
