@@ -1,0 +1,7 @@
+aws_region = "ap-south-1"
+aws_account_id = "123456789012" # Replace with agreed account
+operator_role_arn = "arn:aws:iam::123456789012:role/YourAuthenticatedOperatorRole"
+cluster_name = "taskboard-eks"
+github_repository = "NoteLegend/devOps-TaskBoard"
+kubernetes_version = "1.35"
+create_github_oidc_provider = true # false if already present in account
