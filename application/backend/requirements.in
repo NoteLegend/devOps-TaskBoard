@@ -9,3 +9,5 @@ pytest>=8,<10
 httpx>=0.28,<1
 # Security floor; FastAPI permits current Starlette releases.
 starlette>=1.3.1,<2
+# Remove trust in the compromised CA chain reported in PYSEC-2026-4320.
+certifi>=2026.10.19

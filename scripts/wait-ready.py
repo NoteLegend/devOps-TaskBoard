@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wait for consecutive successful same-origin backend/Ingress checks before CRUD."""
+"""Wait for consecutive successful same-origin API/Ingress checks before CRUD."""
 import argparse,json,time,urllib.request
 p=argparse.ArgumentParser();p.add_argument('url');p.add_argument('--seconds',type=int,default=120);a=p.parse_args()
 end=time.monotonic()+a.seconds

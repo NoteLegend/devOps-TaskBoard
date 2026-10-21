@@ -1,0 +1,20 @@
+{
+  "result": "PASSED",
+  "controls": [
+    {
+      "tool": "bandit",
+      "synthetic_unsafe_input_rejected": true,
+      "exit_code": 1
+    },
+    {
+      "tool": "semgrep",
+      "synthetic_unsafe_input_rejected": true,
+      "exit_code": 1
+    },
+    {
+      "tool": "gitleaks",
+      "synthetic_unsafe_input_rejected": true,
+      "exit_code": 1
+    }
+  ]
+}

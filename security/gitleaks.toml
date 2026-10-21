@@ -1,0 +1,17 @@
+title = "Release Helpdesk secret scanning"
+[extend]
+useDefault = true
+
+# Python's public release signing fingerprint is image metadata, not a private key.
+# Match only that exact fingerprint in the four original backend image reports.
+[[allowlists]]
+description = "Public CPython signing fingerprint in preserved Trivy image metadata"
+condition = "AND"
+paths = [
+  '(^|/)evidence/logs/aws-ci-scans/backend\.json$',
+  '(^|/)evidence/logs/ci-trivy-backend\.json$',
+  '(^|/)evidence/logs/trivy-backend\.json$',
+  '(^|/)evidence/logs/trivy-backend-initial\.json$',
+]
+regexTarget = "line"
+regexes = ['GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305']

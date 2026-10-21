@@ -13,15 +13,17 @@ services:
       retries: 30
     tmpfs: [/var/lib/postgresql/data]
   tests:
-    build: ./backend
+    build:
+      context: ./application/backend
+      dockerfile: ../../docker/backend.Dockerfile
     image: taskboard-backend:local
     environment:
       DATABASE_URL: postgresql+psycopg://test:test@postgres:5432/taskboard_test
       TEST_DATABASE_URL: postgresql+psycopg://test:test@postgres:5432/taskboard_test
       PYTEST_ADDOPTS: -p no:cacheprovider
     volumes:
-      - ./backend/tests:/app/tests:ro
-      - ./backend/pytest.ini:/app/pytest.ini:ro
+      - ./application/backend/tests:/app/tests:ro
+      - ./application/backend/pytest.ini:/app/pytest.ini:ro
     depends_on:
       postgres: {condition: service_healthy}
     command: [sh, -c, 'alembic upgrade head && alembic check && pytest -v']

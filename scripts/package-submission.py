@@ -5,7 +5,11 @@ parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--output',default='release-helpdesk-submission.zip')
 args=parser.parse_args()
 files=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-required={'README.md','docs/REQUIREMENTS.md','docs/USER_SETUP.md','docs/DEPLOYMENT.md','docs/DEMO.md','docs/TROUBLESHOOTING.md','docs/CLEANUP.md','docs/VERIFICATION.md','terraform/.terraform.lock.hcl'}
+required={'README.md','docs/REQUIREMENTS.md','docs/USER_SETUP.md','docs/DEPLOYMENT.md','docs/DEMO.md','docs/TROUBLESHOOTING.md','docs/CLEANUP.md','docs/VERIFICATION.md','terraform/.terraform.lock.hcl',
+          'application/backend/app/main.py','application/frontend/src/main.jsx',
+          'docker/backend.Dockerfile','docker/frontend.Dockerfile','kubernetes/namespace.yaml',
+          'security/semgrep.yml','security/gitleaks.toml','gitops/releases/release.yaml',
+          '.github/workflows/ci-cd.yml','monitoring/dashboard.json'}
 assert required.issubset(set(files)), 'Required handover/lock files must be tracked before packaging'
 excluded={'.env','.venv','.tools','.terraform','node_modules','dist','__pycache__','.git'}
 for name in filter(None,files):
@@ -17,12 +21,13 @@ for name in filter(None,files):
     assert not (name.endswith('.tfvars') and not name.endswith('.example')),name
 out=pathlib.Path(args.output).resolve()
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
-    for name in filter(None,files):z.write(name)
+    for name in filter(None,files):z.write(name,'final-devops-project/'+name)
 with zipfile.ZipFile(out) as z:
     assert z.testzip() is None
-    manifest=json.loads(z.read('images/manifest.json'))
-    media={n for n in z.namelist() if n.startswith('images/') and n.endswith(('.png','.webm'))}
+    prefix='final-devops-project/'
+    manifest=json.loads(z.read(prefix+'images/manifest.json'))
+    media={n.removeprefix(prefix) for n in z.namelist() if n.startswith(prefix+'images/') and n.endswith(('.png','.webm'))}
     assert media=={item['file'] for item in manifest},'Every screenshot/video must appear in the manifest'
     for item in manifest:
-        assert hashlib.sha256(z.read(item['file'])).hexdigest()==item['sha256'],item['file']
+        assert hashlib.sha256(z.read(prefix+item['file'])).hexdigest()==item['sha256'],item['file']
     print(f'PASSED: {out}; {len(z.namelist())} tracked files; {out.stat().st_size} bytes; excludes secrets/state/dependencies')

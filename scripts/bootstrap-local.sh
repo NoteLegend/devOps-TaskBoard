@@ -2,7 +2,7 @@
 set -euo pipefail
 kubectl config use-context kind-taskboard-local
 kind load docker-image taskboard-backend:local taskboard-frontend:local --name taskboard-local
-kubectl apply -f k8s/namespace.yaml
+kubectl apply -f kubernetes/namespace.yaml
 helm repo add traefik https://traefik.github.io/charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/

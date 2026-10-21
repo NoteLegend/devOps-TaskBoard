@@ -423,5 +423,26 @@
     "window_title": "Clusters | Elastic Kubernetes Service | ap-south-1 - Brave",
     "capture_method": "grim, actual focused Wayland window only",
     "sha256": "b2df475e5230adffe3b75defa9dde79c025f40e01afd1554ceb949fc2337fe4f"
+  },
+  {
+    "file": "images/final/api-docs.png",
+    "captured_at_utc": "2026-10-21T10:14:13.276380+00:00",
+    "source": "Real local Compose application after source/layout/security changes",
+    "capture_method": "Playwright actual browser screenshot",
+    "sha256": "22ea1a80d2799ec5f427e9676a2ddc0d2fcf0c8862977039b0250d7d9998370d"
+  },
+  {
+    "file": "images/final/application-desktop.png",
+    "captured_at_utc": "2026-10-21T10:14:13.276580+00:00",
+    "source": "Real local Compose application after source/layout/security changes",
+    "capture_method": "Playwright actual browser screenshot",
+    "sha256": "7956973ea4dbf40dacd915fc795b9e5df14688d9150abf536e417c62c8a0f50b"
+  },
+  {
+    "file": "images/final/application-mobile.png",
+    "captured_at_utc": "2026-10-21T10:14:13.276808+00:00",
+    "source": "Real local Compose application after source/layout/security changes",
+    "capture_method": "Playwright actual browser screenshot",
+    "sha256": "d7e5005f2aef175e79a00025f7a96545cd575b9106b0206bbfd76a148f564678"
   }
 ]

@@ -97,7 +97,7 @@ Rollback uses already-applied backward-compatible schema; restore a DB backup se
 
 ```bash
 export PATH="$PWD/.tools:$PATH"
-kind create cluster --config k8s/kind.yaml --image kindest/node:v1.35.0 --wait 180s
+kind create cluster --config kubernetes/kind.yaml --image kindest/node:v1.35.0 --wait 180s
 scripts/bootstrap-local.sh
 python3 scripts/smoke.py http://localhost:8088
 scripts/troubleshooting.sh

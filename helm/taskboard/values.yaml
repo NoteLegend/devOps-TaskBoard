@@ -5,6 +5,7 @@ backend:
   image: taskboard-backend
   tag: local
 replicaCount: 2
+releaseMarker: release-helpdesk
 imagePullPolicy: IfNotPresent
 imagePullSecrets: []
 secretName: taskboard-runtime

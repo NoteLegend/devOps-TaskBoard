@@ -9,6 +9,8 @@ spec:
   template:
     metadata:
       labels: {app: "{{ .Release.Name }}-frontend"}
+      annotations:
+        checksum/nginx-config: {{ include (print $.Template.BasePath "/nginx.yaml") . | sha256sum }}
     spec:
       securityContext: {runAsNonRoot: true, runAsUser: 101, fsGroup: 101}
       {{- with .Values.imagePullSecrets }}

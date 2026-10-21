@@ -1,0 +1,13 @@
+{
+  "captured_at_utc": "2026-10-21T10:14:13.277588+00:00",
+  "result": "PASSED",
+  "bandit_findings": 0,
+  "semgrep_findings": 0,
+  "python_vulnerabilities": 0,
+  "npm_vulnerabilities": 0,
+  "gitleaks_history_findings": 0,
+  "gitleaks_working_tree_findings": 0,
+  "negative_controls": "PASSED",
+  "certifi_fix": "2026.10.19",
+  "scope": "Release Helpdesk application and complete locked dependencies; full reachable Git history; narrow public-signing-fingerprint metadata allowlist"
+}

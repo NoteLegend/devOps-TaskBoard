@@ -1,4 +1,4 @@
-name: TaskBoard quality and deployment
+name: Release Helpdesk delivery
 on:
   push:
     branches: [main]
@@ -11,6 +11,40 @@ concurrency:
   group: taskboard-${{ github.ref }}
   cancel-in-progress: false
 jobs:
+  security:
+    name: Source, dependency and secret gates
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: '3.13'}
+      - uses: actions/setup-node@v5
+        with: {node-version: '24', cache: npm, cache-dependency-path: application/frontend/package-lock.json}
+      - name: Install pinned source and dependency scanners
+        run: pip install -r security/requirements.txt
+      - name: Install checksum-verified Gitleaks
+        run: |
+          curl --fail --silent --show-error --location --output /tmp/gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          curl --fail --silent --show-error --location --output /tmp/gitleaks-checksums.txt https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_checksums.txt
+          expected=$(awk '$2 == "gitleaks_8.30.1_linux_x64.tar.gz" {print $1}' /tmp/gitleaks-checksums.txt)
+          echo "$expected  /tmp/gitleaks.tar.gz" | sha256sum --check
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
+          sudo install /tmp/gitleaks /usr/local/bin/gitleaks
+      - name: SAST — Python and frontend
+        run: bash scripts/security-scan.sh sast
+      - name: SCA — Python and JavaScript lockfiles
+        if: ${{ !cancelled() }}
+        run: bash scripts/security-scan.sh sca
+      - name: Secrets — full history and working tree
+        if: ${{ !cancelled() }}
+        run: bash scripts/security-scan.sh secrets
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: source-security-${{ github.sha }}
+          path: evidence/logs/security-final/
+          if-no-files-found: error
   test:
     runs-on: ubuntu-24.04
     services:
@@ -32,9 +66,9 @@ jobs:
       - uses: actions/setup-python@v6
         with: {python-version: '3.13'}
       - name: Install pinned backend dependencies
-        run: pip install -r backend/requirements.txt
+        run: pip install -r application/backend/requirements.txt
       - name: Migrate clean PostgreSQL and run tests
-        working-directory: backend
+        working-directory: application/backend
         run: |
           alembic upgrade head
           alembic check
@@ -42,16 +76,30 @@ jobs:
       - name: Test Free Tier deployment guard
         run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
       - uses: actions/setup-node@v5
-        with: {node-version: '24', cache: npm, cache-dependency-path: frontend/package-lock.json}
+        with: {node-version: '24', cache: npm, cache-dependency-path: application/frontend/package-lock.json}
       - name: Build frontend
-        working-directory: frontend
+        working-directory: application/frontend
         run: |
           npm ci
           npm run build
       - name: Validate Compose
         run: docker compose config --quiet
+      - uses: azure/setup-helm@v5.0.1
+        with: {version: v3.21.3}
+      - name: Validate Helm and GitOps manifests
+        run: |
+          helm lint helm/taskboard
+          helm template taskboard helm/taskboard -f helm/taskboard/values-prod.yaml > /tmp/helm-aws.yaml
+          kubectl kustomize gitops/releases > /tmp/gitops.yaml
+      - uses: hashicorp/setup-terraform@v3
+        with: {terraform_version: '1.16.6', terraform_wrapper: false}
+      - name: Validate Terraform without provisioning
+        run: |
+          terraform -chdir=terraform init -backend=false -input=false
+          terraform -chdir=terraform fmt -check
+          terraform -chdir=terraform validate -no-color
   build-scan-push:
-    needs: test
+    needs: [test, security]
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -63,8 +111,8 @@ jobs:
           echo "IMAGE_BASE=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
       - name: Build both images
         run: |
-          docker build --label org.opencontainers.image.source="https://github.com/$GITHUB_REPOSITORY" -t "$IMAGE_BASE-backend:$GITHUB_SHA" backend
-          docker build --label org.opencontainers.image.source="https://github.com/$GITHUB_REPOSITORY" -t "$IMAGE_BASE-frontend:$GITHUB_SHA" frontend
+          docker build --label org.opencontainers.image.source="https://github.com/$GITHUB_REPOSITORY" -f docker/backend.Dockerfile -t "$IMAGE_BASE-backend:$GITHUB_SHA" application/backend
+          docker build --label org.opencontainers.image.source="https://github.com/$GITHUB_REPOSITORY" -f docker/frontend.Dockerfile -t "$IMAGE_BASE-frontend:$GITHUB_SHA" application/frontend
       - name: Scan both images (gate on all HIGH and CRITICAL findings)
         run: |
           mkdir -p scan-results

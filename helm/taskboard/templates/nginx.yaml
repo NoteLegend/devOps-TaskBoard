@@ -6,6 +6,7 @@ data:
     server {
       listen 8080;
       root /usr/share/nginx/html;
+      add_header X-Release-Version {{ .Values.releaseMarker | quote }} always;
       location / { try_files $uri /index.html; }
       location /api/ { proxy_pass http://{{ .Release.Name }}-backend:8000; }
       location ~ ^/(docs|openapi.json|health|ready|metrics) { proxy_pass http://{{ .Release.Name }}-backend:8000; }

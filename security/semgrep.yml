@@ -1,0 +1,28 @@
+rules:
+  - id: no-dynamic-eval
+    message: Do not execute JavaScript source from strings. Use explicit data handling.
+    severity: ERROR
+    languages: [javascript, typescript]
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: new Function(...)
+  - id: no-raw-html-in-react
+    message: Keep React's escaped rendering; raw HTML requires an explicit sanitization design.
+    severity: ERROR
+    languages: [javascript, typescript]
+    pattern: <$TAG ... dangerouslySetInnerHTML={...} ... />
+  - id: no-dom-html-assignment
+    message: Use textContent or React rendering instead of assigning HTML strings.
+    severity: ERROR
+    languages: [javascript, typescript]
+    pattern-either:
+      - pattern: $NODE.innerHTML = $VALUE
+      - pattern: $NODE.outerHTML = $VALUE
+      - pattern: document.write(...)
+  - id: no-shell-exec
+    message: Avoid constructing shell commands from strings in application code.
+    severity: ERROR
+    languages: [javascript, typescript]
+    pattern-either:
+      - pattern: require('child_process').exec(...)
+      - pattern: require('child_process').execSync(...)

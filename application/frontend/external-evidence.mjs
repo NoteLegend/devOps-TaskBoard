@@ -1,3 +1,5 @@
+import {fileURLToPath} from 'node:url';
+const evidenceDir = process.env.EVIDENCE_DIR || fileURLToPath(new URL('../../evidence/', import.meta.url));
 import {chromium} from '@playwright/test';
 const browser=await chromium.launch({headless:true});
 const page=await browser.newPage({viewport:{width:1440,height:1000}});
@@ -11,7 +13,7 @@ try {
   const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:60000});
   if(response.status()!==200)throw Error(`${url}: ${response.status()}`);
   await page.waitForTimeout(4000);
-  await page.screenshot({path:`../evidence/${name}.png`,fullPage:true});
+  await page.screenshot({path:`${evidenceDir}/${name}.png`,fullPage:true});
   console.log('CAPTURED',response.status(),url);
  }
 } finally {await browser.close();}

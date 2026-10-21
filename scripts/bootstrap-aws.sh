@@ -10,11 +10,11 @@ CLUSTER=$(terraform -chdir=terraform output -raw cluster_name)
 VPC=$(terraform -chdir=terraform output -raw vpc_id)
 ROLE=$(terraform -chdir=terraform output -raw alb_role_arn)
 aws eks update-kubeconfig --region "$REGION" --name "$CLUSTER"
-kubectl apply -f k8s/namespace.yaml
-kubectl apply -f k8s/deployer-rbac.yaml
+kubectl apply -f kubernetes/namespace.yaml
+kubectl apply -f kubernetes/deployer-rbac.yaml
 kubectl rollout status deployment/ebs-csi-controller -n kube-system --timeout=180s
 kubectl rollout status deployment/metrics-server -n kube-system --timeout=180s
-kubectl apply -f k8s/gp3.yaml
+kubectl apply -f kubernetes/gp3.yaml
 helm repo add eks https://aws.github.io/eks-charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update

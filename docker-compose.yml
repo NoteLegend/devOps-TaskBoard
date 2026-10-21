@@ -14,7 +14,9 @@ services:
       timeout: 3s
       retries: 20
   migrate:
-    build: ./backend
+    build:
+      context: ./application/backend
+      dockerfile: ../../docker/backend.Dockerfile
     image: taskboard-backend:local
     command: [alembic, upgrade, head]
     environment: &database
@@ -23,7 +25,9 @@ services:
       postgres: {condition: service_healthy}
     restart: 'no'
   backend:
-    build: ./backend
+    build:
+      context: ./application/backend
+      dockerfile: ../../docker/backend.Dockerfile
     image: taskboard-backend:local
     environment: *database
     depends_on:
@@ -35,7 +39,9 @@ services:
       timeout: 5s
       retries: 12
   frontend:
-    build: ./frontend
+    build:
+      context: ./application/frontend
+      dockerfile: ../../docker/frontend.Dockerfile
     image: taskboard-frontend:local
     depends_on:
       backend: {condition: service_healthy}
