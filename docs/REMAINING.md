@@ -1,11 +1,8 @@
-# Final handover
+# Final submission handover
 
-Engineering work is implemented in this repository: source/dependency/secret gates, image scanning, canonical layout and Flux reconciliation are included alongside the original cloud lifecycle. [Executed verification](VERIFICATION.md) records the actual revisions and outcomes.
+The required engineering stages are implemented and verified: application, hosted tests/security gates, scanned GHCR images, Kubernetes/Helm, continuous Flux reconciliation, monitoring and the historical Terraform/AWS lifecycle. [Executed verification](VERIFICATION.md) records the actual source revisions, dates and results.
 
-The remaining student actions are:
+1. Submit the existing public repository URL and the final assignment source/evidence requested by the course PDF. `python3 scripts/package-submission.py` packages the tracked source under the required `final-devops-project/` layout and verifies evidence hashes and credential exclusions.
+2. Review the [cleanup record](CLEANUP.md) for the earlier authorized cloud lifecycle. The AWS application endpoint is offline after teardown; current screenshots and historical cloud screenshots are labelled separately.
 
-1. Record the narrated walkthrough using the updated [presentation and speaker guide](../presentation/README.md). Demonstrate the current local application/GitOps instance and clearly label the saved AWS screens as the earlier deployment, which was subsequently removed.
-2. Submit the public repository URL, source archive, recording and presentation in the instructor's requested locations. `python3 scripts/package-submission.py` produces a checked ZIP with the complete `final-devops-project/` structure.
-3. If necessary, inspect settled billing for the earlier approved cloud run. Reporting can lag; the KMS key deletion window and historical residual checks are documented in [cleanup](CLEANUP.md).
-
-No AWS recreation is required to review or narrate the preserved evidence. Keep `DEPLOY_ENABLED=false` after teardown. The root/component READMEs describe the product; [requirement traceability](REQUIREMENTS.md) is kept separately for review. A final grade depends on evaluation and the delivered recording; passing checks is not a guaranteed score.
+Keep `DEPLOY_ENABLED=false` after cloud teardown. Optional local verification commands are in [DEMO.md](DEMO.md). A presentation and narrated video are not included as pending requirements in this handover. No new AWS deployment is needed to submit the genuine existing cloud evidence.

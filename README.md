@@ -112,7 +112,6 @@ gitops/        Flux source, reconciliation and Helm desired state
 scripts/       Bootstrap, verification, load and packaging tools
 images/        Original screenshots and browser recording
 evidence/      Dated execution logs and machine-readable results
-presentation/  PowerPoint, PDF and recording guide
 ```
 
 [Application](application/README.md) · [Containers](docker/README.md) · [Helm](helm/README.md) · [Infrastructure](terraform/README.md) · [Security](security/README.md) · [Monitoring](monitoring/README.md) · [Troubleshooting](docs/TROUBLESHOOTING.md)

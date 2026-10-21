@@ -1,6 +1,6 @@
-# Recording walkthrough
+# Local verification walkthrough
 
-Use the [PowerPoint/PDF and speaker guide](../presentation/README.md) for a roughly 12–15 minute presentation. Show real screens at readable zoom and explain what each result proves.
+Use these optional commands to inspect the implemented system and its recorded evidence. The submission requirements are mapped in [REQUIREMENTS.md](REQUIREMENTS.md).
 
 ## Prepare
 
@@ -12,7 +12,7 @@ python3 scripts/smoke.py http://localhost:3000
 kubectl --context kind-taskboard-local port-forward -n release-helpdesk-gitops svc/release-helpdesk-frontend 8099:8080
 ```
 
-Open localhost:3000 (Compose) or localhost:8099 (GitOps), the successful Actions run, both GHCR package pages and the original `images/` files. The old AWS application URL is offline after the recorded teardown. Do not rerun cloud provisioning or cloud load tests for the recording.
+Open localhost:3000 (Compose) or localhost:8099 (GitOps), the successful Actions run, both GHCR package pages and the original `images/` files. The old AWS application URL is offline after the recorded teardown. Do not rerun cloud provisioning or cloud load tests for this verification.
 
 ## Show the system
 
@@ -36,8 +36,8 @@ python3 scripts/verify-gitops.py --expect-marker gitops-v2 --output .tools/demo-
 flux get all -A
 ```
 
-This deliberately changes frontend replicas in the isolated local GitOps namespace and waits for Flux to restore them without a forced reconcile. It also verifies HTTP CRUD and the release marker. Use the saved result for a shorter recording.
+This deliberately changes frontend replicas in the isolated local GitOps namespace and waits for Flux to restore them without a forced reconcile. It also verifies HTTP CRUD and the release marker. The saved result retains the observed controller revision and recovery timing.
 
 ## Finish
 
-Explain lessons learned: verify behavior after rollout, separate readiness from liveness, measure ready replicas for autoscaling, tie reports to revisions and let GitOps correct drift. Record your narration, then submit the repository, checked source archive and presentation/recording through the instructor's requested channel. `docker compose down` stops the local application while retaining its database volume.
+Explain lessons learned: verify behavior after rollout, separate readiness from liveness, measure ready replicas for autoscaling, tie reports to revisions and let GitOps correct drift. Submit the repository and checked source/evidence requested by the course PDF. `docker compose down` stops the local application while retaining its database volume.

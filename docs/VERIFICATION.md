@@ -22,7 +22,7 @@ The final report-isolation and archived-metadata configuration also passed in [r
 
 The Starlette/httpx test-client deprecation warning is informational; both test suites passed. Semgrep's checked-in rules cover selected frontend risks; no source scanner proves absence of every vulnerability. All security results are dated observations. Hosted scan reports are separately retained from local reports, and CI writes fresh artifacts into an empty scan-results directory.
 
-GitOps is verified on **local kind**, with runtime credentials generated outside Git, and only frontend replica drift under Git ownership. The HPA owns backend replicas. The recorded AWS/EKS lifecycle below occurred on 16 October; its endpoint remains offline, and this follow-up created no AWS resources. The narrated student recording and instructor handover are the remaining delivery actions.
+GitOps is verified on **local kind**, with runtime credentials generated outside Git, and only frontend replica drift under Git ownership. The HPA owns backend replicas. The recorded AWS/EKS lifecycle below occurred on 16 October; its endpoint remains offline, and this follow-up created no AWS resources. Submitting the verified repository is the remaining student handover action.
 
 ## Historical AWS lifecycle — 16 October 2026
 
@@ -79,7 +79,7 @@ The scans cover OS and language packages at HIGH/CRITICAL using Trivy 0.76.0 on 
 - The external 24-worker load completed 3,602 requests with zero failures in 181.2 seconds, but CPU peaked at 38% against a 60% target and stayed at two replicas. [Actual non-scaling result](../evidence/logs/aws-hpa/summary.json). The subsequent isolated in-cluster client removes the external round trip; its CPU is excluded from backend HPA measurements. Production CPU requests/target were not lowered to manufacture scaling.
 - The controlled PostgreSQL restart briefly interrupted readiness, which appears as a small real error-rate sample in Grafana. It preserved data and completed before the autoscaling load.
 - Local kind evidence remains separately labelled: [local HPA 2 → 4 → 2](../evidence/logs/hpa-summary-local.json), [registry deployment](../evidence/logs/registry-deployment-local.txt), [local monitoring](../evidence/logs/monitoring-check-local.txt). It is not substituted for AWS evidence.
-- The browser recording is genuine historical UI evidence. The implementation gaps are closed by the later source-security/GitOps work above; narrated recording and instructor handover remain student actions.
+- The browser recording is genuine historical UI evidence. The implementation gaps are closed by the later source-security/GitOps work above; instructor repository submission remains a student action.
 
 ## Completed AWS cleanup
 

@@ -21,3 +21,6 @@ kubeconfig*
 playwright-report/
 test-results/
 scan-results/
+
+# Presentation deliverables were cancelled by the owner.
+/presentation/

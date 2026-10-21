@@ -23,4 +23,4 @@ Original screenshots and browser activity show the application and platform as t
 
 [manifest.json](manifest.json) records the source, capture timestamp and SHA-256 digest of each original image/video. The packaging helper verifies these hashes. AWS evidence was pushed and independently checked before teardown. The previous AWS URL no longer serves traffic.
 
-The WEBM captures genuine UI operations; the final walkthrough still needs narration and the other platform stages. Diagrams and charts in the presentation explain the system; they do not substitute for these original captures.
+The WEBM files capture genuine UI operations. They are retained as browser evidence alongside the screenshots; no new presentation or narrated recording is required by this handover.
