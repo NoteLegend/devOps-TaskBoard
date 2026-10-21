@@ -20,3 +20,4 @@ kubeconfig*
 *.zip
 playwright-report/
 test-results/
+scan-results/

@@ -14,6 +14,8 @@ jobs:
   security:
     name: Source, dependency and secret gates
     runs-on: ubuntu-24.04
+    env:
+      SECURITY_REPORT_DIR: scan-results/source
     steps:
       - uses: actions/checkout@v5
         with: {fetch-depth: 0}
@@ -43,7 +45,7 @@ jobs:
         if: always()
         with:
           name: source-security-${{ github.sha }}
-          path: evidence/logs/security-final/
+          path: scan-results/source/
           if-no-files-found: error
   test:
     runs-on: ubuntu-24.04

@@ -1,6 +1,30 @@
 # Executed verification
 
-Updated 2026-10-16 UTC (2026-10-17 IST). **Real AWS deployment and authorized teardown PASSED.** The user authorized this credit-funded demo only, and requires deployment screenshots in `images/` and a verified GitHub push before teardown. No Paid-plan upgrade or cash spending is authorized. Final presentation/instructor submission is a student action.
+## Current delivery and GitOps verification — 21 October 2026
+
+The same Release Helpdesk application now includes integrated source security, dependency auditing, full-history/working-tree secret gates and a continuously reconciled Flux Helm release. Source directories follow the canonical delivery layout; no separate application has been substituted for missing evidence.
+
+| Check | Actual result | Evidence |
+|---|---|---|
+| Python source analysis | Bandit: zero findings, no skipped tests / nosec exemptions. | [Bandit](../evidence/logs/security-final/bandit.json) |
+| Frontend source analysis | Semgrep: four checked-in rule groups, zero findings; source parsed. | [Semgrep](../evidence/logs/security-final/semgrep.json) |
+| Dependency analysis | pip-audit and npm audit: zero known findings after the certifi fix. | [Python](../evidence/logs/security-final/pip-audit.json), [JavaScript](../evidence/logs/security-final/npm-audit.json), [initial advisory](../evidence/logs/security-initial/pip-audit.json) |
+| Secret analysis | Gitleaks: no unexcepted findings in full reachable Git history or working text. Exact public CPython signing fingerprint excepted only in explicit archived image-report paths. | [History](../evidence/logs/security-final/gitleaks-history.json), [working tree](../evidence/logs/security-final/gitleaks-working-tree.json), [config](../security/gitleaks.toml) |
+| Gate rejection controls | Unsafe Python, unsafe JavaScript and a synthetic fake secret each produced scanner exit code 1. The original vulnerable dependency scan also failed before repair. | [Controls](../evidence/logs/security-final/negative-controls.json), [initial SCA](../evidence/logs/security-initial/) |
+| Application regression | 19 unit tests; 19 migrated PostgreSQL integration cases; no migration drift; real browser create/edit/filter/delete/mobile/Swagger. | [Unit](../evidence/logs/final-backend-unit.txt), [PostgreSQL](../evidence/logs/final-postgres-integration.txt), [browser](../evidence/logs/final-browser.txt) |
+| Configuration | Docker/Compose builds and smoke, Helm lint/render, GitOps Kustomize, Terraform fmt/validate, actionlint and six account-guard tests passed. | [Config](../evidence/logs/final-configuration.txt), [guard](../evidence/logs/final-deployment-guard.txt), [smoke](../evidence/logs/final-compose-smoke.txt) |
+| Hosted source/image delivery | Main commit `1178b684e26c00d06d05b66653d54dd5cebd191b`: tests and integrated security succeeded; both images scanned with zero HIGH/CRITICAL findings and published. AWS deploy skipped because infrastructure remains removed. | [Real run 39583131700](https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/39583131700), [run record](../evidence/logs/ci-security-release.json), [source reports](../evidence/logs/ci-final-source/), [image reports](../evidence/logs/ci-final-images/) |
+| Flux baseline | The controller fetched public main, installed the actual chart, passed HTTP CRUD and automatically corrected frontend replicas 2 → 1 → 2 in 37.0 seconds without forced reconciliation. | [Baseline summary](../evidence/logs/gitops-baseline/summary.json), source/Helm/event records in that directory. |
+| Git-owned release promotion | Commit `871c2848d3dc6cb4076de33f6e7bb82ec23cdd0c` pins the newly scanned `1178b68…` images and changes `gitops-v1` → `gitops-v2`; Flux upgrades the release. Final verification records observed revision, HTTP marker, image identity and repeated automatic drift recovery. | [Final GitOps summary and records](../evidence/logs/gitops-final/) |
+| Deliverable structure | Root directories match application/, docker/, kubernetes/, helm/, terraform/, .github/workflows/, security/, monitoring/ and gitops/. ZIP wraps the tracked source under final-devops-project/ and checks media hashes/exclusions. | [Packager](../scripts/package-submission.py), [traceability](REQUIREMENTS.md) |
+
+The Starlette/httpx test-client deprecation warning is informational; both test suites passed. Semgrep's checked-in rules cover selected frontend risks; no source scanner proves absence of every vulnerability. All security results are dated observations. Hosted scan reports are separately retained from local reports, and CI writes fresh artifacts into an empty scan-results directory.
+
+GitOps is verified on **local kind**, with runtime credentials generated outside Git, and only frontend replica drift under Git ownership. The HPA owns backend replicas. The recorded AWS/EKS lifecycle below occurred on 16 October; its endpoint remains offline, and this follow-up created no AWS resources. The narrated student recording and instructor handover are the remaining delivery actions.
+
+## Historical AWS lifecycle — 16 October 2026
+
+The approved AWS run provisioned, served, monitored and removed the real cloud environment. Its original screenshots, failures and successful recovery are retained below. Newer source-security and local GitOps results do not claim a second cloud deployment.
 
 ## Identity, source and deployed version
 
@@ -53,7 +77,7 @@ The scans cover OS and language packages at HIGH/CRITICAL using Trivy 0.76.0 on 
 - The external 24-worker load completed 3,602 requests with zero failures in 181.2 seconds, but CPU peaked at 38% against a 60% target and stayed at two replicas. [Actual non-scaling result](../evidence/logs/aws-hpa/summary.json). The subsequent isolated in-cluster client removes the external round trip; its CPU is excluded from backend HPA measurements. Production CPU requests/target were not lowered to manufacture scaling.
 - The controlled PostgreSQL restart briefly interrupted readiness, which appears as a small real error-rate sample in Grafana. It preserved data and completed before the autoscaling load.
 - Local kind evidence remains separately labelled: [local HPA 2 → 4 → 2](../evidence/logs/hpa-summary-local.json), [registry deployment](../evidence/logs/registry-deployment-local.txt), [local monitoring](../evidence/logs/monitoring-check-local.txt). It is not substituted for AWS evidence.
-- The walkthrough video records actual browser activity; it is not a narrated student presentation. The student still needs to deliver the presentation or instructor-approved recording and submit the repository URL.
+- The browser recording is genuine historical UI evidence. The current required handover is closing the PDF gaps in REMAINING.md and submitting the reviewed repository URL.
 
 ## Completed AWS cleanup
 

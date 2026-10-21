@@ -1,0 +1,27 @@
+{
+  "result": "PASSED",
+  "captured_at_utc": "2026-10-21T10:21:43.018313+00:00",
+  "context": "kind-taskboard-local",
+  "images": [
+    {
+      "component": "backend",
+      "image": "ghcr.io/notelegend/devops-taskboard-backend:1178b684e26c00d06d05b66653d54dd5cebd191b",
+      "registry_digest": "sha256:f4c7b92af1676998f846da40c2db2dc4cd864efa861c1b0df24f06d70e0aadcc",
+      "pod_image_ids": [
+        "ghcr.io/notelegend/devops-taskboard-backend@sha256:f4c7b92af1676998f846da40c2db2dc4cd864efa861c1b0df24f06d70e0aadcc",
+        "ghcr.io/notelegend/devops-taskboard-backend@sha256:f4c7b92af1676998f846da40c2db2dc4cd864efa861c1b0df24f06d70e0aadcc"
+      ],
+      "result": "MATCH"
+    },
+    {
+      "component": "frontend",
+      "image": "ghcr.io/notelegend/devops-taskboard-frontend:1178b684e26c00d06d05b66653d54dd5cebd191b",
+      "registry_digest": "sha256:82d2e6b676ba298a25dd6154f82b88597e8f3f0ef86efc36446c9cb007b07499",
+      "pod_image_ids": [
+        "ghcr.io/notelegend/devops-taskboard-frontend@sha256:82d2e6b676ba298a25dd6154f82b88597e8f3f0ef86efc36446c9cb007b07499",
+        "ghcr.io/notelegend/devops-taskboard-frontend@sha256:82d2e6b676ba298a25dd6154f82b88597e8f3f0ef86efc36446c9cb007b07499"
+      ],
+      "result": "MATCH"
+    }
+  ]
+}

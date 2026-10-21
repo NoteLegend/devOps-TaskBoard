@@ -1,0 +1,9 @@
+GET /health -> 200
+GET /ready -> 200
+POST /api/tasks -> 201
+GET /api/tasks/2 -> 200
+PUT /api/tasks/2 -> 200
+GET /api/tasks/stats -> 200
+GET /api/tasks -> 200
+DELETE /api/tasks/2 -> 204
+PASSED: same-origin health, readiness, create, read, update, statistics, list, delete, 404

@@ -1,16 +1,9 @@
-# Implementation progress
+# Implementation decisions
 
-- [x] Inspect authoritative README, rubric, source and local environment; retain attribution.
-- [x] Adapt starter to Release Helpdesk; repair API, UI, migrations, tests and containers.
-- [x] Verify PostgreSQL, Compose, browser CRUD, persistence, outage recovery and image scans.
-- [x] Prepare validated Terraform, Helm, OIDC CI, controller/storage/monitoring bootstrap and runbooks.
-- [x] Publish authorized repository; verify real CI and anonymous GHCR pulls.
-- [x] Run local Kubernetes deployment, Ingress, monitoring and isolated failure exercises.
-- [x] Finish stable HPA recovery (2 → 4 → 2; zero failed requests) and deploy verified registry images locally.
-- [x] Verify AWS browser login/operator in account 835582727900; prepare actual 66-resource plan and current Mumbai cost estimate.
-- [x] Obtain revised Free Tier plan/credit-use and demo-lifetime approval; screenshots and GitHub push must precede teardown.
-- [x] Provision and verify real EKS deployment/CI/HPA/metrics (Ready replicas 2→4→2, zero load failures).
-- [x] Demonstrate visible commit→pipeline→AWS rollout; save genuine screenshots/video and isolated failure/recovery evidence.
-- [x] Verify final screenshot/evidence GitHub push, then execute already-authorized teardown and residual checks.
+The service uses one reusable Helm chart across local and AWS environments. Source and dependency analysis run before image publication; final images retain the existing Trivy gate. GHCR tags use full source SHAs, and promotion explicitly pins the tested artifact in Git.
 
-Engineering and evidence are ready for review; the final assignment is not yet complete until the student presentation/recording and instructor submission are delivered. AWS cleanup passed; future recreation requires new explicit approval. See VERIFICATION.md.
+Flux reconciles an isolated local Helm release from the public repository. It corrects frontend drift while leaving backend replica ownership to the HPA. Runtime Secrets are created separately. An Nginx config checksum turns release-marker changes into real frontend rollouts.
+
+The repository uses the canonical application/container/Kubernetes/security/GitOps directory layout. Root Compose commands remain convenient, and the archive wraps the source in `final-devops-project/` without duplicated implementations or dependency/state directories.
+
+See [verification](VERIFICATION.md) for actual outcomes, [traceability](REQUIREMENTS.md) for coverage, and [remaining handover](REMAINING.md) for student actions. Historical AWS evidence remains dated and separate from current local verification; no cloud recreation is needed for this work.

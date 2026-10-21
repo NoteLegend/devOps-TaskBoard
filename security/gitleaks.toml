@@ -9,6 +9,7 @@ description = "Public CPython signing fingerprint in preserved Trivy image metad
 condition = "AND"
 paths = [
   '(^|/)evidence/logs/aws-ci-scans/backend\.json$',
+  '(^|/)evidence/logs/ci-final-images/backend\.json$',
   '(^|/)evidence/logs/ci-trivy-backend\.json$',
   '(^|/)evidence/logs/trivy-backend\.json$',
   '(^|/)evidence/logs/trivy-backend-initial\.json$',

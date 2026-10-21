@@ -1,0 +1,194 @@
+{
+  "apiVersion": "helm.toolkit.fluxcd.io/v2",
+  "kind": "HelmRelease",
+  "metadata": {
+    "creationTimestamp": "2026-10-21T10:14:46Z",
+    "finalizers": [
+      "finalizers.fluxcd.io"
+    ],
+    "generation": 2,
+    "labels": {
+      "kustomize.toolkit.fluxcd.io/name": "release-helpdesk",
+      "kustomize.toolkit.fluxcd.io/namespace": "flux-system"
+    },
+    "name": "release-helpdesk",
+    "namespace": "release-helpdesk-gitops",
+    "resourceVersion": "145670",
+    "uid": "f7864e54-c30c-4534-93d2-7cf18685c3c3"
+  },
+  "spec": {
+    "chart": {
+      "spec": {
+        "chart": "./helm/taskboard",
+        "reconcileStrategy": "Revision",
+        "sourceRef": {
+          "kind": "GitRepository",
+          "name": "release-helpdesk",
+          "namespace": "flux-system"
+        },
+        "version": "*"
+      }
+    },
+    "driftDetection": {
+      "ignore": [
+        {
+          "paths": [
+            "/spec/replicas"
+          ],
+          "target": {
+            "kind": "Deployment",
+            "name": "release-helpdesk-backend"
+          }
+        }
+      ],
+      "mode": "enabled"
+    },
+    "install": {
+      "disableWait": true,
+      "remediation": {
+        "retries": 2
+      }
+    },
+    "interval": "30s",
+    "releaseName": "release-helpdesk",
+    "timeout": "6m",
+    "upgrade": {
+      "disableWait": true,
+      "remediation": {
+        "retries": 2
+      }
+    },
+    "values": {
+      "backend": {
+        "image": "ghcr.io/notelegend/devops-taskboard-backend",
+        "tag": "1178b684e26c00d06d05b66653d54dd5cebd191b"
+      },
+      "frontend": {
+        "image": "ghcr.io/notelegend/devops-taskboard-frontend",
+        "tag": "1178b684e26c00d06d05b66653d54dd5cebd191b"
+      },
+      "imagePullPolicy": "Always",
+      "ingress": {
+        "enabled": false
+      },
+      "monitoring": {
+        "serviceMonitor": {
+          "enabled": true
+        }
+      },
+      "postgres": {
+        "storageClass": "standard"
+      },
+      "releaseMarker": "gitops-v2",
+      "replicaCount": 2,
+      "secretName": "taskboard-runtime"
+    }
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-10-21T10:19:35Z",
+        "message": "Helm upgrade succeeded for release release-helpdesk-gitops/release-helpdesk.v3 with chart taskboard@1.1.0+871c2848d3dc",
+        "observedGeneration": 2,
+        "reason": "UpgradeSucceeded",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2026-10-21T10:19:35Z",
+        "message": "No drift detected against the cluster state",
+        "observedGeneration": 2,
+        "reason": "NoDriftDetected",
+        "status": "False",
+        "type": "Drifted"
+      },
+      {
+        "lastTransitionTime": "2026-10-21T10:19:04Z",
+        "message": "Helm upgrade succeeded for release release-helpdesk-gitops/release-helpdesk.v3 with chart taskboard@1.1.0+871c2848d3dc",
+        "observedGeneration": 2,
+        "reason": "UpgradeSucceeded",
+        "status": "True",
+        "type": "Released"
+      }
+    ],
+    "helmChart": "flux-system/release-helpdesk-gitops-release-helpdesk",
+    "history": [
+      {
+        "action": "upgrade",
+        "apiVersion": "v2",
+        "appVersion": "1.0.0",
+        "chartName": "taskboard",
+        "chartVersion": "1.1.0+871c2848d3dc",
+        "configDigest": "sha256:a4e93dbc48b4f84ddd0fd97680c1e4d2b1fb060de1f113bda38ba3faee08bfea",
+        "digest": "sha256:72bdb0596f727ec5b0f5e29a05529038fad928af803f2686c7f7f25dc6e9845b",
+        "firstDeployed": "2026-10-21T10:14:48Z",
+        "lastDeployed": "2026-10-21T10:18:38Z",
+        "name": "release-helpdesk",
+        "namespace": "release-helpdesk-gitops",
+        "status": "deployed",
+        "version": 3
+      },
+      {
+        "apiVersion": "v2",
+        "appVersion": "1.0.0",
+        "chartName": "taskboard",
+        "chartVersion": "1.1.0+871c2848d3dc",
+        "configDigest": "sha256:835d4632edef30f79e61867f9efd5922a70eb93259848adcdf26a031d524a02e",
+        "digest": "sha256:2cca87711cfc3ec1510fd254d30902a510dc7d992b919e5e66955fc9f93162cd",
+        "firstDeployed": "2026-10-21T10:14:48Z",
+        "lastDeployed": "2026-10-21T10:18:27Z",
+        "name": "release-helpdesk",
+        "namespace": "release-helpdesk-gitops",
+        "status": "superseded",
+        "version": 2
+      }
+    ],
+    "inventory": {
+      "entries": [
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-nginx__ConfigMap",
+          "v": "v1"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-backend__Service",
+          "v": "v1"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-frontend__Service",
+          "v": "v1"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-postgres__Service",
+          "v": "v1"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-backend_apps_Deployment",
+          "v": "v1"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-frontend_apps_Deployment",
+          "v": "v1"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-backend_autoscaling_HorizontalPodAutoscaler",
+          "v": "v2"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-postgres_apps_StatefulSet",
+          "v": "v1"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk-backend_monitoring.coreos.com_ServiceMonitor",
+          "v": "v1"
+        }
+      ]
+    },
+    "lastAttemptedConfigDigest": "sha256:a4e93dbc48b4f84ddd0fd97680c1e4d2b1fb060de1f113bda38ba3faee08bfea",
+    "lastAttemptedGeneration": 2,
+    "lastAttemptedReleaseAction": "upgrade",
+    "lastAttemptedReleaseActionDuration": "26.008908s",
+    "lastAttemptedRevision": "1.1.0+871c2848d3dc",
+    "observedGeneration": 2,
+    "storageNamespace": "release-helpdesk-gitops"
+  }
+}

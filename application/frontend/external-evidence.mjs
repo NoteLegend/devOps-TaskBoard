@@ -5,7 +5,7 @@ const browser=await chromium.launch({headless:true});
 const page=await browser.newPage({viewport:{width:1440,height:1000}});
 try {
  for(const [name,url] of [
-  ['ci-first-run','https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/38918578562'],
+  ['ci-security-release',process.env.CI_RUN_URL||'https://github.com/NoteLegend/devOps-TaskBoard/actions/runs/39583131700'],
   ['ghcr-backend','https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-backend'],
   ['ghcr-frontend','https://github.com/users/NoteLegend/packages/container/package/devops-taskboard-frontend'],
   ['git-history','https://github.com/NoteLegend/devOps-TaskBoard/commits/main/']

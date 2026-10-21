@@ -1,0 +1,24 @@
+NAME                                             READY   STATUS      RESTARTS   AGE
+pod/release-helpdesk-backend-677b5cbd65-5vfst    1/1     Running     0          25s
+pod/release-helpdesk-backend-677b5cbd65-lt66w    1/1     Running     0          35s
+pod/release-helpdesk-frontend-5859bc54d6-72g4q   1/1     Running     0          35s
+pod/release-helpdesk-frontend-5859bc54d6-jpng9   1/1     Running     0          5s
+pod/release-helpdesk-migrate-1-n8qcz             0/1     Completed   0          4m50s
+pod/release-helpdesk-migrate-2-zdmqk             0/1     Completed   0          71s
+pod/release-helpdesk-migrate-3-5prvx             0/1     Completed   0          60s
+pod/release-helpdesk-postgres-0                  1/1     Running     0          4m50s
+
+NAME                                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/release-helpdesk-backend    ClusterIP   10.96.91.123    <none>        8000/TCP   4m51s
+service/release-helpdesk-frontend   ClusterIP   10.96.211.187   <none>        8080/TCP   4m51s
+service/release-helpdesk-postgres   ClusterIP   10.96.93.100    <none>        5432/TCP   4m51s
+
+NAME                               DATA   AGE
+configmap/kube-root-ca.crt         1      6m41s
+configmap/release-helpdesk-nginx   1      4m51s
+
+NAME                                                     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/data-release-helpdesk-postgres-0   Bound    pvc-df8b9b90-edfc-4a08-8020-77e5ff83868f   5Gi        RWO            standard       <unset>                 4m50s
+
+NAME                                                           REFERENCE                             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/release-helpdesk-backend   Deployment/release-helpdesk-backend   cpu: 3%/60%   2         4         2          4m50s
