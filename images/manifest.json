@@ -480,5 +480,12 @@
     "source": "Actual public GitHub Actions/GHCR/history page in a browser",
     "capture_method": "Playwright browser screenshot",
     "sha256": "2186064ac44b0b7d923de30dbbdb412b4f76678dffa87ac3843112b61971b8a7"
+  },
+  {
+    "file": "images/final/browser-walkthrough.webm",
+    "captured_at_utc": "2026-10-21T10:28:28.898559+00:00",
+    "source": "Actual current local Compose application; recorded browser create/edit/filter/mobile/delete/Swagger sequence; no narration",
+    "capture_method": "Playwright Chromium recordVideo",
+    "sha256": "cde3d2358afc3891bcd237ac4c8a9dcc97c8cf3fb8701de85d17a0e36022545a"
   }
 ]

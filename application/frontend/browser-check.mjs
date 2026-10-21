@@ -3,8 +3,9 @@ const evidenceDir = process.env.EVIDENCE_DIR || fileURLToPath(new URL('../../evi
 import {chromium} from '@playwright/test';
 import fs from 'node:fs';
 const base=process.env.BASE_URL||'http://127.0.0.1:3000';
-const browser=await chromium.launch({headless:true});
-const page=await browser.newPage({viewport:{width:1440,height:1000}});
+const browser=await chromium.launch({headless:true,slowMo:Number(process.env.DEMO_SLOWMO_MS||0)});
+const page=await browser.newPage({viewport:{width:1440,height:1000},
+  recordVideo:process.env.RECORD_VIDEO_DIR ? {dir:process.env.RECORD_VIDEO_DIR,size:{width:1280,height:720}} : undefined});
 const calls=[];
 const suffix=process.env.EVIDENCE_SUFFIX||'';
 const title=`Synthetic browser release incident ${Date.now()}`;

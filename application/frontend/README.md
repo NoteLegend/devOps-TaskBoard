@@ -24,4 +24,4 @@ npm run dev
 
 Vite development proxies `/api` to the API. In the packaged application Nginx serves static assets and proxies API/documentation routes. Browser requests stay on the same origin.
 
-`npm run test:browser` exercises create, edit, filter, delete, mobile layout, Swagger and routing. Start a reachable application first; use `BASE_URL` to select it and `EVIDENCE_DIR` to choose an output directory. [Container image](../../docker/frontend.Dockerfile) · [security rules](../../security/semgrep.yml).
+`npm run test:browser` exercises create, edit, filter, delete, mobile layout, Swagger and routing. Start a reachable application first; use `BASE_URL` to select it and `EVIDENCE_DIR` to choose an output directory. `RECORD_VIDEO_DIR` enables a genuine browser recording, and `DEMO_SLOWMO_MS` slows actions for capture. [Container image](../../docker/frontend.Dockerfile) · [security rules](../../security/semgrep.yml).

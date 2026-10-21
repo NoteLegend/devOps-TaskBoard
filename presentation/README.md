@@ -14,3 +14,5 @@ Open the PPTX in PowerPoint or LibreOffice Impress, or import it into Google Sli
 `build_presentation.py` regenerates the PPTX, PDF, speaker guide and source index using python-pptx, reportlab and Pillow. The PDF comes from the same layout and was visually checked. Native PowerPoint/Google Slides rendering may vary slightly.
 
 The AWS captures show the preserved cloud run before teardown. Fresh source-security and Flux evidence show the later execution on this same application. The final narration should identify those environments clearly.
+
+[Current browser clip](../images/final/browser-walkthrough.webm) records actual local UI operations without narration. Use the speaker guide to cover the complete system in your final recording.

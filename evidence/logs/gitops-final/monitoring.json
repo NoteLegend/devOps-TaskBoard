@@ -1,0 +1,50 @@
+{
+  "result": "PASSED",
+  "captured_at_utc": "2026-10-21T10:29:09.836542+00:00",
+  "context": "kind-taskboard-local",
+  "queries": {
+    "up{namespace=\"release-helpdesk-gitops\"}": [
+      {
+        "metric": {
+          "__name__": "up",
+          "container": "backend",
+          "endpoint": "http",
+          "instance": "10.244.0.30:8000",
+          "job": "release-helpdesk-backend",
+          "namespace": "release-helpdesk-gitops",
+          "pod": "release-helpdesk-backend-677b5cbd65-lt66w",
+          "service": "release-helpdesk-backend"
+        },
+        "value": [
+          1792578549.825,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "container": "backend",
+          "endpoint": "http",
+          "instance": "10.244.0.32:8000",
+          "job": "release-helpdesk-backend",
+          "namespace": "release-helpdesk-gitops",
+          "pod": "release-helpdesk-backend-677b5cbd65-5vfst",
+          "service": "release-helpdesk-backend"
+        },
+        "value": [
+          1792578549.825,
+          "1"
+        ]
+      }
+    ],
+    "sum(http_requests_total{namespace=\"release-helpdesk-gitops\"})": [
+      {
+        "metric": {},
+        "value": [
+          1792578549.835,
+          "363"
+        ]
+      }
+    ]
+  }
+}

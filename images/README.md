@@ -16,7 +16,7 @@ Original screenshots and browser activity show the application and platform as t
 | Observability | [Metrics](aws-metrics-endpoint.png) · [targets UP](aws-prometheus-targets-up.png) · [Grafana](aws-grafana-live-dashboard.png) |
 | Recovery | [Bad image](aws-broken-image-diagnosis.png) · [wrong selector](aws-broken-service-diagnosis.png) · [recovered](aws-troubleshooting-recovered.png) |
 | Teardown | [Destroy completed](aws-terraform-destroy-complete.png) · [residual checks](aws-cleanup-residual-checks.png) · [EKS absent](aws-eks-console-after-cleanup.png) |
-| Current delivery / GitOps | [Integrated security pipeline](final/ci-security-release.png) · [Flux promotion and drift correction](final/gitops-verification.png) · [fresh browser](final/application-desktop.png) |
+| Current delivery / GitOps | [Integrated security pipeline](final/ci-security-release.png) · [Flux promotion and drift correction](final/gitops-verification.png) · [fresh browser](final/application-desktop.png) · [current UI clip](final/browser-walkthrough.webm) |
 | Local reproduction | [Compose images/users](local-compose-images-and-users.png) · [local screenshot library](local/) |
 
 ## Provenance
