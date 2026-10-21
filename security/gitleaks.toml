@@ -3,7 +3,7 @@ title = "Release Helpdesk secret scanning"
 useDefault = true
 
 # Python's public release signing fingerprint is image metadata, not a private key.
-# Match only that exact fingerprint in the four original backend image reports.
+# Match only that exact fingerprint in the original and refreshed backend image reports.
 [[allowlists]]
 description = "Public CPython signing fingerprint in preserved Trivy image metadata"
 condition = "AND"

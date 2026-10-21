@@ -1,0 +1,67 @@
+LAST SEEN   TYPE      REASON                         OBJECT                                                   MESSAGE
+72s         Normal    Scheduled                      pod/release-helpdesk-frontend-68c89868dc-pp54d           Successfully assigned release-helpdesk-gitops/release-helpdesk-frontend-68c89868dc-pp54d to taskboard-local-control-plane
+6s          Normal    Scheduled                      pod/release-helpdesk-frontend-68c89868dc-grl4r           Successfully assigned release-helpdesk-gitops/release-helpdesk-frontend-68c89868dc-grl4r to taskboard-local-control-plane
+72s         Normal    Scheduled                      pod/release-helpdesk-migrate-1-n8qcz                     Successfully assigned release-helpdesk-gitops/release-helpdesk-migrate-1-n8qcz to taskboard-local-control-plane
+67s         Normal    Scheduled                      pod/release-helpdesk-postgres-0                          Successfully assigned release-helpdesk-gitops/release-helpdesk-postgres-0 to taskboard-local-control-plane
+57s         Normal    Scheduled                      pod/release-helpdesk-backend-5bcbdc58f4-8j2qg            Successfully assigned release-helpdesk-gitops/release-helpdesk-backend-5bcbdc58f4-8j2qg to taskboard-local-control-plane
+72s         Normal    Scheduled                      pod/release-helpdesk-frontend-68c89868dc-2m87v           Successfully assigned release-helpdesk-gitops/release-helpdesk-frontend-68c89868dc-2m87v to taskboard-local-control-plane
+72s         Normal    Scheduled                      pod/release-helpdesk-backend-5bcbdc58f4-9ncxn            Successfully assigned release-helpdesk-gitops/release-helpdesk-backend-5bcbdc58f4-9ncxn to taskboard-local-control-plane
+74s         Normal    HelmChartCreated               helmrelease/release-helpdesk                             Created HelmChart/flux-system/release-helpdesk-gitops-release-helpdesk with SourceRef 'GitRepository/flux-system/release-helpdesk'
+72s         Normal    SuccessfulCreate               statefulset/release-helpdesk-postgres                    Create Claim data-release-helpdesk-postgres-0 Pod release-helpdesk-postgres-0 in StatefulSet release-helpdesk-postgres success
+72s         Normal    SuccessfulCreate               job/release-helpdesk-migrate-1                           Created pod: release-helpdesk-migrate-1-n8qcz
+72s         Normal    SuccessfulCreate               statefulset/release-helpdesk-postgres                    Create Pod release-helpdesk-postgres-0 in StatefulSet release-helpdesk-postgres successful
+72s         Normal    SuccessfulCreate               replicaset/release-helpdesk-frontend-68c89868dc          Created pod: release-helpdesk-frontend-68c89868dc-pp54d
+72s         Normal    SuccessfulCreate               replicaset/release-helpdesk-frontend-68c89868dc          Created pod: release-helpdesk-frontend-68c89868dc-2m87v
+72s         Normal    ScalingReplicaSet              deployment/release-helpdesk-frontend                     Scaled up replica set release-helpdesk-frontend-68c89868dc from 0 to 2
+72s         Normal    ExternalProvisioning           persistentvolumeclaim/data-release-helpdesk-postgres-0   Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+72s         Normal    WaitForFirstConsumer           persistentvolumeclaim/data-release-helpdesk-postgres-0   waiting for first consumer to be created before binding
+72s         Normal    Provisioning                   persistentvolumeclaim/data-release-helpdesk-postgres-0   External provisioner is provisioning volume for claim "release-helpdesk-gitops/data-release-helpdesk-postgres-0"
+72s         Normal    SuccessfulCreate               replicaset/release-helpdesk-backend-5bcbdc58f4           Created pod: release-helpdesk-backend-5bcbdc58f4-9ncxn
+72s         Normal    ScalingReplicaSet              deployment/release-helpdesk-backend                      Scaled up replica set release-helpdesk-backend-5bcbdc58f4 from 0 to 1
+71s         Normal    Pulling                        pod/release-helpdesk-migrate-1-n8qcz                     Pulling image "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580"
+71s         Normal    Pulling                        pod/release-helpdesk-frontend-68c89868dc-pp54d           Pulling image "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580"
+71s         Normal    Pulling                        pod/release-helpdesk-backend-5bcbdc58f4-9ncxn            Pulling image "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580"
+71s         Normal    Pulling                        pod/release-helpdesk-frontend-68c89868dc-2m87v           Pulling image "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580"
+68s         Normal    ProvisioningSucceeded          persistentvolumeclaim/data-release-helpdesk-postgres-0   Successfully provisioned volume pvc-df8b9b90-edfc-4a08-8020-77e5ff83868f
+66s         Normal    Created                        pod/release-helpdesk-postgres-0                          Container created
+66s         Normal    Pulled                         pod/release-helpdesk-postgres-0                          Container image "postgres:16-alpine" already present on machine and can be accessed by the pod
+66s         Normal    Started                        pod/release-helpdesk-postgres-0                          Container started
+60s         Warning   Unhealthy                      pod/release-helpdesk-postgres-0                          Readiness probe failed: /var/run/postgresql:5432 - no response
+57s         Normal    SuccessfulCreate               replicaset/release-helpdesk-backend-5bcbdc58f4           Created pod: release-helpdesk-backend-5bcbdc58f4-8j2qg
+57s         Normal    Pulling                        pod/release-helpdesk-backend-5bcbdc58f4-8j2qg            Pulling image "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580"
+57s         Normal    ScalingReplicaSet              deployment/release-helpdesk-backend                      Scaled up replica set release-helpdesk-backend-5bcbdc58f4 from 1 to 2
+57s         Normal    SuccessfulRescale              horizontalpodautoscaler/release-helpdesk-backend         New size: 2; reason: Current number of replicas below Spec.MinReplicas
+55s         Normal    Started                        pod/release-helpdesk-backend-5bcbdc58f4-9ncxn            Container started
+55s         Normal    Created                        pod/release-helpdesk-backend-5bcbdc58f4-9ncxn            Container created
+55s         Normal    Pulled                         pod/release-helpdesk-backend-5bcbdc58f4-9ncxn            Successfully pulled image "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580" in 16.429s (16.43s including waiting). Image size: 51766084 bytes.
+52s         Warning   Unhealthy                      pod/release-helpdesk-backend-5bcbdc58f4-9ncxn            Startup probe failed: Get "http://10.244.0.20:8000/health": dial tcp 10.244.0.20:8000: connect: connection refused
+50s         Normal    Pulled                         pod/release-helpdesk-frontend-68c89868dc-pp54d           Successfully pulled image "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580" in 4.715s (20.974s including waiting). Image size: 25658221 bytes.
+50s         Normal    Created                        pod/release-helpdesk-frontend-68c89868dc-pp54d           Container created
+50s         Normal    Started                        pod/release-helpdesk-frontend-68c89868dc-pp54d           Container started
+50s         Warning   Unhealthy                      pod/release-helpdesk-frontend-68c89868dc-pp54d           Readiness probe failed: Get "http://10.244.0.21:8080/": dial tcp 10.244.0.21:8080: connect: connection refused
+49s         Normal    Started                        pod/release-helpdesk-migrate-1-n8qcz                     Container started
+49s         Normal    Created                        pod/release-helpdesk-migrate-1-n8qcz                     Container created
+49s         Normal    Pulled                         pod/release-helpdesk-migrate-1-n8qcz                     Successfully pulled image "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580" in 1.398s (22.272s including waiting). Image size: 51766084 bytes.
+48s         Normal    Created                        pod/release-helpdesk-frontend-68c89868dc-2m87v           Container created
+48s         Normal    Pulled                         pod/release-helpdesk-frontend-68c89868dc-2m87v           Successfully pulled image "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580" in 1.158s (23.417s including waiting). Image size: 25658221 bytes.
+47s         Warning   Unhealthy                      pod/release-helpdesk-backend-5bcbdc58f4-9ncxn            Readiness probe failed: HTTP probe failed with statuscode: 503
+47s         Normal    Started                        pod/release-helpdesk-frontend-68c89868dc-2m87v           Container started
+46s         Normal    Started                        pod/release-helpdesk-backend-5bcbdc58f4-8j2qg            Container started
+46s         Normal    Created                        pod/release-helpdesk-backend-5bcbdc58f4-8j2qg            Container created
+46s         Normal    Pulled                         pod/release-helpdesk-backend-5bcbdc58f4-8j2qg            Successfully pulled image "ghcr.io/notelegend/devops-taskboard-backend:179ad20c5e4995bf458a33531905d6f0e694b580" in 1.243s (10.091s including waiting). Image size: 51766084 bytes.
+42s         Warning   Unhealthy                      pod/release-helpdesk-backend-5bcbdc58f4-8j2qg            Startup probe failed: Get "http://10.244.0.26:8000/health": dial tcp 10.244.0.26:8000: connect: connection refused
+42s         Normal    Completed                      job/release-helpdesk-migrate-1                           Job completed
+37s         Normal    SuccessfulDelete               replicaset/release-helpdesk-frontend-68c89868dc          Deleted pod: release-helpdesk-frontend-68c89868dc-2m87v
+37s         Normal    Killing                        pod/release-helpdesk-frontend-68c89868dc-2m87v           Stopping container frontend
+37s         Normal    InstallSucceeded               helmrelease/release-helpdesk                             Helm install succeeded for release release-helpdesk-gitops/release-helpdesk.v1 with chart taskboard@1.0.0+1178b684e26c
+37s         Normal    ScalingReplicaSet              deployment/release-helpdesk-frontend                     Scaled down replica set release-helpdesk-frontend-68c89868dc from 2 to 1
+27s         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/release-helpdesk-backend         invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+27s         Warning   FailedGetResourceMetric        horizontalpodautoscaler/release-helpdesk-backend         failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+6s          Normal    SuccessfulCreate               replicaset/release-helpdesk-frontend-68c89868dc          Created pod: release-helpdesk-frontend-68c89868dc-grl4r
+6s          Normal    ScalingReplicaSet              deployment/release-helpdesk-frontend                     Scaled up replica set release-helpdesk-frontend-68c89868dc from 1 to 2
+6s          Warning   DriftDetected                  helmrelease/release-helpdesk                             Cluster state of release release-helpdesk-gitops/release-helpdesk.v1 has drifted from the desired state:...
+6s          Normal    DriftCorrected                 helmrelease/release-helpdesk                             Cluster state of release release-helpdesk-gitops/release-helpdesk.v1 has been corrected:...
+5s          Normal    Pulling                        pod/release-helpdesk-frontend-68c89868dc-grl4r           Pulling image "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580"
+4s          Normal    Pulled                         pod/release-helpdesk-frontend-68c89868dc-grl4r           Successfully pulled image "ghcr.io/notelegend/devops-taskboard-frontend:179ad20c5e4995bf458a33531905d6f0e694b580" in 1.441s (1.441s including waiting). Image size: 25658221 bytes.
+4s          Normal    Created                        pod/release-helpdesk-frontend-68c89868dc-grl4r           Container created
+3s          Normal    Started                        pod/release-helpdesk-frontend-68c89868dc-grl4r           Container started

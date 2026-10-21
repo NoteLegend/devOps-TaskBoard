@@ -35,13 +35,13 @@ spec:
   values:
     frontend:
       image: ghcr.io/notelegend/devops-taskboard-frontend
-      tag: 179ad20c5e4995bf458a33531905d6f0e694b580
+      tag: 1178b684e26c00d06d05b66653d54dd5cebd191b
     backend:
       image: ghcr.io/notelegend/devops-taskboard-backend
-      tag: 179ad20c5e4995bf458a33531905d6f0e694b580
+      tag: 1178b684e26c00d06d05b66653d54dd5cebd191b
     imagePullPolicy: Always
     replicaCount: 2
-    releaseMarker: gitops-v1
+    releaseMarker: gitops-v2
     secretName: taskboard-runtime
     postgres:
       storageClass: standard

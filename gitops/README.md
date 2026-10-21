@@ -37,7 +37,7 @@ Open http://localhost:8099. The bootstrap installs source/kustomize/helm control
 Promote a release by updating both full image-SHA tags in `releases/release.yaml` after CI publication. Commit and push the change; Flux fetches Git and upgrades the Helm release. A `releaseMarker` update changes the HTTP `X-Release-Version` response and triggers the frontend config-checksum rollout.
 
 ```bash
-python3 scripts/verify-gitops.py --expect-marker gitops-v1
+python3 scripts/verify-gitops.py --expect-marker gitops-v2
 flux get all -A
 ```
 

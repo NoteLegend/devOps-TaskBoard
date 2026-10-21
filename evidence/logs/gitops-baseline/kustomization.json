@@ -1,0 +1,86 @@
+{
+  "apiVersion": "kustomize.toolkit.fluxcd.io/v1",
+  "kind": "Kustomization",
+  "metadata": {
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"kustomize.toolkit.fluxcd.io/v1\",\"kind\":\"Kustomization\",\"metadata\":{\"annotations\":{},\"name\":\"release-helpdesk\",\"namespace\":\"flux-system\"},\"spec\":{\"healthChecks\":[{\"apiVersion\":\"helm.toolkit.fluxcd.io/v2\",\"kind\":\"HelmRelease\",\"name\":\"release-helpdesk\",\"namespace\":\"release-helpdesk-gitops\"}],\"interval\":\"30s\",\"path\":\"./gitops/releases\",\"prune\":true,\"retryInterval\":\"15s\",\"sourceRef\":{\"kind\":\"GitRepository\",\"name\":\"release-helpdesk\"},\"timeout\":\"6m\"}}\n"
+    },
+    "creationTimestamp": "2026-10-21T10:12:59Z",
+    "finalizers": [
+      "finalizers.fluxcd.io"
+    ],
+    "generation": 1,
+    "name": "release-helpdesk",
+    "namespace": "flux-system",
+    "resourceVersion": "144922",
+    "uid": "20edcffc-6229-4e88-b25d-b5bdfce5be25"
+  },
+  "spec": {
+    "force": false,
+    "healthChecks": [
+      {
+        "apiVersion": "helm.toolkit.fluxcd.io/v2",
+        "kind": "HelmRelease",
+        "name": "release-helpdesk",
+        "namespace": "release-helpdesk-gitops"
+      }
+    ],
+    "interval": "30s",
+    "path": "./gitops/releases",
+    "prune": true,
+    "retryInterval": "15s",
+    "sourceRef": {
+      "kind": "GitRepository",
+      "name": "release-helpdesk"
+    },
+    "timeout": "6m"
+  },
+  "status": {
+    "conditions": [
+      {
+        "lastTransitionTime": "2026-10-21T10:15:57Z",
+        "message": "Applied revision: main@sha1:1178b684e26c00d06d05b66653d54dd5cebd191b",
+        "observedGeneration": 1,
+        "reason": "ReconciliationSucceeded",
+        "status": "True",
+        "type": "Ready"
+      },
+      {
+        "lastTransitionTime": "2026-10-21T10:15:57Z",
+        "message": "Health check passed in 26.925912ms",
+        "observedGeneration": 1,
+        "reason": "Succeeded",
+        "status": "True",
+        "type": "Healthy"
+      }
+    ],
+    "history": [
+      {
+        "digest": "sha256:7a73d7cec6335c02adb89b23440f19fe480854ddd86923c3d2ef51337370660f",
+        "firstReconciled": "2026-10-21T10:15:26Z",
+        "lastReconciled": "2026-10-21T10:15:57Z",
+        "lastReconciledDuration": "271.856821ms",
+        "lastReconciledStatus": "ReconciliationSucceeded",
+        "metadata": {
+          "revision": "main@sha1:1178b684e26c00d06d05b66653d54dd5cebd191b"
+        },
+        "totalReconciliations": 2
+      }
+    ],
+    "inventory": {
+      "entries": [
+        {
+          "id": "_release-helpdesk-gitops__Namespace",
+          "v": "v1"
+        },
+        {
+          "id": "release-helpdesk-gitops_release-helpdesk_helm.toolkit.fluxcd.io_HelmRelease",
+          "v": "v2"
+        }
+      ]
+    },
+    "lastAppliedRevision": "main@sha1:1178b684e26c00d06d05b66653d54dd5cebd191b",
+    "lastAttemptedRevision": "main@sha1:1178b684e26c00d06d05b66653d54dd5cebd191b",
+    "observedGeneration": 1
+  }
+}

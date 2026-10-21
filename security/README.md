@@ -40,6 +40,6 @@ bash scripts/security-scan.sh all
 
 A fresh dependency scan detected [the certifi trust-store advisory](https://github.com/advisories/GHSA-6q48-6c7w-9gw2). The Python lock was updated to certifi 2026.10.19 and the images rebuilt. The initial report is preserved in [security-initial](../evidence/logs/security-initial/); final reports and hosted artifacts record the result after repair.
 
-Gitleaks initially identified public CPython release-signing fingerprints in four historical Trivy image reports. `gitleaks.toml` exempts only that exact public fingerprint in those four paths. It does not exclude application source, complete evidence directories or arbitrary key values. Synthetic negative controls verify that unsafe source and a fake secret still stop the gates.
+Gitleaks initially identified public CPython release-signing fingerprints in archived Trivy image reports. `gitleaks.toml` exempts only that exact public fingerprint in the explicitly listed backend-report paths. It does not exclude application source, complete evidence directories or arbitrary key values. Synthetic negative controls verify that unsafe source and a fake secret still stop the gates.
 
 Deployment authentication uses GitHub OIDC with exact main-branch trust and namespace-scoped Kubernetes RBAC. Runtime database secrets are generated outside Git and are not included in source archives. Clean scans are dated observations, not a guarantee against future vulnerabilities or all classes of application weakness.

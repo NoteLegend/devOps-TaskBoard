@@ -1,0 +1,20 @@
+{
+  "result": "PASSED",
+  "captured_at_utc": "2026-10-21T10:16:05.252338+00:00",
+  "context": "kind-taskboard-local",
+  "application": "Release Helpdesk",
+  "namespace": "release-helpdesk-gitops",
+  "source_revision": "main@sha1:1178b684e26c00d06d05b66653d54dd5cebd191b",
+  "kustomization_revision": "main@sha1:1178b684e26c00d06d05b66653d54dd5cebd191b",
+  "helm_ready": true,
+  "manual_frontend_replicas": [
+    2,
+    1
+  ],
+  "automatically_recovered_replicas": 2,
+  "drift_recovery_seconds": 37.0,
+  "forced_reconcile": false,
+  "http_marker": "gitops-v1",
+  "same_origin_crud": "PASSED",
+  "hpa_replica_ownership": "backend replicas excluded; frontend replicas owned by Git"
+}
