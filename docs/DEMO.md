@@ -1,6 +1,8 @@
-# Local verification walkthrough
+# Demo and verification walkthrough
 
-Use these optional commands to inspect the implemented system and its recorded evidence. The submission requirements are mapped in [REQUIREMENTS.md](REQUIREMENTS.md).
+[Watch the recorded demo](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing) · [View the presentation](../presentation/Release-Helpdesk-Presentation.pdf) · [Download PowerPoint](../presentation/Release-Helpdesk-Presentation.pptx?raw=1)
+
+The commands below reproduce the application and operational checks. The [project guide](README.md) links the architecture, setup and engineering evidence.
 
 ## Prepare
 

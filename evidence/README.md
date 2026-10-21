@@ -1,26 +1,27 @@
 # Execution evidence
 
-Dated output connects implementation claims to actual commands, source revisions and observed behavior. Historical failures are retained alongside successful repairs.
+Connect the system's claims to source revisions, actual commands and observed behavior.
+
+## Approach
 
 ```mermaid
 flowchart LR
   Revision[Source / image revision] --> Execution[Actual execution]
   Execution --> Reports[Logs + JSON reports]
-  Execution --> Screens[Original screenshots]
-  Reports --> Verify[Cross-check behavior]
-  Screens --> Verify
+  Execution --> Media[Original screenshots / clips]
+  Reports --> Check[Cross-check the result]
+  Media --> Check
 ```
 
-| Evidence set | What it shows |
+| Area | What the records demonstrate |
 |---|---|
-| [Source security](logs/security-final/) | Bandit, Semgrep, dependency audits and redacted secret scans. |
-| [Initial security findings](logs/security-initial/) | The advisory and metadata findings that prompted a fix or narrow classification. |
-| [GitOps](logs/gitops-final/) | Flux revision/readiness, controlled frontend drift and automatic recovery. |
-| [AWS HPA](logs/aws-hpa-internal/summary.json) | Ready replicas 2 → 4 → 2 and measured load results. |
-| [AWS monitoring](logs/aws-prometheus-queries.json) | Actual application scrape/query responses. |
-| [AWS teardown](logs/aws-cleanup-verification.json) | Recorded residual-resource checks after the destroy. |
-| [Screenshot/video library](../images/README.md) | Original browser, console, pipeline, monitoring and terminal captures. |
+| [Security](logs/security-final/) | Source analysis, dependency audits and redacted secret scans. |
+| [Initial findings](logs/security-initial/) | Failures that led to a repair or narrowly scoped classification. |
+| [GitOps](logs/gitops-final/) | Source revision, release promotion, manual drift and automatic correction. |
+| [Autoscaling](logs/aws-hpa-internal/summary.json) | Ready replicas 2 → 4 → 2 and measured load. |
+| [Monitoring](logs/aws-prometheus-queries.json) | Real application queries and metrics. |
+| [Teardown](logs/aws-cleanup-verification.json) | Recorded residual-resource checks after destruction. |
 
-The 16 October cloud lifecycle and later local/security work are labelled separately. The cloud endpoint is intentionally offline. Clean scans apply to the saved revision and advisory data at scan time. The original external load that did not scale is retained; the later isolated in-cluster run supplied the observed scaling proof.
+The AWS lifecycle and later local/security executions retain their own dates and revisions. Failed attempts remain alongside successful recoveries; the earlier external load that did not scale is preserved too.
 
-[Verification record](../docs/VERIFICATION.md) · [deployment guide](../docs/DEPLOYMENT.md) · [cleanup record](../docs/CLEANUP.md).
+[Watch the recorded demo](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing) · [Presentation](../presentation/README.md) · [Visual library](../images/README.md) · [Verification record](../docs/VERIFICATION.md)

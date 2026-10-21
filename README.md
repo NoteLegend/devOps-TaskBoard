@@ -1,127 +1,121 @@
 # Release Helpdesk
 
-### Keep release work moving.
+### Resolve the incident. Keep the release moving.
 
-A service desk for deployment incidents, access requests and release follow-ups. Capture the problem, assign an owner, set a priority and track it through resolution—with a delivery platform that makes every release traceable.
+A service desk for deployment incidents, access requests and release follow-ups—backed by a tested, scanned and observable delivery platform.
 
 [![Delivery](https://github.com/NoteLegend/devOps-TaskBoard/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/NoteLegend/devOps-TaskBoard/actions/workflows/ci-cd.yml)
-[Quick start](#quick-start) · [Architecture](#architecture) · [Delivery](#from-source-to-running-service) · [GitOps](gitops/README.md) · [Operations](docs/DEPLOYMENT.md)
 
-![Release Helpdesk ticket dashboard](images/aws-application-desktop.png)
+**[Watch the demo](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing)** · **[View the presentation](presentation/Release-Helpdesk-Presentation.pdf)** · **[Download PowerPoint](presentation/Release-Helpdesk-Presentation.pptx?raw=1)**
 
-## A clear path from incident to resolution
+[Run locally](#run-locally) · [How it works](#how-it-works) · [Delivery approach](#from-commit-to-running-service) · [Documentation](docs/README.md)
+
+[![Release Helpdesk ticket workspace](images/aws-application-desktop.png)](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing)
+
+## The problem
+
+A blocked deployment rarely arrives as a neatly tracked task. An incident needs context, an access request needs an owner, and a release follow-up needs a clear next step. When that work is scattered, teams lose sight of who is responsible and what remains unresolved.
+
+The delivery process needs the same clarity: which change was tested, which image is running, whether the service can handle traffic, and how it recovers when something breaks.
+
+## The approach
+
+Release Helpdesk connects a focused ticket workflow with a reproducible application platform.
 
 | Capture | Triage | Resolve |
 |---|---|---|
-| Open a ticket with the incident context and an assignee. | Search the queue; filter by priority or status; update ownership. | Move tickets through TODO, IN_PROGRESS and DONE; keep counts in sync. |
+| Record the incident or request with context and an owner. | Search the queue, filter by priority/status, and update the ticket. | Move work through TODO → IN_PROGRESS → DONE and see queue counts update. |
 
-The responsive React interface includes validation, loading and empty states, safe error messages, edit/delete actions and browser-session activity. FastAPI exposes the ticket API and interactive documentation. PostgreSQL persists the records; Alembic owns schema changes.
+React provides the responsive workspace. FastAPI validates the ticket contract. PostgreSQL stores the records, while Alembic manages schema changes. The interface includes edit/delete actions, loading and empty states, useful errors and browser-session activity.
 
-## Quick start
+## How it works
 
-Install Docker with Compose, then run from the repository root:
+```mermaid
+flowchart LR
+  Browser --> Ingress[Ingress / ALB]
+  Ingress -->|/| UI[React + Nginx]
+  Ingress -->|/api| API[FastAPI]
+  UI -->|same-origin API and docs| API
+  API --> DB[(PostgreSQL / persistent storage)]
+  Migration[Alembic migration Job] --> DB
+  Prometheus -->|/metrics| API
+  Grafana --> Prometheus
+```
+
+The browser uses one origin. `/health` checks the process; `/ready` checks database/schema access. A service can stay alive while correctly refusing traffic during a database outage.
+
+## From commit to running service
+
+```mermaid
+flowchart LR
+  Git[Git commit] --> Tests[Tests + frontend build]
+  Git --> Security[Source / dependency / secret gates]
+  Tests --> Build[Build both images]
+  Security --> Build
+  Build --> Trivy[Image vulnerability gate]
+  Trivy --> Registry[GHCR / commit-SHA tags]
+  Registry --> Promote[Pin verified SHA in Git]
+  Promote --> Flux[Flux reconciliation]
+  Flux --> Helm[Helm release]
+  Helm --> App[Running application]
+  Drift[Manual drift] -->|automatic correction| Flux
+```
+
+- **Verify before publishing:** PostgreSQL tests, frontend build and security gates must pass before images reach the registry.
+- **Make releases traceable:** full commit-SHA image tags connect running artifacts to their source. Promotion is an explicit Git change.
+- **Keep operations measurable:** probes control readiness, HPA responds to CPU, and Prometheus/Grafana expose service behavior. Flux restores committed intent after drift.
+
+[Security design](security/README.md) · [GitOps approach](gitops/README.md) · [Monitoring](monitoring/README.md)
+
+## Run locally
+
+With Docker and Compose installed, run from the repository root:
 
 ```bash
 docker compose up --build -d --wait
 python3 scripts/smoke.py http://localhost:3000
 ```
 
-**Application:** http://localhost:3000 · **API explorer:** http://localhost:8000/docs
+**Workspace:** http://localhost:3000 · **API explorer:** http://localhost:8000/docs
 
 ```bash
-# Exercise the API against a dedicated migrated PostgreSQL database.
+# Run tests against a separate migrated PostgreSQL database.
 docker compose -f compose.test.yml up --build --abort-on-container-exit --exit-code-from tests
-# Stop the app while retaining its database volume.
+# Stop the application; retain its database volume.
 docker compose down
 ```
 
-The local stack binds only to loopback and does not publish PostgreSQL. It uses synthetic demo data and has no end-user authentication. Database credentials are generated separately for Kubernetes; local Compose defaults are in [.env.example](.env.example).
+The local stack uses loopback ports and synthetic data. End-user authentication is outside its current scope. [Development guide](application/README.md) · [Container setup](docker/README.md)
 
-## Architecture
+## Measured behavior
 
-```mermaid
-flowchart LR
-  Browser -->|same origin| Ingress[Ingress / ALB]
-  Ingress -->|/| UI[React + unprivileged Nginx]
-  Ingress -->|/api| API[FastAPI]
-  UI -->|/docs and API proxy| API
-  API --> DB[(PostgreSQL / persistent volume)]
-  Migration[Alembic migration Job] --> DB
-  Prometheus -->|/metrics| API
-  Grafana --> Prometheus
-```
+| What was verified | Observed result | Evidence |
+|---|---|---|
+| API correctness | 19 cases passed in unit and PostgreSQL integration runs. | [Test output](evidence/logs/final-postgres-integration.txt) |
+| AWS autoscaling | Ready backend replicas **2 → 4 → 2**; 68,466 successful load requests. | [HPA measurements](evidence/logs/aws-hpa-internal/summary.json) |
+| GitOps recovery | Manual frontend drift **2 → 1 → 2**, corrected in **34 seconds**. | [Flux verification](evidence/logs/gitops-final/summary.json) |
+| Artifact identity | Both running image digests matched the published registry manifests. | [Digest checks](evidence/logs/gitops-final/image-identity.json) |
 
-Routes remain compatible with the original task API. `/health` checks the process, `/ready` verifies database/schema access, and `/metrics` exposes request counters and latency histograms. During a database outage the process can remain alive while readiness correctly rejects traffic.
+The AWS captures document the deployed system before its completed teardown. The historical cloud URL is offline; local Compose and kind remain the reproduction paths. [Full verification](docs/VERIFICATION.md)
 
-## From source to running service
-
-```mermaid
-flowchart LR
-  Commit[Git commit] --> Tests[PostgreSQL tests + frontend build]
-  Commit --> Security[Bandit + Semgrep<br/>pip-audit + npm audit<br/>Gitleaks]
-  Tests --> Images[Build both images]
-  Security --> Images
-  Images --> Trivy[Trivy HIGH / CRITICAL gate]
-  Trivy --> GHCR[GHCR / full SHA tags]
-  GHCR --> Review[Pin verified SHA in Git]
-  Review --> Flux[Flux reconciliation]
-  Flux --> Helm[Helm release + drift correction]
-  Helm --> K8s[Kubernetes]
-```
-
-Tests and source-security gates must pass before image publication. Both images use the full commit SHA, and Trivy scans the images that are published. Pull requests validate changes without registry publication or AWS deployment. The existing cloud delivery path uses short-lived GitHub OIDC credentials and namespace-scoped deployment permissions.
-
-[GitOps](gitops/README.md) adds a continuously reconciled deployment of the same application on local Kubernetes. Flux reads the public repository, applies its HelmRelease and corrects manual frontend drift. The backend HPA owns its replica count. Image promotion is an explicit reviewed change to the pinned SHA; it does not silently follow `latest`.
-
-## Designed to be operated
-
-| Concern | Approach |
+| Application monitoring | GitOps reconciliation |
 |---|---|
-| Repeatability | Compose locally; versioned Terraform for AWS; one Helm chart for application resources. |
-| Data safety | Dedicated test databases, Alembic migration Job with advisory lock, persistent PostgreSQL storage. |
-| Resource control | Non-root containers, CPU/memory requests and limits, backend HPA from 2 to 4 replicas. |
-| Visibility | Prometheus ServiceMonitor, bounded metric labels and a versioned Grafana dashboard. |
-| Failure diagnosis | Isolated broken-image and Service-selector exercises with recorded recovery. |
-| Lifecycle | Account/credit guard, deliberate teardown and residual-resource inspection. |
+| ![Grafana application dashboard](images/aws-grafana-live-dashboard.png) | ![Flux promotion and automatic drift verification](images/final/gitops-verification.png) |
 
-The recorded AWS deployment demonstrated persistent data, real ALB traffic, HPA **2 → 4 → 2**, populated monitoring and successful failure recovery. The approved cloud environment was then removed; its old URL is offline. Local Compose and the local GitOps environment are the current reproduction paths. Exact revisions, dates and results are in the [verification record](docs/VERIFICATION.md).
+## Explore the system
 
-<details>
-<summary>See deployment and monitoring evidence</summary>
+| Area | Start here |
+|---|---|
+| User workflow and API | [Application](application/README.md) · [Frontend](application/frontend/README.md) · [Backend](application/backend/README.md) |
+| Packaging and runtime | [Docker](docker/README.md) · [Kubernetes](kubernetes/README.md) · [Helm](helm/README.md) |
+| Delivery and infrastructure | [GitOps](gitops/README.md) · [Terraform](terraform/README.md) · [Workflow](.github/workflows/ci-cd.yml) |
+| Operating the service | [Security](security/README.md) · [Monitoring](monitoring/README.md) · [Troubleshooting](docs/TROUBLESHOOTING.md) |
+| Walkthrough and proof | [Demo video](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing) · [Presentation](presentation/README.md) · [Screenshots](images/README.md) · [Execution evidence](evidence/README.md) |
 
-![Actual hosted AWS delivery pipeline](images/aws-ci-successful-deployment.png)
+## Lessons carried into the design
 
-![Grafana dashboard populated from application traffic](images/aws-grafana-live-dashboard.png)
-
-![Observed CPU autoscaling under load](images/aws-hpa-scaled-under-load.png)
-
-</details>
-
-## Explore the repository
-
-```text
-application/   React interface, FastAPI service, migrations and tests
-docker/        Backend and frontend image definitions
-kubernetes/    Namespace, storage, deployment access and local cluster setup
-helm/          Reusable application chart
-terraform/    AWS VPC, EKS, IAM and storage infrastructure
-.github/       Test, security, publish and approved deployment workflow
-security/      Scanner versions, rules and security approach
-monitoring/    Prometheus values and Grafana dashboard
-gitops/        Flux source, reconciliation and Helm desired state
-scripts/       Bootstrap, verification, load and packaging tools
-images/        Original screenshots and browser recording
-evidence/      Dated execution logs and machine-readable results
-```
-
-[Application](application/README.md) · [Containers](docker/README.md) · [Helm](helm/README.md) · [Infrastructure](terraform/README.md) · [Security](security/README.md) · [Monitoring](monitoring/README.md) · [Troubleshooting](docs/TROUBLESHOOTING.md)
-
-## Engineering lessons
-
-A successful rollout is only the start of verification: external API behavior must work too. Database readiness is different from process liveness. A large request count does not prove autoscaling; ready replicas and CPU measurements do. Security results are tied to a particular source revision, image and advisory database. GitOps closes the loop by correcting differences between committed intent and the running system.
-
-For a production service, add end-user identity, HTTPS and DNS, managed database backups and alerting appropriate to the service's objectives.
+A successful rollout still needs a working external request. Readiness is different from liveness. Request volume alone does not prove scaling. Security results belong to a particular revision and scan date. GitOps adds the final feedback loop: the running service should converge on the state committed in Git.
 
 ## License and origin
 
-Adapted from the MIT-licensed [TaskBoard starter](https://github.com/Nency-Ravaliya/devops-heros/tree/a4e39b6b3a54dab1efd386c75ab86bf1d8a23454/session21-python), with a release-helpdesk workflow and substantial application/platform changes. See [LICENSE](LICENSE), [attribution](docs/ATTRIBUTION.md) and [third-party notices](third_party/README.md).
+Adapted from the MIT-licensed [TaskBoard starter](https://github.com/Nency-Ravaliya/devops-heros/tree/a4e39b6b3a54dab1efd386c75ab86bf1d8a23454/session21-python), with a release-helpdesk workflow and application/platform improvements. [License](LICENSE) · [Attribution](docs/ATTRIBUTION.md) · [Third-party notices](third_party/README.md)

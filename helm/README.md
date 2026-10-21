@@ -1,31 +1,41 @@
 # Application chart
 
-`taskboard/` packages the complete service as one repeatable Helm release. Internal resource names preserve the original API/chart compatibility; the product is Release Helpdesk.
+One versioned definition for the interface, API, database and operational resources.
+
+## Problem
+
+Manually edited manifests drift across environments. Schema changes, runtime configuration and workload readiness also need to happen in a predictable order.
+
+## Approach
 
 ```mermaid
 flowchart TD
-  Values[Values / image SHA] --> Release[Helm release]
-  Release --> FE[Frontend Deployment + Service]
-  Release --> BE[Backend Deployment + Service + HPA]
-  Release --> DB[PostgreSQL StatefulSet + PVC]
-  Release --> Job[Alembic migration Job]
-  Release --> Routes[ConfigMap + Ingress + ServiceMonitor]
+  Values[Values + image SHA] --> Release[Helm release]
+  Release --> FE[Frontend + Service + ConfigMap]
+  Release --> BE[Backend + Service + HPA]
+  Release --> DB[PostgreSQL + PVC]
+  Release --> Migration[Alembic Job]
+  Release --> Operations[Ingress + probes + ServiceMonitor]
 ```
 
-| Configuration | Use |
+`taskboard/` retains compatible internal names while packaging Release Helpdesk. Shared defaults and environment-specific values keep the application definition consistent.
+
+| Configuration | Purpose |
 |---|---|
-| `values.yaml` | Shared defaults, resource bounds, 2 frontend replicas and backend HPA 2–4. |
+| `values.yaml` | Resource bounds, two frontend replicas and backend HPA from 2 to 4. |
 | `values-dev.yaml` | Local ingress settings. |
-| `values-prod.yaml` | ALB Ingress, encrypted gp3 storage and application ServiceMonitor. |
-| [Flux HelmRelease](../gitops/releases/release.yaml) | Local Git-owned release using immutable registry image tags. |
+| `values-prod.yaml` | AWS ALB, gp3 storage and ServiceMonitor. |
+| [Flux HelmRelease](../gitops/releases/release.yaml) | Git-owned local deployment with immutable image tags. |
+
+Migrations run in one hook Job with an advisory lock. Runtime credentials come from a separately generated Secret. An Nginx configuration checksum triggers a frontend rollout; `releaseMarker` appears in the HTTP `X-Release-Version` header. Backend replica ownership stays with the HPA.
+
+## Inspect the release definition
 
 ```bash
 helm lint helm/taskboard
 helm template taskboard helm/taskboard -f helm/taskboard/values-prod.yaml
 ```
 
-Generate `taskboard-runtime` separately; chart values never contain its password. The migration hook waits for the database and uses an advisory lock. First-install waits are handled deliberately so API readiness cannot deadlock the post-install migration. Deployment scripts verify rollouts and external behavior after Helm returns.
+First-install waits are handled so API readiness does not block the post-install migration. Deployment verification checks real rollouts and HTTP behavior after Helm returns.
 
-Changes to Nginx configuration update a Pod-template checksum and trigger a frontend rollout. `releaseMarker` appears in `X-Release-Version`, providing a readable configuration-promotion signal. The backend HPA owns replica count; Flux drift detection excludes that field while keeping frontend replicas under Git control.
-
-[Operations](../docs/DEPLOYMENT.md) · [GitOps](../gitops/README.md) · [troubleshooting](../docs/TROUBLESHOOTING.md).
+[Operations](../docs/DEPLOYMENT.md) · [GitOps promotion](../gitops/README.md) · [Troubleshooting](../docs/TROUBLESHOOTING.md)

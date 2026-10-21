@@ -1,20 +1,26 @@
 # Ticket workspace
 
-A responsive React interface for release incidents and requests. The UI keeps ownership, priority and progress visible while the API remains the source of truth.
+A responsive React workspace that keeps release incidents, owners and next steps visible.
 
 ![Release Helpdesk workspace](../../images/aws-application-desktop.png)
 
-## Workflow
+## Problem
+
+A queue is useful only when people can find the right work, change it confidently and understand whether an action succeeded.
+
+## Approach
 
 ```mermaid
 flowchart LR
   Capture[Create ticket] --> Assign[Owner + priority]
   Assign --> Triage[Search / filter / edit]
   Triage --> Progress[TODO → IN_PROGRESS → DONE]
-  Progress --> Counts[Refresh database-backed counts]
+  Progress --> Counts[Database-backed counts]
 ```
 
-The interface supports edit/delete actions, validation, loading/empty/error states and mobile layouts. The activity feed describes actions taken in the current browser session. It does not claim to be a persisted audit log.
+The UI supports edit/delete actions, validation, loading/empty/error states and mobile layouts. The activity feed records actions in the current browser session. All API calls use the same origin: Vite proxies during development, and Nginx proxies API/documentation routes in the packaged app.
+
+## Develop and verify
 
 ```bash
 npm ci
@@ -22,6 +28,6 @@ npm run build
 npm run dev
 ```
 
-Vite development proxies `/api` to the API. In the packaged application Nginx serves static assets and proxies API/documentation routes. Browser requests stay on the same origin.
+With a reachable application, `npm run test:browser` exercises create, edit, filters, delete, mobile layout and Swagger. Set `BASE_URL` for the target and `EVIDENCE_DIR` for screenshots. `RECORD_https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing_DIR` and `DEMO_SLOWMO_MS` support browser capture.
 
-`npm run test:browser` exercises create, edit, filter, delete, mobile layout, Swagger and routing. Start a reachable application first; use `BASE_URL` to select it and `EVIDENCE_DIR` to choose an output directory. `RECORD_VIDEO_DIR` enables a genuine browser recording, and `DEMO_SLOWMO_MS` slows actions for capture. [Container image](../../docker/frontend.Dockerfile) · [security rules](../../security/semgrep.yml).
+[Watch the demo](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing) · [API](../backend/README.md) · [Image definition](../../docker/frontend.Dockerfile) · [Frontend security rules](../../security/semgrep.yml)

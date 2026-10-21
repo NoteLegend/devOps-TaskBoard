@@ -1,5 +1,7 @@
 # Executed verification
 
+[Recorded demo](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing) · [Presentation PDF](../presentation/Release-Helpdesk-Presentation.pdf) · [PowerPoint](../presentation/Release-Helpdesk-Presentation.pptx?raw=1)
+
 ## Current delivery and GitOps verification — 21 October 2026
 
 The same Release Helpdesk application now includes integrated source security, dependency auditing, full-history/working-tree secret gates and a continuously reconciled Flux Helm release. Source directories follow the canonical delivery layout; no separate application has been substituted for missing evidence.

@@ -1,22 +1,30 @@
 # Application observability
 
-Prometheus collects actual FastAPI request measurements; Grafana turns them into a service dashboard. Metrics Server independently supplies the CPU measurements used by the backend HPA.
+Understand traffic, latency, errors and scaling using measurements from the running service.
+
+![Application dashboard](../images/aws-grafana-live-dashboard.png)
+
+## Problem
+
+A running Pod is not proof of a healthy service. Operators need to see whether requests arrive, which responses fail, how latency changes and whether capacity responds to demand.
+
+## Approach
 
 ```mermaid
 flowchart LR
-  API[FastAPI /metrics] --> SM[ServiceMonitor]
-  SM --> Prometheus
-  Prometheus --> Grafana[Request rate / errors / p95 latency / replicas]
+  API[FastAPI /metrics] --> Monitor[ServiceMonitor]
+  Monitor --> Prometheus
+  Prometheus --> Grafana[Requests / errors / p95 latency / replicas]
   Pods[Pod CPU] --> Metrics[Metrics Server]
   Metrics --> HPA[Backend HPA]
 ```
 
-![Recorded application dashboard](../images/aws-grafana-live-dashboard.png)
+`prometheus-values.yaml` configures kube-prometheus-stack. `dashboard.json` defines the versioned dashboard. Route-template labels keep request instrumentation bounded; the ServiceMonitor selects the backend's named HTTP port.
 
-`prometheus-values.yaml` configures kube-prometheus-stack. `dashboard.json` is the versioned Grafana dashboard. The chart's ServiceMonitor uses the backend Service's named HTTP port and matching release selectors.
+Metrics Server supplies HPA CPU measurements independently of Prometheus. Grafana and Prometheus remain private ClusterIP Services, accessed through port-forwarding.
 
-Grafana and Prometheus remain private ClusterIP Services. Follow [the port-forward instructions](../docs/DEPLOYMENT.md) to inspect them. Credentials are generated at runtime, not stored in values or screenshots.
+## Inspect behavior
 
-Verify more than installation: confirm the application target is **UP**, run real traffic, inspect increasing counters and check populated panels. The saved database-restart exercise includes a real readiness interruption; the dashboard is not presented as a zero-error production SLO.
+Confirm application targets are **UP**, send real requests and inspect increasing counters and populated panels. The recorded database-restart exercise includes a real readiness interruption, preserved in the error-rate data.
 
-[Metrics capture](../images/aws-metrics-endpoint.png) · [Prometheus targets](../images/aws-prometheus-targets-up.png) · [query results](../evidence/logs/aws-prometheus-queries.json).
+[Access instructions](../docs/DEPLOYMENT.md) · [Prometheus targets](../images/aws-prometheus-targets-up.png) · [Current GitOps metrics](../evidence/logs/gitops-final/monitoring.json) · [Recorded AWS queries](../evidence/logs/aws-prometheus-queries.json)

@@ -1,20 +1,30 @@
 # Container packaging
 
-Two application images and a PostgreSQL service make local execution repeatable. The root [Compose definition](../docker-compose.yml) also orchestrates the one-off migration.
+One reproducible stack from database startup to a ready browser interface.
+
+## Problem
+
+Starting the right processes is not enough. The database must accept connections, migrations must finish, and the API must be usable before the frontend serves requests.
+
+## Approach
 
 ```mermaid
 flowchart LR
-  DB[PostgreSQL healthy] --> Migrate[Alembic completed]
-  Migrate --> API[FastAPI ready]
+  DB[PostgreSQL healthy] --> Migration[Alembic completed]
+  Migration --> API[FastAPI ready]
   API --> UI[Nginx serving]
 ```
 
-| Image | Build approach | Runtime |
+| Image | Build | Runtime |
 |---|---|---|
-| Backend | Python 3.13 Alpine with pinned application dependencies. | Uvicorn, UID 10001, port 8000. |
-| Frontend | Node 24 compiles React; only compiled assets enter the final image. | Unprivileged Nginx, UID 101, port 8080. |
+| [Backend](backend.Dockerfile) | Python 3.13 Alpine with pinned dependencies. | Uvicorn, UID 10001, port 8000. |
+| [Frontend](frontend.Dockerfile) | Node compiles React; only static assets enter the final stage. | Unprivileged Nginx, UID 101, port 8080. |
 
-Run from the repository root:
+The [Compose definition](../docker-compose.yml) encodes startup dependencies. A named volume persists PostgreSQL records, the database has no published host port, and application ports bind to loopback.
+
+## Run
+
+From the repository root:
 
 ```bash
 docker compose up --build -d --wait
@@ -22,11 +32,6 @@ python3 scripts/smoke.py http://localhost:3000
 docker compose down
 ```
 
-The named PostgreSQL volume survives a normal stop. Database ports are private to the Compose network; published application ports bind to loopback.
+A normal stop retains the database volume. CI builds the same Dockerfiles, scans both images and publishes commit-SHA tags after the gates pass.
 
-```bash
-docker build -f docker/backend.Dockerfile -t taskboard-backend:local application/backend
-docker build -f docker/frontend.Dockerfile -t taskboard-frontend:local application/frontend
-```
-
-CI publishes both images to GHCR under full commit-SHA tags after tests, source security gates and image scanning. [Delivery workflow](../.github/workflows/ci-cd.yml) · [security model](../security/README.md).
+[Quick start](../README.md#run-locally) · [Delivery workflow](../.github/workflows/ci-cd.yml) · [Kubernetes](../kubernetes/README.md)

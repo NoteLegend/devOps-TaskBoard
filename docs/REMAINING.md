@@ -1,8 +1,15 @@
-# Final submission handover
+# Published handover
 
-The required engineering stages are implemented and verified: application, hosted tests/security gates, scanned GHCR images, Kubernetes/Helm, continuous Flux reconciliation, monitoring and the historical Terraform/AWS lifecycle. [Executed verification](VERIFICATION.md) records the actual source revisions, dates and results.
+The engineering implementation and recorded walkthrough are ready to share.
 
-1. Submit the existing public repository URL and the final assignment source/evidence requested by the course PDF. `python3 scripts/package-submission.py` packages the tracked source under the required `final-devops-project/` layout and verifies evidence hashes and credential exclusions.
-2. Review the [cleanup record](CLEANUP.md) for the earlier authorized cloud lifecycle. The AWS application endpoint is offline after teardown; current screenshots and historical cloud screenshots are labelled separately.
+| Material | Link |
+|---|---|
+| Source repository | [Release Helpdesk on GitHub](https://github.com/NoteLegend/devOps-TaskBoard) |
+| Demo video | [Watch on Google Drive](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing) |
+| Presentation | [View the PDF](../presentation/Release-Helpdesk-Presentation.pdf) |
+| Editable slides | [Download PowerPoint](../presentation/Release-Helpdesk-Presentation.pptx?raw=1) |
+| Verification | [Executed results](VERIFICATION.md) · [Visual evidence](../images/README.md) |
 
-Keep `DEPLOY_ENABLED=false` after cloud teardown. Optional local verification commands are in [DEMO.md](DEMO.md). A presentation and narrated video are not included as pending requirements in this handover. No new AWS deployment is needed to submit the genuine existing cloud evidence.
+Submit these published links through the requested channel. If a source archive is needed, `python3 scripts/package-submission.py` creates the checked `final-devops-project/` package.
+
+The original cloud deployment was deliberately removed after evidence capture. Keep `DEPLOY_ENABLED=false`; local Compose and kind remain the reproduction paths. [Cleanup record](CLEANUP.md).

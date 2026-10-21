@@ -1,19 +1,27 @@
 # AWS infrastructure
 
-Versioned Terraform provisions the network, EKS cluster and identity/storage integrations used by the recorded cloud deployment.
+A versioned network, Kubernetes cluster and identity/storage foundation.
+
+## Problem
+
+Kubernetes manages workloads, but the surrounding network, workers, permissions and persistent storage must also be reproducible. Ad hoc infrastructure is difficult to review and easy to leave running.
+
+## Approach
 
 ```mermaid
 flowchart TD
   VPC[VPC / two availability zones] --> Public[Two public subnets / ALB]
   VPC --> Private[Two private subnets / managed workers]
-  Private --> NAT[Single NAT / outbound access]
-  EKS[EKS 1.35 control plane] --> Private
+  Private --> NAT[Single NAT / egress]
+  EKS[EKS control plane] --> Private
   OIDC[GitHub OIDC role] --> EKS
-  IRSA[Controller service-account roles] --> ALB[Load Balancer Controller]
-  IRSA --> EBS[EBS CSI / encrypted gp3]
+  Roles[Controller service-account roles] --> ALB[Load Balancer Controller]
+  Roles --> EBS[EBS CSI / encrypted gp3]
 ```
 
-Modules and providers are versioned; the provider lockfile is retained. The account ID is explicit, operator and deployment access are separate, and the workflow assumes short-lived credentials. The two-worker configuration and a single NAT gateway are deliberate demonstration choices, not a claim of full production high availability.
+Modules/providers are versioned and the provider lockfile is retained. The account is explicit, operator/deployment access is separate, and controller roles are tied to service accounts. Two workers and one NAT gateway balance the demonstration's needs and resource use.
+
+## Validate and operate
 
 ```bash
 terraform -chdir=terraform init
@@ -21,8 +29,8 @@ terraform -chdir=terraform fmt -check
 terraform -chdir=terraform validate
 ```
 
-Use `terraform.tfvars.example` as a template and keep real variables/state/plans private. Provisioning requires an approved account, actual plan, cost budget and lifetime. Authentication alone does not authorize spending.
+Use `terraform.tfvars.example` for inputs; keep real variables, state and plans private. Provisioning follows an approved plan, cost budget and lifetime.
 
-The recorded apply created **66 resources**. Evidence was preserved before the authorized destroy removed them. The historical ALB URL is offline. The KMS key was disabled and scheduled for deletion; settled billing is not inferred from delayed credit reports.
+The real AWS lifecycle created and later destroyed **66 Terraform resources**. Screenshots and residual checks were preserved before teardown. The old cloud URL is offline; local environments remain reproducible.
 
-[Deployment](../docs/DEPLOYMENT.md) · [cost checkpoint](../docs/COST_CHECKPOINT.md) · [completed teardown](../docs/CLEANUP.md) · [actual plan](../images/aws-terraform-plan.png).
+[Deployment](../docs/DEPLOYMENT.md) · [Plan capture](../images/aws-terraform-plan.png) · [Cost checkpoint](../docs/COST_CHECKPOINT.md) · [Cleanup record](../docs/CLEANUP.md)

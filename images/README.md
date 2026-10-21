@@ -2,6 +2,8 @@
 
 Original screenshots and browser activity show the application and platform as they ran. The library separates recorded AWS captures from local reproduction.
 
+[Watch the demo](https://drive.google.com/file/d/1ZSxd5RlMJAqJkvLA3E_098BrKF4OgJLT/view?usp=sharing) · [Read the presentation](../presentation/Release-Helpdesk-Presentation.pdf) · [Download the slides](../presentation/Release-Helpdesk-Presentation.pptx?raw=1)
+
 ![Release Helpdesk on the recorded AWS deployment](aws-application-desktop.png)
 
 | Area | Open the original captures |
@@ -23,4 +25,4 @@ Original screenshots and browser activity show the application and platform as t
 
 [manifest.json](manifest.json) records the source, capture timestamp and SHA-256 digest of each original image/video. The packaging helper verifies these hashes. AWS evidence was pushed and independently checked before teardown. The previous AWS URL no longer serves traffic.
 
-The WEBM files capture genuine UI operations. They are retained as browser evidence alongside the screenshots; no new presentation or narrated recording is required by this handover.
+The WEBM files preserve short, original UI sequences. The linked demo video provides the recorded walkthrough; the presentation explains the architecture and engineering approach.
